@@ -1,3 +1,4 @@
-Nazywam siê test!(dodajcie w tej linijce cyferkê)1
+Nazywam siê test!(dodajcie w tej linijce cyferkê)123
 Wpiszcie jak siê nazywacie :) (w nowych liniach)
 Nazywam siê Mateusz
+Nazywam siê Micha³
