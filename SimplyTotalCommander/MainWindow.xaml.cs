@@ -29,7 +29,10 @@ namespace SimplyTotalCommander
         {
             InitializeComponent();
 
-            dataGridOfFiles.ItemsSource = FileReader.FileReader.getFilesFromActuallDirectory(testPath1, listOfFiles);
+            FileReader.FileReader.ProcessCurrentDirectory(testPath1, listOfFiles);
+            dataGridOfFiles.ItemsSource = listOfFiles;
+
+
         }
     }
 }
