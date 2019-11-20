@@ -11,40 +11,30 @@ namespace FileReader
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        string path;
-        List<string> Extensions;
         public static List<string> filesFound;
         // add a single file to list
-        public FileReader(string _path)
-        {
-            this.path = _path;
-        }
-        public FileReader(string _path, List<string> _Extensions)
-        {
-            this.path = _path;
-            this.Extensions = _Extensions;
-        }
         public static List<string> GetOneFile(string path)
         {
-            // throws nullPointerException
+            // throws nullPointerException need to handle 
             if (File.Exists(path))
             {
                 return ProcessFile(path);
             }
             return null;
         }
+        // Process the list of files found in the directory. Add them to list passed by argument
         public static void ProcessCurrentDirectory(string targetDirectory, List<FileInfo> _filesList)
         {
-            // Process the list of files found in the directory. Add them to list passed by argument
-            //filters only on name of file
-            //string[] fileEntries = new DirectoryInfo(targetDirectory).GetFiles().Select(o => o.Name).ToArray();
+            //Method to put filters on search, like name extension path etc.
+           // string[] fileEntries = new DirectoryInfo(targetDirectory).GetFiles().Select(o => o.Extension).ToArray();
             FileInfo[] fileEntries1 = new DirectoryInfo(targetDirectory).GetFiles();
             foreach (FileInfo file in fileEntries1)
                 _filesList.Add(file);
         }
+        // Putting into list files from subdirectories
         public static void ProcessSubDirectories(string targetDirectories, List<FileInfo> _filesList)
         {
-            // Recurse into subdirectories of this directory by using recurrency
+
             string[] subdirectoryEntries = Directory.GetDirectories(targetDirectories);
             foreach (string subdirectory in subdirectoryEntries)
                 ProcessCurrentDirectory(subdirectory, _filesList);
