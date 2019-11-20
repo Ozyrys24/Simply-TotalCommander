@@ -22,14 +22,19 @@ namespace SimplyTotalCommander
     /// </summary>
     public partial class MainWindow : Window
     {
+        // main argument into FileReaders methods.
         List<FileInfo> listOfFiles = new List<FileInfo>();
+        // just testing strings
         string testPath = "C:\\Users\\wojta\\Desktop\\Nowy folder (2)";
         string testPath1 = "C:\\Users\\wojta\\Desktop\\Nowy folder (2)\\zostaje";
         public MainWindow()
         {
             InitializeComponent();
 
+            // Add files into list in specific directory path
             FileReader.FileReader.ProcessCurrentDirectory(testPath1, listOfFiles);
+
+            // add list of files into data grid
             dataGridOfFiles.ItemsSource = listOfFiles;
 
 
