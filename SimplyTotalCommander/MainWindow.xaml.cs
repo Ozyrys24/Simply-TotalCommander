@@ -22,7 +22,7 @@ namespace SimplyTotalCommander
     /// </summary>
     public partial class MainWindow : Window
     {
-        List<string> listOfFiles = new List<string>();
+        List<FileInfo> listOfFiles = new List<FileInfo>();
         string testPath = "C:\\Users\\wojta\\Desktop\\Nowy folder (2)";
         string testPath1 = "C:\\Users\\wojta\\Desktop\\Nowy folder (2)\\zostaje";
         public MainWindow()

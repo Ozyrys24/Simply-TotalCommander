@@ -33,15 +33,16 @@ namespace FileReader
             }
             return null;
         }
-        public static void ProcessCurrentDirectory(string targetDirectory, List<string> _filesList)
+        public static void ProcessCurrentDirectory(string targetDirectory, List<FileInfo> _filesList)
         {
             // Process the list of files found in the directory. Add them to list passed by argument
             //filters only on name of file
-            string[] fileEntries = new DirectoryInfo(targetDirectory).GetFiles().Select(o => o.Name).ToArray();
-            foreach (string file in fileEntries)
+            //string[] fileEntries = new DirectoryInfo(targetDirectory).GetFiles().Select(o => o.Name).ToArray();
+            FileInfo[] fileEntries1 = new DirectoryInfo(targetDirectory).GetFiles();
+            foreach (FileInfo file in fileEntries1)
                 _filesList.Add(file);
         }
-        public static void ProcessSubDirectories(string targetDirectories, List<string> _filesList)
+        public static void ProcessSubDirectories(string targetDirectories, List<FileInfo> _filesList)
         {
             // Recurse into subdirectories of this directory by using recurrency
             string[] subdirectoryEntries = Directory.GetDirectories(targetDirectories);
