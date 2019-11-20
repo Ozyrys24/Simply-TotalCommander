@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Collections.ObjectModel;
+using System.IO;
 
 namespace SimplyTotalCommander
 {
@@ -20,9 +22,14 @@ namespace SimplyTotalCommander
     /// </summary>
     public partial class MainWindow : Window
     {
+        List<string> listOfFiles = new List<string>();
+        string testPath = "C:\\Users\\wojta\\Desktop\\Nowy folder (2)";
+        string testPath1 = "C:\\Users\\wojta\\Desktop\\Nowy folder (2)\\zostaje";
         public MainWindow()
         {
             InitializeComponent();
+
+            dataGridOfFiles.ItemsSource = FileReader.FileReader.getFilesFromActuallDirectory(testPath1, listOfFiles);
         }
     }
 }
