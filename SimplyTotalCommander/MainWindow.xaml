@@ -29,8 +29,13 @@
         </DataGrid>
             </TabItem>
             <TabItem Header="Search options">
-                
+                <Grid>
+                    <TextBlock Margin="133,195,599,171.2" >Path</TextBlock>
+                    <TextBox x:Name="newPath"  RenderTransformOrigin="0.445,0.704" Margin="189,195,377,165.2" />
+                    <Button Margin="416,194,277,165" RenderTransformOrigin="2.961,1.4" Click="Button_Click">Refresh</Button>
+                </Grid>
             </TabItem>
         </TabControl>
+
     </Grid>
 </Window>

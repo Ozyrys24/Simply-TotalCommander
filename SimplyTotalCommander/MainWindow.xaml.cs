@@ -32,9 +32,16 @@ namespace SimplyTotalCommander
             InitializeComponent();
 
             // Add files into list in specific directory path
-            FileReader.FileReader.ProcessCurrentDirectory(testPath1, listOfFiles);
+
 
             // add list of files into data grid
+
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            
+            FileReader.FileReader.ProcessCurrentDirectory(newPath.Text, listOfFiles);
             dataGridOfFiles.ItemsSource = listOfFiles;
         }
     }

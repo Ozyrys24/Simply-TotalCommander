@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
+using System.Windows;
+
 namespace FileReader
 {
     public class FileReader : INotifyPropertyChanged
@@ -26,10 +28,18 @@ namespace FileReader
         public static void ProcessCurrentDirectory(string _targetDirectory, List<FileInfo> _filesList)
         {
             //Method to put filters on search, like name extension path etc.
-           // string[] fileEntries = new DirectoryInfo(targetDirectory).GetFiles().Select(o => o.Extension).ToArray();
-            FileInfo[] fileEntries1 = new DirectoryInfo(_targetDirectory).GetFiles();
-            foreach (FileInfo file in fileEntries1)
-                _filesList.Add(file);
+            // string[] fileEntries = new DirectoryInfo(targetDirectory).GetFiles().Select(o => o.Extension).ToArray();
+            try
+            {
+                FileInfo[] fileEntries1 = new DirectoryInfo(_targetDirectory).GetFiles();
+                foreach (FileInfo file in fileEntries1)
+                    _filesList.Add(file);
+            }
+            catch
+            {
+                MessageBox.Show("Unable to read folder", "Error",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
         // Putting into list files from subdirectories
         public static void ProcessSubDirectories(string _targetDirectories, List<FileInfo> _filesList)
