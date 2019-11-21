@@ -25,7 +25,7 @@ namespace SimplyTotalCommander
         // main argument into FileReaders methods.
         List<FileInfo> listOfFiles = new List<FileInfo>();
         // just testing strings
-        string testPath = "C:\\Users\\wojta\\Desktop\\Nowy folder (2)";
+        string testPath = "C:\\Users\\wojta\\Desktop\\Nowy folder (2)\\12.jpg";
         string testPath1 = "C:\\Users\\wojta\\Desktop\\Nowy folder (2)\\zostaje";
         public MainWindow()
         {
@@ -36,8 +36,6 @@ namespace SimplyTotalCommander
 
             // add list of files into data grid
             dataGridOfFiles.ItemsSource = listOfFiles;
-
-
         }
     }
 }

@@ -13,7 +13,8 @@
                   CanUserDeleteRows="False" 
                   SelectionMode="Extended" 
                   SelectionUnit="CellOrRowHeader"
-                  FrozenColumnCount="1" Margin="0,0,399.6,0"
+                  FrozenColumnCount="1" 
+                  Margin="0,0,399.6,0"
                   >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="File name" Binding="{Binding Path=Name}" Width="150">
@@ -23,5 +24,6 @@
                 <DataGridTextColumn Header="Path" Binding="{Binding Path=FullName}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
+
     </Grid>
 </Window>

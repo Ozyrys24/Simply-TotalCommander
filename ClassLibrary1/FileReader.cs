@@ -11,16 +11,16 @@ namespace FileReader
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public static List<string> filesFound;
         // add a single file to list
-        public static List<string> GetOneFile(string path)
+        public static void GetOneFile(string _path, List<FileInfo> _filesList)
         {
             // throws nullPointerException need to handle 
-            if (File.Exists(path))
+            if (File.Exists(_path))
             {
-                return ProcessFile(path);
-            }
-            return null;
+                FileInfo[] fileEntries1 = new DirectoryInfo(_path).GetFiles();
+                foreach (FileInfo file in fileEntries1)
+                    _filesList.Add(file);
+            }   
         }
         // Process the list of files found in the directory. Add them to list passed by argument
         public static void ProcessCurrentDirectory(string targetDirectory, List<FileInfo> _filesList)
@@ -41,13 +41,8 @@ namespace FileReader
         }
 
         //add existing files into list
-        public static List<string> ProcessFile(string path)
-        {
-            foreach (string f in filesFound)
-            {
-                filesFound.Add(f);
-            }
-            return filesFound;
-        }
+
+
+        
     }
 }
