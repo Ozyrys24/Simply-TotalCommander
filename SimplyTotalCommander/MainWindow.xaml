@@ -7,6 +7,9 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <TabControl>
+            <TabItem Header="File List"
+                     ToolTip="Most common file details">
         <DataGrid x:Name="dataGridOfFiles" 
                   AutoGenerateColumns="False" 
                   CanUserAddRows="False" 
@@ -24,6 +27,10 @@
                 <DataGridTextColumn Header="Path" Binding="{Binding Path=FullName}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-
+            </TabItem>
+            <TabItem Header="Search options">
+                
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>

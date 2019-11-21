@@ -23,26 +23,21 @@ namespace FileReader
             }   
         }
         // Process the list of files found in the directory. Add them to list passed by argument
-        public static void ProcessCurrentDirectory(string targetDirectory, List<FileInfo> _filesList)
+        public static void ProcessCurrentDirectory(string _targetDirectory, List<FileInfo> _filesList)
         {
             //Method to put filters on search, like name extension path etc.
            // string[] fileEntries = new DirectoryInfo(targetDirectory).GetFiles().Select(o => o.Extension).ToArray();
-            FileInfo[] fileEntries1 = new DirectoryInfo(targetDirectory).GetFiles();
+            FileInfo[] fileEntries1 = new DirectoryInfo(_targetDirectory).GetFiles();
             foreach (FileInfo file in fileEntries1)
                 _filesList.Add(file);
         }
         // Putting into list files from subdirectories
-        public static void ProcessSubDirectories(string targetDirectories, List<FileInfo> _filesList)
+        public static void ProcessSubDirectories(string _targetDirectories, List<FileInfo> _filesList)
         {
 
-            string[] subdirectoryEntries = Directory.GetDirectories(targetDirectories);
+            string[] subdirectoryEntries = Directory.GetDirectories(_targetDirectories);
             foreach (string subdirectory in subdirectoryEntries)
                 ProcessCurrentDirectory(subdirectory, _filesList);
         }
-
-        //add existing files into list
-
-
-        
     }
 }
