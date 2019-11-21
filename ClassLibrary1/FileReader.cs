@@ -29,6 +29,7 @@ namespace FileReader
         {
             //Method to put filters on search, like name extension path etc.
             // string[] fileEntries = new DirectoryInfo(targetDirectory).GetFiles().Select(o => o.Extension).ToArray();
+            _filesList.Clear();
             try
             {
                 FileInfo[] fileEntries1 = new DirectoryInfo(_targetDirectory).GetFiles();
@@ -49,5 +50,6 @@ namespace FileReader
             foreach (string subdirectory in subdirectoryEntries)
                 ProcessCurrentDirectory(subdirectory, _filesList);
         }
+
     }
 }

@@ -39,8 +39,7 @@ namespace SimplyTotalCommander
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            
+        {           
             FileReader.FileReader.ProcessCurrentDirectory(newPath.Text, listOfFiles);
             dataGridOfFiles.ItemsSource = listOfFiles;
         }
