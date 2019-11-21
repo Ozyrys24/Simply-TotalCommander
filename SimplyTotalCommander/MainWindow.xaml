@@ -7,8 +7,21 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <DataGrid x:Name="dataGridOfFiles">
-            
+        <DataGrid x:Name="dataGridOfFiles" 
+                  AutoGenerateColumns="False" 
+                  CanUserAddRows="False" 
+                  CanUserDeleteRows="False" 
+                  SelectionMode="Extended" 
+                  SelectionUnit="CellOrRowHeader"
+                  FrozenColumnCount="1" Margin="0,0,399.6,0"
+                  >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="File name" Binding="{Binding Path=Name}" Width="150">
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Extension" Binding="{Binding Path=Extension}" ></DataGridTextColumn>
+                <DataGridTextColumn Header="Lenght" Binding="{Binding Path=Length}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Path" Binding="{Binding Path=FullName}"></DataGridTextColumn>
+            </DataGrid.Columns>
         </DataGrid>
     </Grid>
 </Window>
