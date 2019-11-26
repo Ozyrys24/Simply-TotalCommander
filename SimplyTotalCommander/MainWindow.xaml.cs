@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
 using System.IO;
+using FileReader;
 
 namespace SimplyTotalCommander
 {
@@ -30,18 +31,17 @@ namespace SimplyTotalCommander
         public MainWindow()
         {
             InitializeComponent();
-
-            // Add files into list in specific directory path
-
-
-            // add list of files into data grid
-
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {           
             FileReader.FileReader.ProcessCurrentDirectory(newPath.Text, listOfFiles);
             dataGridOfFiles.ItemsSource = listOfFiles;
+        }
+
+        private void DataGridOfFiles_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            FileReader.FileReader.ProcessCurrentDirectory(newPath.Text, listOfFiles);
         }
     }
 }

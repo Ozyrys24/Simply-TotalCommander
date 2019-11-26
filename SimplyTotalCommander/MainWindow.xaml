@@ -10,29 +10,33 @@
         <TabControl>
             <TabItem Header="File List"
                      ToolTip="Most common file details">
-        <DataGrid x:Name="dataGridOfFiles" 
+                <DataGrid x:Name="dataGridOfFiles" 
                   AutoGenerateColumns="False" 
                   CanUserAddRows="False" 
                   CanUserDeleteRows="False" 
                   SelectionMode="Extended" 
                   SelectionUnit="CellOrRowHeader"
                   FrozenColumnCount="1" 
-                  Margin="0,0,399.6,0"
+                  Margin="0,0,399.6,0" SelectionChanged="DataGridOfFiles_SelectionChanged"
                   >
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="File name" Binding="{Binding Path=Name}" Width="150">
-                </DataGridTextColumn>
-                <DataGridTextColumn Header="Extension" Binding="{Binding Path=Extension}" ></DataGridTextColumn>
-                <DataGridTextColumn Header="Lenght" Binding="{Binding Path=Length}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Path" Binding="{Binding Path=FullName}"></DataGridTextColumn>
-            </DataGrid.Columns>
-        </DataGrid>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="File name" Binding="{Binding Path=Name}" Width="150">
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Extension" Binding="{Binding Path=Extension}" ></DataGridTextColumn>
+                        <DataGridTextColumn Header="Lenght" Binding="{Binding Path=Length}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Path" Binding="{Binding Path=FullName}"></DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
             </TabItem>
             <TabItem Header="Search options">
                 <Grid>
-                    <TextBlock Margin="133,195,599,171.2" >Path</TextBlock>
-                    <TextBox x:Name="newPath"  RenderTransformOrigin="0.445,0.704" Margin="189,195,377,165.2" />
-                    <Button Margin="416,194,277,165" RenderTransformOrigin="2.961,1.4" Click="Button_Click">Refresh</Button>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="11*"/>
+                        <ColumnDefinition Width="383*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Margin="111.275,195,599,171.2" Grid.Column="1" >Path</TextBlock>
+                    <TextBox x:Name="newPath"  RenderTransformOrigin="0.445,0.704" Margin="167.275,195,377,165.2" Grid.Column="1" />
+                    <Button Margin="394.275,194,277,165.2" RenderTransformOrigin="2.961,1.4" Click="Button_Click" Grid.Column="1">Refresh</Button>
                 </Grid>
             </TabItem>
         </TabControl>
