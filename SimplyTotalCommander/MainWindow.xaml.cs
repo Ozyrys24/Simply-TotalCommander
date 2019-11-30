@@ -26,8 +26,7 @@ namespace SimplyTotalCommander
         // main argument into FileReaders methods.
         List<FileInfo> listOfFiles = new List<FileInfo>();
         // just testing strings
-        string testPath = "C:\\Users\\wojta\\Desktop\\Nowy folder (2)\\12.jpg";
-        string testPath1 = "C:\\Users\\wojta\\Desktop\\Nowy folder (2)\\zostaje";
+
         public MainWindow()
         {
             InitializeComponent();
@@ -37,11 +36,6 @@ namespace SimplyTotalCommander
         {           
             FileReader.FileReader.ProcessCurrentDirectory(newPath.Text, listOfFiles);
             dataGridOfFiles.ItemsSource = listOfFiles;
-        }
-
-        private void DataGridOfFiles_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            FileReader.FileReader.ProcessCurrentDirectory(newPath.Text, listOfFiles);
         }
     }
 }

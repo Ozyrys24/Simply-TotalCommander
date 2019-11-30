@@ -17,7 +17,7 @@
                   SelectionMode="Extended" 
                   SelectionUnit="CellOrRowHeader"
                   FrozenColumnCount="1" 
-                  Margin="0,0,399.6,0" SelectionChanged="DataGridOfFiles_SelectionChanged"
+                  Margin="0,0,399.6,0"
                   >
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="File name" Binding="{Binding Path=Name}" Width="150">
@@ -34,9 +34,10 @@
                         <ColumnDefinition Width="11*"/>
                         <ColumnDefinition Width="383*"/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Margin="111.275,195,599,171.2" Grid.Column="1" >Path</TextBlock>
-                    <TextBox x:Name="newPath"  RenderTransformOrigin="0.445,0.704" Margin="167.275,195,377,165.2" Grid.Column="1" />
-                    <Button Margin="394.275,194,277,165.2" RenderTransformOrigin="2.961,1.4" Click="Button_Click" Grid.Column="1">Refresh</Button>
+                    <TextBlock Margin="100 20" Grid.Column="1" Text="Search in directory :" />
+                    <TextBlock Margin="100 40" Grid.Column="1" >Path :</TextBlock>
+                    <TextBox x:Name="newPath" Margin="130.4,40,324,322.2" Grid.Column="1" />
+                    <Button Margin="447.4,40,197,322.2" RenderTransformOrigin="2.961,1.4" Click="Button_Click" Grid.Column="1">Refresh</Button>
                 </Grid>
             </TabItem>
         </TabControl>
