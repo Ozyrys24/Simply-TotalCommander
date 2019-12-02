@@ -14,7 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
 using System.IO;
-using FileReader;
+using ClassLibrary1;
 
 namespace SimplyTotalCommander
 {
@@ -25,6 +25,8 @@ namespace SimplyTotalCommander
     {
         // main argument into FileReaders methods.
         List<FileInfo> listOfFiles = new List<FileInfo>();
+
+        private List<string> listOfFilesName = new List<string>();
         // just testing strings
 
         public MainWindow()
@@ -32,10 +34,13 @@ namespace SimplyTotalCommander
             InitializeComponent();
         }
 
+        // Refresh button on click is updating dataGrid of current directory and comboBox of files to choose
         private void Button_Click(object sender, RoutedEventArgs e)
         {           
-            FileReader.FileReader.ProcessCurrentDirectory(newPath.Text, listOfFiles);
+            FileReader.ProcessCurrentDirectory(newPath.Text, listOfFiles);
             dataGridOfFiles.ItemsSource = listOfFiles;
+            FileReader.GetFilesNamesList(newPath.Text, listOfFilesName);
+            Details.ItemsSource = listOfFilesName;
         }
     }
 }
