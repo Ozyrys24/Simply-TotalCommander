@@ -8,46 +8,45 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="558*"/>
-            <ColumnDefinition Width="235*"/>
+            <ColumnDefinition Width="43*"/>
+            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition Width="18*"/>
         </Grid.ColumnDefinitions>
-        <TabControl Grid.ColumnSpan="2" Margin="0,0,-0.4,0">
+        <TabControl Grid.ColumnSpan="3" Margin="0,0,-0.4,0">
             <TabItem Header="File List"
                      ToolTip="Most common file details">
-                <StackPanel>
+                <WrapPanel Orientation="Horizontal" Margin="0,0,-2,-2">
                     <DataGrid x:Name="dataGridOfFiles" 
-                  AutoGenerateColumns="False" 
+                  AutoGenerateColumns="True" 
                   CanUserAddRows="False" 
                   CanUserDeleteRows="False" 
                   SelectionMode="Extended" 
                   SelectionUnit="CellOrRowHeader"
-                  Margin="0,0,399.6,0"
+                  Margin="0,0,399.6,0" Width="623"
+                  VerticalAlignment="Top" Height="275" SelectionChanged="DataGridOfFiles_SelectionChanged"
                   >
                         <DataGrid.FrozenColumnCount>1</DataGrid.FrozenColumnCount>
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="File name" 
-                                            Binding="{Binding Path=Name}" 
-                                            Width="150">
-                            </DataGridTextColumn>
-                            <DataGridTextColumn Header="Extension" 
-                                            Binding="{Binding Path=Extension}" 
-                                            Width="50"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Length" Binding="{Binding Path=Length}"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Path" Binding="{Binding Path=FullName}" Width="250"></DataGridTextColumn>
-                        </DataGrid.Columns>
+
                     </DataGrid>
-                    <ComboBox SelectionChanged="Button_Click" x:Name="Details" IsEditable="True" IsTextSearchEnabled="True" Margin="415,26,25,356" Grid.ColumnSpan="2"
-                              Grid.Column="0" Height="31">
+                    <ComboBox SelectionChanged="Button_Click" 
+                              x:Name="SelectedFile" 
+                              IsEditable="True" 
+                              IsTextSearchEnabled="True" 
+                              Height="35" 
+                              Width="393" 
+                              VerticalAlignment="top"
+                              >
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel>
-                                    <TextBlock Text="{Binding}" Background="#00185E8D"></TextBlock>
-                                    <Rectangle Fill="{Binding}"></Rectangle>
+                                    <TextBlock Text="{Binding}" Background="#00185E8D"/>
+                                    <Rectangle Fill="{Binding}"/>
                                 </StackPanel>
                             </DataTemplate>
                         </ComboBox.ItemTemplate>
                     </ComboBox>
-                </StackPanel>
+                    <Button Height="33" Click="Button_Click_1">Copy</Button>
+                </WrapPanel>
             </TabItem>
             <TabItem Header="Search options">
                 <Grid>

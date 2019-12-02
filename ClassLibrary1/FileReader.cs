@@ -8,13 +8,13 @@ namespace ClassLibrary1
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        // add a single file to list
-        public static void GetOneFile(string _path, List<FileInfo> filesList)
+        // Clear list & add a single file to list
+        public static void GetOneFile(string path, List<FileInfo> filesList)
         {
-            // throws nullPointerException need to handle 
-            if (File.Exists(_path))
+            if (File.Exists(path))
             {
-                FileInfo[] fileEntries1 = new DirectoryInfo(_path).GetFiles();
+                filesList.Clear();
+                FileInfo[] fileEntries1 = new DirectoryInfo(path).GetFiles();
                 foreach (FileInfo file in fileEntries1)
                     filesList.Add(file);
             }   
@@ -41,6 +41,7 @@ namespace ClassLibrary1
                 ProcessCurrentDirectory(subdirectories, filesList);
         }
 
+        // Clearing then updating list of string with file names
         public static void GetFilesNamesList(string targetDirectory, List<string> filesList) { 
         filesList.Clear();
         if (Directory.Exists(targetDirectory))
@@ -51,5 +52,10 @@ namespace ClassLibrary1
         }
         }
 
+        public static void CopyFile(FileInfo fileToCopy)
+        {
+            string elo = fileToCopy.Name.ToString();
+            File.Copy(elo,elo+" Copy");
+        }
 }
 }

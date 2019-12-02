@@ -25,9 +25,8 @@ namespace SimplyTotalCommander
     {
         // main argument into FileReaders methods.
         List<FileInfo> listOfFiles = new List<FileInfo>();
-
         private List<string> listOfFilesName = new List<string>();
-        // just testing strings
+
 
         public MainWindow()
         {
@@ -37,10 +36,19 @@ namespace SimplyTotalCommander
         // Refresh button on click is updating dataGrid of current directory and comboBox of files to choose
         private void Button_Click(object sender, RoutedEventArgs e)
         {           
-            FileReader.ProcessCurrentDirectory(newPath.Text, listOfFiles);
+            FileReader.ProcessCurrentDirectory(NewPath.Text, listOfFiles);
             dataGridOfFiles.ItemsSource = listOfFiles;
-            FileReader.GetFilesNamesList(newPath.Text, listOfFilesName);
-            Details.ItemsSource = listOfFilesName;
+            FileReader.GetFilesNamesList(NewPath.Text, listOfFilesName);
+            SelectedFile.ItemsSource = listOfFilesName;
+        }
+
+        private void DataGridOfFiles_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
