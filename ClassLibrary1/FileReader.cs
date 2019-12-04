@@ -8,33 +8,34 @@ namespace ClassLibrary1
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        // Clear list & add a single file to list
-        public static void GetOneFile(string path, List<FileInfo> filesList)
+        // Clear list & add a single FileDataObject to list oterwise do nothing
+        public static void GetOneFile(string path, List<FileDataObject> filesList)
         {
             if (File.Exists(path))
             {
                 filesList.Clear();
-                FileInfo[] fileEntries1 = new DirectoryInfo(path).GetFiles();
-                foreach (FileInfo file in fileEntries1)
-                    filesList.Add(file);
-            }   
-        }
-        // Process the list of files found in the directory. Add them to list passed by argument
-        public static void ProcessCurrentDirectory(string targetDirectory, List<FileInfo> filesList)
-        {
-            //Method to put filters on search, like name extension path etc.
-            // string[] fileEntries = new DirectoryInfo(targetDirectory).GetFiles().Select(o => o.Extension).ToArray();
-            if(Directory.Exists(targetDirectory))
-            {
-                filesList.Clear();
-                FileInfo[] fileEntries1 = new DirectoryInfo(targetDirectory).GetFiles();
-                foreach (FileInfo file in fileEntries1)
-                    file.Name = Path.GetFileNameWithoutExtension(path);
-                    filesList.Add(file);
+                DtoListSetter(new DirectoryInfo(path).GetFiles(), filesList);
+                foreach (FileDataObject dto in filesList)
+                {
+                    if (path == dto.path)
+                    {
+                        filesList.Clear();
+                        filesList.Add(dto);
+                    }
+                }
             }
         }
-        // Putting into list files from subdirectories
-        public static void ProcessSubDirectories(string targetDirectories, List<FileInfo> filesList)
+        // Process the list of files found in the directory (FileDataObject) otherwise do nothing
+        public static void ProcessCurrentDirectory(string directoryPath, List<FileDataObject> filesList)
+        {
+            if(Directory.Exists(directoryPath))
+            {
+                filesList.Clear();
+                DtoListSetter(new DirectoryInfo(directoryPath).GetFiles(), filesList);
+            }
+        }
+        // Putting into list files from subdirectories (FileDataObject)
+        public static void ProcessSubDirectories(string targetDirectories, List<FileDataObject> filesList)
         {
 
             string[] subdirectoriesEntries = Directory.GetDirectories(targetDirectories);
@@ -43,20 +44,69 @@ namespace ClassLibrary1
         }
 
         // Clearing then updating list of string with file names
-        public static void GetFilesNamesList(string targetDirectory, List<string> filesList) { 
-        filesList.Clear();
-        if (Directory.Exists(targetDirectory))
+        public static void GetFilesNamesList(string directoryPath, List<FileDataObject> filesList, List<string> stringList) {
+        if (Directory.Exists(directoryPath))
         {
-            FileInfo[] fileEntries1 = new DirectoryInfo(targetDirectory).GetFiles();
-            foreach (FileInfo file in fileEntries1)
-                filesList.Add(file.Name);
+                filesList.Clear();
+                stringList.Clear();
+                DtoListSetter(new DirectoryInfo(directoryPath).GetFiles(), filesList);
+                foreach(FileDataObject dto in filesList)
+                {             
+                    stringList.Add(dto.fileName);
+                }
         }
         }
-
-        public static void CopyFile(FileInfo fileToCopy)
+        // Change data into DTO object, clear and put in list taken as argument.
+        public static void DtoListSetter(FileInfo[] inList, List<FileDataObject> inDtoList)
         {
-            string elo = fileToCopy.Name.ToString();
-            File.Copy(elo,elo+" Copy");
+            inDtoList.Clear();
+            foreach (FileInfo file in inList)
+            {
+                FileDataObject fileTransferObject = new FileDataObject(
+                    file.FullName,
+                    Path.GetFileNameWithoutExtension(file.FullName),
+                    file.Extension,
+                    SetLenght(file.Length),
+                    file.DirectoryName,
+                    file.IsReadOnly,
+                    file.CreationTime,
+                    file.LastAccessTime,
+                    file.LastWriteTime);
+                inDtoList.Add(fileTransferObject);
+            }
+        }
+        // return string with name of data size
+        public static string SetLenght(double fileLenght)
+        {
+            int i = 0;
+            string value;
+            while (fileLenght % 0 == 0)
+            {
+                fileLenght /= 1000;
+                i++;
+            }
+            switch (i)
+            {
+                case 0:
+                    value = "kilobyte (kB)";
+                    break;
+                case 1:
+                    value = "megabyte (MB)";
+                    break;
+                case 2:
+                    value = "gigabyte (GB)";
+                    break;
+                case 3:
+                    value = "terabyte (TB)";
+                    break;
+                case 4:
+                    value = "petabyte (PB)";
+                    break;
+                default:
+                    value = "unknown size";
+                    break;
+            }
+            return i + " " + value;
         }
 }
 }

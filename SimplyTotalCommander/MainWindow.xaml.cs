@@ -24,7 +24,7 @@ namespace SimplyTotalCommander
     public partial class MainWindow : Window
     {
         // main argument into FileReaders methods.
-        List<FileInfo> listOfFiles = new List<FileInfo>();
+        List<FileDataObject> listOfFiles = new List<FileDataObject>();
         private List<string> listOfFilesName = new List<string>();
 
 
@@ -38,8 +38,8 @@ namespace SimplyTotalCommander
         {           
             FileReader.ProcessCurrentDirectory(NewPath.Text, listOfFiles);
             dataGridOfFiles.ItemsSource = listOfFiles;
-            FileReader.GetFilesNamesList(NewPath.Text, listOfFilesName);
-            SelectedFile.ItemsSource = listOfFilesName;         
+            FileReader.GetFilesNamesList(NewPath.Text,listOfFiles, listOfFilesName);
+            SelectedFile.ItemsSource = listOfFilesName;
         }
 
         private void DataGridOfFiles_SelectionChanged(object sender, SelectionChangedEventArgs e)
