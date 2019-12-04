@@ -24,11 +24,12 @@ namespace ClassLibrary1
         {
             //Method to put filters on search, like name extension path etc.
             // string[] fileEntries = new DirectoryInfo(targetDirectory).GetFiles().Select(o => o.Extension).ToArray();
-            filesList.Clear();
             if(Directory.Exists(targetDirectory))
             {
+                filesList.Clear();
                 FileInfo[] fileEntries1 = new DirectoryInfo(targetDirectory).GetFiles();
                 foreach (FileInfo file in fileEntries1)
+                    file.Name = Path.GetFileNameWithoutExtension(path);
                     filesList.Add(file);
             }
         }

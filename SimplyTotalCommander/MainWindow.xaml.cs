@@ -39,7 +39,7 @@ namespace SimplyTotalCommander
             FileReader.ProcessCurrentDirectory(NewPath.Text, listOfFiles);
             dataGridOfFiles.ItemsSource = listOfFiles;
             FileReader.GetFilesNamesList(NewPath.Text, listOfFilesName);
-            SelectedFile.ItemsSource = listOfFilesName;
+            SelectedFile.ItemsSource = listOfFilesName;         
         }
 
         private void DataGridOfFiles_SelectionChanged(object sender, SelectionChangedEventArgs e)
