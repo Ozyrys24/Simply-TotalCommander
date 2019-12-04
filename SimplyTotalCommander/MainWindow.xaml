@@ -16,6 +16,7 @@
             <TabItem Header="File List"
                      ToolTip="Most common file details">
                 <WrapPanel Orientation="Horizontal" Margin="0,0,-2,-2">
+                  <!-- *** Showing table with details of files from list. *** -->
                     <DataGrid x:Name="dataGridOfFiles" 
                   AutoGenerateColumns="True" 
                   CanUserAddRows="False" 
@@ -26,9 +27,9 @@
                   VerticalAlignment="Top" Height="275" SelectionChanged="DataGridOfFiles_SelectionChanged"
                   >
                         <DataGrid.FrozenColumnCount>1</DataGrid.FrozenColumnCount>
-
                     </DataGrid>
-                    <ComboBox SelectionChanged="Button_Click" 
+                  <!-- *** Select or search for a file in currnet directory. *** -->
+                  <ComboBox SelectionChanged="Button_Click" 
                               x:Name="SelectedFile" 
                               IsEditable="True" 
                               IsTextSearchEnabled="True" 
@@ -48,6 +49,7 @@
                     <Button Height="33" Click="Button_Click_1">Copy</Button>
                 </WrapPanel>
             </TabItem>
+          <!-- *** Putting start path for search. *** -->
             <TabItem Header="Search options">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -58,7 +60,7 @@
                                Text="Search in directory :" />
                     <TextBlock Margin="100 40" 
                                Grid.Column="1" >Path :</TextBlock>
-                    <TextBox x:Name="newPath" 
+                    <TextBox x:Name="NewPath" 
                              Margin="130.4,40,324,322.2" 
                              Grid.Column="1" />
                     <Button Margin="28.4,119,616,243.2" 

@@ -44,6 +44,7 @@ namespace SimplyTotalCommander
 
         private void DataGridOfFiles_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
