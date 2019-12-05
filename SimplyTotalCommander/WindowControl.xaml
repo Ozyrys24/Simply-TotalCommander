@@ -10,7 +10,7 @@
              Loaded="Window_Loaded">
     <UniformGrid>
         <!-- *** Showing table with details of files from list. *** -->
-        <DataGrid x:Name="dataGridOfFiles" 
+        <DataGrid x:Name="DataGridOfFiles" 
                   IsReadOnly="True"
                   AutoGenerateColumns="True" 
                   SelectionUnit="CellOrRowHeader"
@@ -19,8 +19,9 @@
                   >
             <DataGrid.FrozenColumnCount>1</DataGrid.FrozenColumnCount>
         </DataGrid>
+        <!-- *** Buttons *** -->
         <StackPanel >
-            <Button Height="33" Width="50" Click="Button_Click_1" >Copy</Button>
+            <Button Height="33" Width="50" Click="Button_Click_1" >Check all</Button>
             <Button Height="33" Width="50" Click="Button_Click_2" >Paste</Button>
             <Button Height="33" Width="50" Click="Button_Click_3" >Cut</Button>
             <Button Height="33" Width="50" Click="Button_Click_4" >Delete</Button>
@@ -34,19 +35,29 @@
         </StackPanel>
         <!-- *** Select or search for a file in currnet directory. *** -->
         <ComboBox SelectionChanged="Button_Click" 
-                              x:Name="SelectedFile" 
+                              x:Name="SeachBox" 
                               IsEditable="True" 
                               IsTextSearchEnabled="True" 
                               Height="20" 
                               >
             <ComboBox.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel>
-                        <TextBlock Text="{Binding}" Background="#00185E8D"/>
-                        <Rectangle Fill="{Binding}"/>
+                    <StackPanel >
+                        <TextBlock Text="{Binding Path=fileName}" Background="#00185E8D"/>
+                        <Rectangle Fill="{Binding Path=fileName}"/>
                     </StackPanel>
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
+        <!-- *** Showing table with details of directory navigation *** -->
+        <DataGrid x:Name="DataGridOfDirectory" 
+                  IsReadOnly="True"
+                  AutoGenerateColumns="True" 
+                  SelectionUnit="CellOrRowHeader"
+                  SelectionChanged="DataGridOfDirectories_SelectionChanged"
+                  HorizontalAlignment="Center"
+                  >
+            <DataGrid.FrozenColumnCount>1</DataGrid.FrozenColumnCount>
+        </DataGrid>
     </UniformGrid>
 </UserControl>

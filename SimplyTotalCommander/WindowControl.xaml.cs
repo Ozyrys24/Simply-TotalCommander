@@ -24,15 +24,23 @@ namespace SimplyTotalCommander
     public partial class WindowControl : UserControl
     {
         // main argument into FileReaders methods.
+        // >>> Collections
         ObservableCollection<FileDataObject> _fileList = new ObservableCollection<FileDataObject>();
         List<FileDataObject> listOfFiles = new List<FileDataObject>();
         List<FileDataObject> secondWindowListOfFiles = new List<FileDataObject>();
         private List<string> listOfFilesName = new List<string>();
+        private List<string> listOfDirectoriesName = new List<string>();
         private List<string> secondWindowListOfFilesName = new List<string>();
+        // Instances
         FileReader fileReader = new FileReader();
+
         public WindowControl()
         {
             InitializeComponent();
+        }
+        public void UpdateSourceEvent()
+        {
+
         }
         // Update datagrid with desktop path at window load
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -42,23 +50,32 @@ namespace SimplyTotalCommander
             NewPath.Clear();
         }
         // Refresh button on click is updating dataGrid of current directory and comboBox of files to choose
+        // >>> Update lists<string> and ObservableCollection<FileDataObject> and send date into Xaml  
+        // >> Xaml x:name VariableName > ItemsSource
+        // ?  FileReader requiers : new PropertyChangedEventArg(string String)
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             fileReader.GetFilesNamesList(NewPath.Text, _fileList, listOfFilesName,sender);
-            dataGridOfFiles.ItemsSource = _fileList;
-            SelectedFile.ItemsSource = listOfFilesName;
+            DataGridOfFiles.ItemsSource = _fileList;
+            SeachBox.ItemsSource = _fileList;
             fileReader.ProcessCurrentDirectory(NewPath.Text, _fileList, sender, new PropertyChangedEventArgs("listOfFiles"));
             fileReader.GetFilesNamesList(NewPath.Text, _fileList, listOfFilesName, sender);
-
+            fileReader.ProcessCurrentDirectory(NewPath.Text, _fileList, sender, new PropertyChangedEventArgs("listOfFiles"));
+            DataGridOfDirectory.ItemsSource = listOfDirectoriesName;
+            fileReader.ProcessCurrentDirectory(NewPath.Text, _fileList, sender, new PropertyChangedEventArgs("listOfFiles"));
         }
         private void DataGridOfFiles_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+        private void DataGridOfDirectories_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-
+            fileReader.ProcessSubDirectories(NewPath.Text, _fileList, sender, new PropertyChangedEventArgs("listOfFiles"));
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)

@@ -8,7 +8,20 @@ namespace ClassLibrary1
 {
     public class FileReader : INotifyPropertyChanged
     {
+        public delegate void ProgressChangedEventHandler();
         public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler PropertyHasChanged {
+            add
+            {
+                PropertyChanged += value;
+            }
+            remove
+            {
+                PropertyChanged -= value;
+            }
+        }
+
+
 
         // Clear list & add a single FileDataObject to list oterwise do nothing
         public void GetOneFile(string path, ObservableCollection<FileDataObject> filesList)
@@ -28,11 +41,7 @@ namespace ClassLibrary1
             }
         }
         // Process the list of files found in the directory (FileDataObject) otherwise do nothing
-        public void ProcessCurrentDirectory
-            (string directoryPath,
-            ObservableCollection<FileDataObject> filesList,
-            object sender,
-            PropertyChangedEventArgs e)
+        public void ProcessCurrentDirectory(string directoryPath,ObservableCollection<FileDataObject> filesList,object sender,PropertyChangedEventArgs e)
         {
             if (Directory.Exists(directoryPath))
             {
@@ -42,10 +51,7 @@ namespace ClassLibrary1
             }
         }
        //  Putting into list files from subdirectories (FileDataObject)
-        public void ProcessSubDirectories(string targetDirectories,
-            ObservableCollection<FileDataObject> filesList,
-            object sender,
-            PropertyChangedEventArgs e)
+        public void ProcessSubDirectories(string targetDirectories,ObservableCollection<FileDataObject> filesList,object sender,PropertyChangedEventArgs e)
         {
             if (Directory.GetDirectories(targetDirectories) != null)
             {
@@ -58,9 +64,7 @@ namespace ClassLibrary1
             }
         }
        //  Clearing then updating list of string with file names
-        public void GetFilesNamesList(string directoryPath,
-            ObservableCollection<FileDataObject> filesList,
-            List<string> inListOfFilesName,
+        public void GetFilesNamesList(string directoryPath,ObservableCollection<FileDataObject> filesList,List<string> inListOfFilesName,
             object sender)
         {
             if (Directory.Exists(directoryPath))
@@ -95,6 +99,7 @@ namespace ClassLibrary1
                 inDtoList.Add(fileTransferObject);
             }
         }
+
         // return string with name of data size
         public string SetLenght(double fileLenght)
         {
@@ -120,6 +125,7 @@ namespace ClassLibrary1
                 return fileLenght / 1073741824 + " gigabyte (GB)";
             }
         }
+
     }
 }
 

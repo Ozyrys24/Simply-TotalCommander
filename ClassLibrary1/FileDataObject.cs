@@ -35,5 +35,10 @@ namespace ClassLibrary1
             lastAcess = inLastAcess;
             lastWriteTime = inLastWriteTime;
         }
+
+        public override string ToString()
+        {
+            return fileName;
+        }
     }
 }
