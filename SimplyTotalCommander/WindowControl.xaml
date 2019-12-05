@@ -8,7 +8,7 @@
              d:DesignHeight="450"
              d:DesignWidth="800"
              Loaded="Window_Loaded">
-    <UniformGrid Columns="2">
+    <UniformGrid>
         <!-- *** Showing table with details of files from list. *** -->
         <DataGrid x:Name="dataGridOfFiles" 
                   IsReadOnly="True"
@@ -19,13 +19,25 @@
                   >
             <DataGrid.FrozenColumnCount>1</DataGrid.FrozenColumnCount>
         </DataGrid>
+        <StackPanel >
+            <Button Height="33" Width="50" Click="Button_Click_1" >Copy</Button>
+            <Button Height="33" Width="50" Click="Button_Click_2" >Paste</Button>
+            <Button Height="33" Width="50" Click="Button_Click_3" >Cut</Button>
+            <Button Height="33" Width="50" Click="Button_Click_4" >Delete</Button>
+            <Button Height="33" Width="50" Click="Button_Click_5" >Unzip</Button>
+            <Button Height="33" Width="50" Click="Button_Click_6" >To Zip</Button>
+            <TextBlock Text="Search in directory :" />
+            <TextBox x:Name="NewPath"/>
+            <Button Height="40"
+                Width="100"
+                Click="Button_Click">Refresh</Button>
+        </StackPanel>
         <!-- *** Select or search for a file in currnet directory. *** -->
         <ComboBox SelectionChanged="Button_Click" 
                               x:Name="SelectedFile" 
                               IsEditable="True" 
                               IsTextSearchEnabled="True" 
-                              Height="35" 
-                              VerticalAlignment="top" Margin="0,217,401,0"
+                              Height="20" 
                               >
             <ComboBox.ItemTemplate>
                 <DataTemplate>
@@ -36,18 +48,5 @@
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-        <StackPanel >
-        <Button Height="33" Width="50" Click="Button_Click_1" >Copy</Button>
-        <Button Height="33" Width="50" Click="Button_Click_2" >Paste</Button>
-        <Button Height="33" Width="50" Click="Button_Click_3" >Cut</Button>
-        <Button Height="33" Width="50" Click="Button_Click_4" >Delete</Button>
-        <Button Height="33" Width="50" Click="Button_Click_5" >Unzip</Button>
-        <Button Height="33" Width="50" Click="Button_Click_6" >To Zip</Button>
-        <TextBlock Text="Search in directory :" />
-        <TextBox x:Name="NewPath"/>
-        <Button Height="40"
-                Width="100"
-                Click="Button_Click">Refresh</Button>
-        </StackPanel>
     </UniformGrid>
 </UserControl>

@@ -44,11 +44,11 @@ namespace SimplyTotalCommander
         // Refresh button on click is updating dataGrid of current directory and comboBox of files to choose
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            fileReader.GetFilesNamesList(NewPath.Text, _fileList, listOfFilesName);
-            fileReader.ProcessCurrentDirectory(NewPath.Text, _fileList, sender, new PropertyChangedEventArgs("listOfFiles"));
+            fileReader.GetFilesNamesList(NewPath.Text, _fileList, listOfFilesName,sender);
             dataGridOfFiles.ItemsSource = _fileList;
             SelectedFile.ItemsSource = listOfFilesName;
-            fileReader.ProcessCurrentDirectory(NewPath.Text, _fileList, sender, new PropertyChangedEventArgs("ListOfFilesNames"));
+            fileReader.ProcessCurrentDirectory(NewPath.Text, _fileList, sender, new PropertyChangedEventArgs("listOfFiles"));
+            fileReader.GetFilesNamesList(NewPath.Text, _fileList, listOfFilesName, sender);
 
         }
         private void DataGridOfFiles_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -47,27 +47,37 @@ namespace ClassLibrary1
             object sender,
             PropertyChangedEventArgs e)
         {
-
-            string[] subdirectoriesEntries = Directory.GetDirectories(targetDirectories);
-            foreach (string subdirectories in subdirectoriesEntries)
-                ProcessCurrentDirectory(subdirectories, filesList,sender,e);
+            if (Directory.GetDirectories(targetDirectories) != null)
+            {
+                string[] subdirectoriesEntries = Directory.GetDirectories(targetDirectories);
+                foreach (string subdirectories in subdirectoriesEntries)
+                {
+                    ProcessCurrentDirectory(subdirectories, filesList, sender, e);
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("directoryList"));
+                }
+            }
         }
        //  Clearing then updating list of string with file names
-        public void GetFilesNamesList(string directoryPath, ObservableCollection<FileDataObject> filesList, List<string> stringList)
+        public void GetFilesNamesList(string directoryPath,
+            ObservableCollection<FileDataObject> filesList,
+            List<string> inListOfFilesName,
+            object sender)
         {
             if (Directory.Exists(directoryPath))
             {
                 filesList.Clear();
-                stringList.Clear();
+                inListOfFilesName.Clear();
                 DtoListSetter(new DirectoryInfo(directoryPath).GetFiles(), filesList);
                 foreach (FileDataObject dto in filesList)
                 {
-                    stringList.Add(dto.fileName);
+                    inListOfFilesName.Add(dto.fileName);
                 }
+                PropertyChanged?.Invoke(sender, new PropertyChangedEventArgs("listOfFilesName"));
             }
         }
         // Change data into DTO object, clear and put in list taken as argument.
-        public void DtoListSetter(FileInfo[] inList, ObservableCollection<FileDataObject> inDtoList)
+        private void DtoListSetter(FileInfo[] inList,
+            ObservableCollection<FileDataObject> inDtoList)          
         {
             inDtoList.Clear();
             foreach (FileInfo file in inList)
