@@ -1,6 +1,8 @@
 ﻿using ClassLibrary1;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,10 +24,12 @@ namespace SimplyTotalCommander
     public partial class WindowControl : UserControl
     {
         // main argument into FileReaders methods.
+        ObservableCollection<FileDataObject> _fileList = new ObservableCollection<FileDataObject>();
         List<FileDataObject> listOfFiles = new List<FileDataObject>();
         List<FileDataObject> secondWindowListOfFiles = new List<FileDataObject>();
         private List<string> listOfFilesName = new List<string>();
         private List<string> secondWindowListOfFilesName = new List<string>();
+        FileReader fileReader = new FileReader();
         public WindowControl()
         {
             InitializeComponent();
@@ -35,14 +39,17 @@ namespace SimplyTotalCommander
         {
             NewPath.Text = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             Button_Click(sender, e);
+            NewPath.Clear();
         }
         // Refresh button on click is updating dataGrid of current directory and comboBox of files to choose
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            FileReader.ProcessCurrentDirectory(NewPath.Text, listOfFiles);
-            dataGridOfFiles.ItemsSource = listOfFiles;
-            FileReader.GetFilesNamesList(NewPath.Text, listOfFiles, listOfFilesName);
+            fileReader.GetFilesNamesList(NewPath.Text, _fileList, listOfFilesName);
+            fileReader.ProcessCurrentDirectory(NewPath.Text, _fileList, sender, new PropertyChangedEventArgs("listOfFiles"));
+            dataGridOfFiles.ItemsSource = _fileList;
             SelectedFile.ItemsSource = listOfFilesName;
+            fileReader.ProcessCurrentDirectory(NewPath.Text, _fileList, sender, new PropertyChangedEventArgs("ListOfFilesNames"));
+
         }
         private void DataGridOfFiles_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
