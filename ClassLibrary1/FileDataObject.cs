@@ -35,7 +35,7 @@ namespace ClassLibrary1
             lastAcess = inLastAcess;
             lastWriteTime = inLastWriteTime;
         }
-
+        // Override ToString method to easly display in SearchButton
         public override string ToString()
         {
             return fileName;

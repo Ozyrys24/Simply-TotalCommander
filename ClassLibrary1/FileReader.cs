@@ -6,6 +6,7 @@ using System.Windows;
 
 namespace ClassLibrary1
 {
+    // Class handle with search for file / directories, main argument is DTO with file details. DTO properties collect from FileInfo and Path.
     public class FileReader : INotifyPropertyChanged
     {
         public delegate void ProgressChangedEventHandler();

@@ -24,16 +24,15 @@ namespace SimplyTotalCommander
     public partial class WindowControl : UserControl
     {
         // main argument into FileReaders methods.
-        // >>> Collections
+        // \/\/\/ Collections
         ObservableCollection<FileDataObject> _fileList = new ObservableCollection<FileDataObject>();
         List<FileDataObject> listOfFiles = new List<FileDataObject>();
         List<FileDataObject> secondWindowListOfFiles = new List<FileDataObject>();
         private List<string> listOfFilesName = new List<string>();
         private List<string> listOfDirectoriesName = new List<string>();
         private List<string> secondWindowListOfFilesName = new List<string>();
-        // Instances
+        // \/\/\/ Instances
         FileReader fileReader = new FileReader();
-
         public WindowControl()
         {
             InitializeComponent();
@@ -42,7 +41,7 @@ namespace SimplyTotalCommander
         {
 
         }
-        // Update datagrid with desktop path at window load
+        // \/\/\/ Update datagrid with desktop path at window load
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             NewPath.Text = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
