@@ -24,7 +24,7 @@ namespace ClassLibrary1
             string inPath, string inFileName, string inExtension, string inLength, string inDirectoryName, bool inIsReadOnly,
             DateTime inCreationTime, DateTime inLastAcess, DateTime inLastWriteTime
             )
-{
+        {
             path = inPath;
             fileName = inFileName;
             extension = inExtension;

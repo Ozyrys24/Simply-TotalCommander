@@ -28,7 +28,7 @@ namespace ClassLibrary1
         // Process the list of files found in the directory (FileDataObject) otherwise do nothing
         public static void ProcessCurrentDirectory(string directoryPath, List<FileDataObject> filesList)
         {
-            if(Directory.Exists(directoryPath))
+            if (Directory.Exists(directoryPath))
             {
                 filesList.Clear();
                 DtoListSetter(new DirectoryInfo(directoryPath).GetFiles(), filesList);
@@ -42,19 +42,19 @@ namespace ClassLibrary1
             foreach (string subdirectories in subdirectoriesEntries)
                 ProcessCurrentDirectory(subdirectories, filesList);
         }
-
         // Clearing then updating list of string with file names
-        public static void GetFilesNamesList(string directoryPath, List<FileDataObject> filesList, List<string> stringList) {
-        if (Directory.Exists(directoryPath))
+        public static void GetFilesNamesList(string directoryPath, List<FileDataObject> filesList, List<string> stringList)
         {
+            if (Directory.Exists(directoryPath))
+            {
                 filesList.Clear();
                 stringList.Clear();
                 DtoListSetter(new DirectoryInfo(directoryPath).GetFiles(), filesList);
-                foreach(FileDataObject dto in filesList)
-                {             
+                foreach (FileDataObject dto in filesList)
+                {
                     stringList.Add(dto.fileName);
                 }
-        }
+            }
         }
         // Change data into DTO object, clear and put in list taken as argument.
         public static void DtoListSetter(FileInfo[] inList, List<FileDataObject> inDtoList)
@@ -79,34 +79,27 @@ namespace ClassLibrary1
         public static string SetLenght(double fileLenght)
         {
             int i = 0;
-            string value;
-            while (fileLenght % 0 == 0)
+            if(fileLenght < 0)
             {
-                fileLenght /= 1000;
-                i++;
+                return "unknown size";
             }
-            switch (i)
+            else if(fileLenght > 0 & fileLenght < 1024)
             {
-                case 0:
-                    value = "kilobyte (kB)";
-                    break;
-                case 1:
-                    value = "megabyte (MB)";
-                    break;
-                case 2:
-                    value = "gigabyte (GB)";
-                    break;
-                case 3:
-                    value = "terabyte (TB)";
-                    break;
-                case 4:
-                    value = "petabyte (PB)";
-                    break;
-                default:
-                    value = "unknown size";
-                    break;
+                return fileLenght + " byte (B)";
             }
-            return i + " " + value;
+            else if(fileLenght < 1048576)
+            {
+                return fileLenght / 1024 + " kilobye (kB)";
+            }
+            else if(fileLenght < 1073741824)
+            {
+                return fileLenght / 1048576 + " megabyte (MB)";
+            }
+            else
+            {
+                return fileLenght / 1073741824 + " gigabyte (GB)";
+            }
         }
+    }
 }
-}
+
