@@ -30,6 +30,12 @@ namespace SimplyTotalCommander
         {
             InitializeComponent();
         }
+        // Update datagrid with desktop path at window load
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            NewPath.Text = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            Button_Click(sender, e);
+        }
         // Refresh button on click is updating dataGrid of current directory and comboBox of files to choose
         private void Button_Click(object sender, RoutedEventArgs e)
         {

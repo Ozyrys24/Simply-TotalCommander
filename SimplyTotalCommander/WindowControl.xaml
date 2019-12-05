@@ -5,19 +5,18 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SimplyTotalCommander"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Margin="17,0,0,-0.4">
+             d:DesignHeight="450"
+             d:DesignWidth="800"
+             Loaded="Window_Loaded">
+    <UniformGrid Columns="2">
         <!-- *** Showing table with details of files from list. *** -->
         <DataGrid x:Name="dataGridOfFiles" 
-                              IsReadOnly="True"
-                              AutoGenerateColumns="True" 
-                              SelectionUnit="CellOrRowHeader"
-                              Margin="0,0,401,0"
-                              VerticalAlignment="Top" 
-                              Height="217"
-                              SelectionChanged="DataGridOfFiles_SelectionChanged"
+                  IsReadOnly="True"
+                  AutoGenerateColumns="True" 
+                  SelectionUnit="CellOrRowHeader"
+                  SelectionChanged="DataGridOfFiles_SelectionChanged"
+                  HorizontalAlignment="Center"
                   >
-            <DataGrid.ColumnWidth>30</DataGrid.ColumnWidth>
             <DataGrid.FrozenColumnCount>1</DataGrid.FrozenColumnCount>
         </DataGrid>
         <!-- *** Select or search for a file in currnet directory. *** -->
@@ -37,27 +36,18 @@
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-        <Button Height="33" Click="Button_Click_1" Margin="0,285,711,132">Copy</Button>
-        <Button Height="33" Click="Button_Click_2" Margin="0,252,711,165">Paste</Button>
-        <Button Height="33" Click="Button_Click_3" Margin="0,318,711,99">Cut</Button>
-        <Button Height="33" Click="Button_Click_4" Margin="76,319,626,98" RenderTransformOrigin="0.5,0.5">
-            <Button.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform AngleY="0.504"/>
-                    <RotateTransform/>
-                    <TranslateTransform Y="0.391"/>
-                </TransformGroup>
-            </Button.RenderTransform> Delete
-        </Button>
-        <Button Height="33" Click="Button_Click_5" Margin="77,252,626,165">Unzip</Button>
-        <Button Height="33" Click="Button_Click_6" Margin="77,285,626,132">To Zip</Button>
-        <TextBlock Margin="162,318,507,102" 
-                               Text="Search in directory :" />
-        <TextBox x:Name="NewPath" 
-                             Margin="0,352,400,63" />
-        <Button Margin="276,313,419,110" 
-                            RenderTransformOrigin="2.961,1.4" 
-                            Click="Button_Click">Refresh</Button>
-    </Grid>
+        <StackPanel >
+        <Button Height="33" Width="50" Click="Button_Click_1" >Copy</Button>
+        <Button Height="33" Width="50" Click="Button_Click_2" >Paste</Button>
+        <Button Height="33" Width="50" Click="Button_Click_3" >Cut</Button>
+        <Button Height="33" Width="50" Click="Button_Click_4" >Delete</Button>
+        <Button Height="33" Width="50" Click="Button_Click_5" >Unzip</Button>
+        <Button Height="33" Width="50" Click="Button_Click_6" >To Zip</Button>
+        <TextBlock Text="Search in directory :" />
+        <TextBox x:Name="NewPath"/>
+        <Button Height="40"
+                Width="100"
+                Click="Button_Click">Refresh</Button>
+        </StackPanel>
+    </UniformGrid>
 </UserControl>
