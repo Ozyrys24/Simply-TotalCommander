@@ -54,14 +54,15 @@ namespace SimplyTotalCommander
         // ?  FileReader requiers : new PropertyChangedEventArg(string String)
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            fileReader.GetFilesNamesList(NewPath.Text, _fileList, listOfFilesName,sender);
+            fileReader.GetFilesNamesList(NewPath.Text, _fileList, listOfFilesName,listOfDirectoriesName,sender);
             DataGridOfFiles.ItemsSource = _fileList;
             SeachBox.ItemsSource = _fileList;
-            fileReader.ProcessCurrentDirectory(NewPath.Text, _fileList, sender, new PropertyChangedEventArgs("listOfFiles"));
-            fileReader.GetFilesNamesList(NewPath.Text, _fileList, listOfFilesName, sender);
-            fileReader.ProcessCurrentDirectory(NewPath.Text, _fileList, sender, new PropertyChangedEventArgs("listOfFiles"));
             DataGridOfDirectory.ItemsSource = listOfDirectoriesName;
-            fileReader.ProcessCurrentDirectory(NewPath.Text, _fileList, sender, new PropertyChangedEventArgs("listOfFiles"));
+            fileReader.ProcessCurrentDirectory(NewPath.Text,
+                _fileList,
+                listOfDirectoriesName,
+                sender,
+                new PropertyChangedEventArgs("listOfFiles"));
         }
         private void DataGridOfFiles_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -74,7 +75,7 @@ namespace SimplyTotalCommander
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            fileReader.ProcessSubDirectories(NewPath.Text, _fileList, sender, new PropertyChangedEventArgs("listOfFiles"));
+        //    fileReader.ProcessSubDirectories(NewPath.Text, listOfDirectoriesName, sender, new PropertyChangedEventArgs("listOfFiles"));
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)

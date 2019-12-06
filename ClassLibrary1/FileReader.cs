@@ -22,15 +22,13 @@ namespace ClassLibrary1
             }
         }
 
-
-
         // Clear list & add a single FileDataObject to list oterwise do nothing
-        public void GetOneFile(string path, ObservableCollection<FileDataObject> filesList)
+        public void GetOneFile(string path, ObservableCollection<FileDataObject> filesList, List<string> listOfDirectoriesName)
         {
             if (File.Exists(path))
             {
                 filesList.Clear();
-                DtoListSetter(new DirectoryInfo(path).GetFiles(), filesList);
+                DtoListSetter(new DirectoryInfo(path).GetFiles(), filesList, listOfDirectoriesName);
                 foreach (FileDataObject dto in filesList)
                 {
                     if (path == dto.path)
@@ -42,37 +40,26 @@ namespace ClassLibrary1
             }
         }
         // Process the list of files found in the directory (FileDataObject) otherwise do nothing
-        public void ProcessCurrentDirectory(string directoryPath,ObservableCollection<FileDataObject> filesList,object sender,PropertyChangedEventArgs e)
+        public void ProcessCurrentDirectory(string directoryPath,ObservableCollection<FileDataObject> filesList, List<string> listOfDirectoriesName,
+            object sender,PropertyChangedEventArgs e)
         {
             if (Directory.Exists(directoryPath))
             {
                 filesList.Clear();
-                DtoListSetter(new DirectoryInfo(directoryPath).GetFiles(), filesList);
+                DtoListSetter(new DirectoryInfo(directoryPath).GetFiles(), filesList,listOfDirectoriesName);
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("filesList"));
-            }
-        }
-       //  Putting into list files from subdirectories (FileDataObject)
-        public void ProcessSubDirectories(string targetDirectories,ObservableCollection<FileDataObject> filesList,object sender,PropertyChangedEventArgs e)
-        {
-            if (Directory.GetDirectories(targetDirectories) != null)
-            {
-                string[] subdirectoriesEntries = Directory.GetDirectories(targetDirectories);
-                foreach (string subdirectories in subdirectoriesEntries)
-                {
-                    ProcessCurrentDirectory(subdirectories, filesList, sender, e);
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("directoryList"));
-                }
             }
         }
        //  Clearing then updating list of string with file names
         public void GetFilesNamesList(string directoryPath,ObservableCollection<FileDataObject> filesList,List<string> inListOfFilesName,
+            List<string> inListOfDirectoriesName,
             object sender)
         {
             if (Directory.Exists(directoryPath))
             {
                 filesList.Clear();
                 inListOfFilesName.Clear();
-                DtoListSetter(new DirectoryInfo(directoryPath).GetFiles(), filesList);
+                DtoListSetter(new DirectoryInfo(directoryPath).GetFiles(), filesList, inListOfDirectoriesName);
                 foreach (FileDataObject dto in filesList)
                 {
                     inListOfFilesName.Add(dto.fileName);
@@ -82,9 +69,12 @@ namespace ClassLibrary1
         }
         // Change data into DTO object, clear and put in list taken as argument.
         private void DtoListSetter(FileInfo[] inList,
-            ObservableCollection<FileDataObject> inDtoList)          
+            ObservableCollection<FileDataObject> inDtoList, List<string> inSubdirectoriesNameList)          
         {
             inDtoList.Clear();
+            inSubdirectoriesNameList.Clear();
+            foreach (string subdirectory in Directory.GetDirectories(inList[0].DirectoryName))
+                inSubdirectoriesNameList.Add(subdirectory);
             foreach (FileInfo file in inList)
             {
                 FileDataObject fileTransferObject = new FileDataObject(
@@ -100,11 +90,9 @@ namespace ClassLibrary1
                 inDtoList.Add(fileTransferObject);
             }
         }
-
         // return string with name of data size
         public string SetLenght(double fileLenght)
         {
-            int i = 0;
             if (fileLenght < 0)
             {
                 return "unknown size";
@@ -126,7 +114,6 @@ namespace ClassLibrary1
                 return fileLenght / 1073741824 + " gigabyte (GB)";
             }
         }
-
     }
 }
 

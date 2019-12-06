@@ -19,11 +19,8 @@ namespace ClassLibrary1
         public DateTime lastAcess{get;set;}
         public DateTime lastWriteTime{get;set;}
 
-        public FileDataObject
-            (
-            string inPath, string inFileName, string inExtension, string inLength, string inDirectoryName, bool inIsReadOnly,
-            DateTime inCreationTime, DateTime inLastAcess, DateTime inLastWriteTime
-            )
+        public FileDataObject(string inPath, string inFileName, string inExtension, string inLength, string inDirectoryName, bool inIsReadOnly,
+            DateTime inCreationTime, DateTime inLastAcess, DateTime inLastWriteTime)
         {
             path = inPath;
             fileName = inFileName;
