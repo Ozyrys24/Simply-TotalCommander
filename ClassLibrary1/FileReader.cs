@@ -82,13 +82,17 @@ namespace ClassLibrary1
         private void DtoListSetter(string directoryPath, FileInfo[] inList,
             ObservableCollection<FileDataObject> inDtoList, List<string> inSubdirectoriesNameList)          
         {
-            // cleaning.
+            // cleaning lists.
             inDtoList.Clear();
             inSubdirectoriesNameList.Clear();
+            // setting directories
+            DirectoryInfo rootDirectory = new DirectoryInfo(directoryPath);
 
-            string[] folders = Directory.GetDirectories(directoryPath,"*", System.IO.SearchOption.TopDirectoryOnly);
-           foreach( var i in folders)inSubdirectoriesNameList.Add(i);
-
+            foreach(var folderek in rootDirectory.GetDirectories()){
+           inSubdirectoriesNameList.Add(folderek.Name);
+                }
+           
+           // create and put in inList <FileDataObject>
             foreach (FileInfo file in inList)
             {
                 FileDataObject fileTransferObject = new FileDataObject(
