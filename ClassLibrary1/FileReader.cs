@@ -3,6 +3,10 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
 using System.Windows;
+using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
+
 
 namespace ClassLibrary1
 {
@@ -28,13 +32,14 @@ namespace ClassLibrary1
             if (File.Exists(path))
             {
                 filesList.Clear();
-                DtoListSetter(new DirectoryInfo(path).GetFiles(), filesList, listOfDirectoriesName);
+                DtoListSetter(path, new DirectoryInfo(path).GetFiles(), filesList, listOfDirectoriesName);
                 foreach (FileDataObject dto in filesList)
                 {
                     if (path == dto.path)
                     {
                         filesList.Clear();
                         filesList.Add(dto);
+                        break;
                     }
                 }
             }
@@ -46,11 +51,11 @@ namespace ClassLibrary1
             if (Directory.Exists(directoryPath))
             {
                 filesList.Clear();
-                DtoListSetter(new DirectoryInfo(directoryPath).GetFiles(), filesList,listOfDirectoriesName);
+                DtoListSetter(directoryPath, new DirectoryInfo(directoryPath).GetFiles(), filesList,listOfDirectoriesName);
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("filesList"));
             }
         }
-       //  Clearing then updating list of string with file names
+       //  Clearing then updating list of string with file names, otherwise do nothing.
         public void GetFilesNamesList(string directoryPath,ObservableCollection<FileDataObject> filesList,List<string> inListOfFilesName,
             List<string> inListOfDirectoriesName,
             object sender)
@@ -59,7 +64,7 @@ namespace ClassLibrary1
             {
                 filesList.Clear();
                 inListOfFilesName.Clear();
-                DtoListSetter(new DirectoryInfo(directoryPath).GetFiles(), filesList, inListOfDirectoriesName);
+                DtoListSetter(directoryPath, new DirectoryInfo(directoryPath).GetFiles(), filesList, inListOfDirectoriesName);
                 foreach (FileDataObject dto in filesList)
                 {
                     inListOfFilesName.Add(dto.fileName);
@@ -67,14 +72,23 @@ namespace ClassLibrary1
                 PropertyChanged?.Invoke(sender, new PropertyChangedEventArgs("listOfFilesName"));
             }
         }
-        // Change data into DTO object, clear and put in list taken as argument.
-        private void DtoListSetter(FileInfo[] inList,
+        // Secure in case of file name with extension in path.
+        public string[] SecurePath(string inPath){
+               string [] securedPath = inPath.Split('\\');
+                return securedPath;
+}
+        // Change data into FileDataObject, clear and put in list taken as argument.
+        // * Alweys clear when used
+        private void DtoListSetter(string directoryPath, FileInfo[] inList,
             ObservableCollection<FileDataObject> inDtoList, List<string> inSubdirectoriesNameList)          
         {
+            // cleaning.
             inDtoList.Clear();
             inSubdirectoriesNameList.Clear();
-            foreach (string subdirectory in Directory.GetDirectories(inList[0].DirectoryName))
-                inSubdirectoriesNameList.Add(subdirectory);
+
+            string[] folders = Directory.GetDirectories(directoryPath,"*", System.IO.SearchOption.TopDirectoryOnly);
+           foreach( var i in folders)inSubdirectoriesNameList.Add(i);
+
             foreach (FileInfo file in inList)
             {
                 FileDataObject fileTransferObject = new FileDataObject(
@@ -90,7 +104,7 @@ namespace ClassLibrary1
                 inDtoList.Add(fileTransferObject);
             }
         }
-        // return string with name of data size
+        // return string with data size.
         public string SetLenght(double fileLenght)
         {
             if (fileLenght < 0)

@@ -27,10 +27,8 @@ namespace SimplyTotalCommander
         // \/\/\/ Collections
         ObservableCollection<FileDataObject> _fileList = new ObservableCollection<FileDataObject>();
         List<FileDataObject> listOfFiles = new List<FileDataObject>();
-        List<FileDataObject> secondWindowListOfFiles = new List<FileDataObject>();
         private List<string> listOfFilesName = new List<string>();
         private List<string> listOfDirectoriesName = new List<string>();
-        private List<string> secondWindowListOfFilesName = new List<string>();
         // \/\/\/ Instances
         FileReader fileReader = new FileReader();
         public WindowControl()
@@ -54,15 +52,13 @@ namespace SimplyTotalCommander
         // ?  FileReader requiers : new PropertyChangedEventArg(string String)
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+        //    test123.Text = fileReader.SecurePath(NewPath.text);
+
             fileReader.GetFilesNamesList(NewPath.Text, _fileList, listOfFilesName,listOfDirectoriesName,sender);
+            fileReader.ProcessCurrentDirectory(NewPath.Text,_fileList,listOfDirectoriesName,sender,new PropertyChangedEventArgs("listOfFiles"));
             DataGridOfFiles.ItemsSource = _fileList;
             SeachBox.ItemsSource = _fileList;
             DataGridOfDirectory.ItemsSource = listOfDirectoriesName;
-            fileReader.ProcessCurrentDirectory(NewPath.Text,
-                _fileList,
-                listOfDirectoriesName,
-                sender,
-                new PropertyChangedEventArgs("listOfFiles"));
         }
         private void DataGridOfFiles_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
