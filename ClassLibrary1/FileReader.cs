@@ -6,7 +6,7 @@ using System.Windows;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-
+using System.Diagnostics;
 
 namespace ClassLibrary1
 {
@@ -14,25 +14,23 @@ namespace ClassLibrary1
     public class FileReader : INotifyPropertyChanged
     {
         public delegate void ProgressChangedEventHandler();
+
         public event PropertyChangedEventHandler PropertyChanged;
-        public event PropertyChangedEventHandler PropertyHasChanged {
-            add
-            {
-                PropertyChanged += value;
-            }
-            remove
-            {
-                PropertyChanged -= value;
-            }
+
+        public event PropertyChangedEventHandler PropertyHasChanged
+        {
+            add { PropertyChanged += value; }
+            remove { PropertyChanged -= value; }
         }
 
         // Clear list & add a single FileDataObject to list oterwise do nothing
-        public void GetOneFile(string path, ObservableCollection<FileDataObject> filesList, List<string> listOfDirectoriesName)
+        public void GetOneFile(string path, ObservableCollection<FileDataObject> filesList,
+            List<string> listOfDirectories)
         {
             if (File.Exists(path))
             {
                 filesList.Clear();
-                DtoListSetter(path, new DirectoryInfo(path).GetFiles(), filesList, listOfDirectoriesName);
+                DtoListSetter(path, new DirectoryInfo(path).GetFiles(), filesList, listOfDirectories);
                 foreach (FileDataObject dto in filesList)
                 {
                     if (path == dto.path)
@@ -44,55 +42,65 @@ namespace ClassLibrary1
                 }
             }
         }
+
         // Process the list of files found in the directory (FileDataObject) otherwise do nothing
-        public void ProcessCurrentDirectory(string directoryPath,ObservableCollection<FileDataObject> filesList, List<string> listOfDirectoriesName,
-            object sender,PropertyChangedEventArgs e)
+        public void ProcessCurrentDirectory(string directoryPath, ObservableCollection<FileDataObject> filesList,
+            List<string> listOfDirectories, object sender, PropertyChangedEventArgs e)
         {
             if (Directory.Exists(directoryPath))
             {
                 filesList.Clear();
-                DtoListSetter(directoryPath, new DirectoryInfo(directoryPath).GetFiles(), filesList,listOfDirectoriesName);
+                DtoListSetter(directoryPath, new DirectoryInfo(directoryPath).GetFiles(), filesList, listOfDirectories);
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("filesList"));
             }
         }
-       //  Clearing then updating list of string with file names, otherwise do nothing.
-        public void GetFilesNamesList(string directoryPath,ObservableCollection<FileDataObject> filesList,List<string> inListOfFilesName,
-            List<string> inListOfDirectoriesName,
+
+        //  Clearing then updating list of string with file names, otherwise do nothing.
+        public void GetFilesNamesList(string directoryPath, ObservableCollection<FileDataObject> filesList,
+            List<string> inListOfFilesName,
+            List<string> inListOfDirectories,
             object sender)
         {
             if (Directory.Exists(directoryPath))
             {
                 filesList.Clear();
                 inListOfFilesName.Clear();
-                DtoListSetter(directoryPath, new DirectoryInfo(directoryPath).GetFiles(), filesList, inListOfDirectoriesName);
+                DtoListSetter(directoryPath, new DirectoryInfo(directoryPath).GetFiles(), filesList,
+                    inListOfDirectories);
                 foreach (FileDataObject dto in filesList)
                 {
                     inListOfFilesName.Add(dto.fileName);
                 }
+
+                PropertyChanged?.Invoke(sender, new PropertyChangedEventArgs("listOfFilesName"));
                 PropertyChanged?.Invoke(sender, new PropertyChangedEventArgs("listOfFilesName"));
             }
         }
+
         // Secure in case of file name with extension in path.
-        public string[] SecurePath(string inPath){
-               string [] securedPath = inPath.Split('\\');
-                return securedPath;
-}
+        public string[] SecurePath(string inPath)
+        {
+            string[] securedPath = inPath.Split('\\');
+            return securedPath;
+        }
+
         // Change data into FileDataObject, clear and put in list taken as argument.
-        // * Alweys clear when used
+        // * Always clear when used
         private void DtoListSetter(string directoryPath, FileInfo[] inList,
-            ObservableCollection<FileDataObject> inDtoList, List<string> inSubdirectoriesNameList)          
+            ObservableCollection<FileDataObject> inDtoList, List<string> inSubdirectoriesNameList)
         {
             // cleaning lists.
             inDtoList.Clear();
             inSubdirectoriesNameList.Clear();
-            // setting directories
-            DirectoryInfo rootDirectory = new DirectoryInfo(directoryPath);
+            // setting directories       
+    DirectoryInfo dirInfo = new DirectoryInfo(directoryPath);
+    foreach (var d in dirInfo.GetDirectories("*", SearchOption.AllDirectories))
+    {
+        inSubdirectoriesNameList.Add(d.Name);
+        Debug.WriteLine(d.Name);
+    }
 
-            foreach(var folderek in rootDirectory.GetDirectories()){
-           inSubdirectoriesNameList.Add(folderek.Name);
-                }
-           
-           // create and put in inList <FileDataObject>
+            // create and put in inList <FileDataObject>
             foreach (FileInfo file in inList)
             {
                 FileDataObject fileTransferObject = new FileDataObject(

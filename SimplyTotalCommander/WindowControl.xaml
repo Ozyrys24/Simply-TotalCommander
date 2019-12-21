@@ -20,6 +20,9 @@
             <DataGrid.FrozenColumnCount>1</DataGrid.FrozenColumnCount>
         </DataGrid>
         <!-- *** Buttons *** -->
+      <StackPanel>
+        
+      </StackPanel>
         <StackPanel >
             <Button Height="33" Width="50" Click="Button_Click_1" >Check all</Button>
             <Button Height="33" Width="50" Click="Button_Click_2" >Paste</Button>
