@@ -3,19 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.IO;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+
 
 namespace SimplyTotalCommander
 {
@@ -24,13 +14,12 @@ namespace SimplyTotalCommander
     /// </summary>
     public partial class WindowControl : UserControl
     {
-        // main argument into FileReaders methods.
-        // \/\/\/ Collections
+        // Main argument into FileReaders methods.
+        // Collections
         ObservableCollection<FileDataObject> _fileList = new ObservableCollection<FileDataObject>();
-        List<FileDataObject> listOfFiles = new List<FileDataObject>();
         private List<string> listOfFilesName = new List<string>();
         private List<string> listOfDirectoryNames = new List<string>();
-        // \/\/\/ Instances
+        // Instances
         FileReader fileReader = new FileReader();
         public WindowControl()
         {
@@ -40,7 +29,7 @@ namespace SimplyTotalCommander
         {
 
         }
-        // \/\/\/ Update datagrid with desktop path at window load
+        // Update datagrid with desktop path at window load
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             NewPath.Text = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
@@ -53,12 +42,11 @@ namespace SimplyTotalCommander
         // ?  FileReader requiers : new PropertyChangedEventArg(string String)
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
             fileReader.GetFilesNamesList(NewPath.Text, _fileList, listOfFilesName,listOfDirectoryNames,sender);
             fileReader.ProcessCurrentDirectory(NewPath.Text,_fileList,listOfDirectoryNames,sender,new PropertyChangedEventArgs("listOfFiles"));
             DataGridOfFiles.ItemsSource = _fileList;
             SeachBox.ItemsSource = _fileList;
-            DataGridOfDirectory.ItemsSource = listOfDirectoryNames;
+            ListOfDirectory.ItemsSource = listOfDirectoryNames;
         }
         private void DataGridOfFiles_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -68,7 +56,6 @@ namespace SimplyTotalCommander
         {
 
         }
-
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
         //    fileReader.ProcessSubDirectories(NewPath.Text, listOfDirectoriesName, sender, new PropertyChangedEventArgs("listOfFiles"));

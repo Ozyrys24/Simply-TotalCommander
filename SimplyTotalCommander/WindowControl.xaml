@@ -53,14 +53,10 @@
             </ComboBox.ItemTemplate>
         </ComboBox>
         <!-- *** Showing table with details of directory navigation *** -->
-        <DataGrid x:Name="DataGridOfDirectory" 
-                  IsReadOnly="True"
-                  AutoGenerateColumns="True" 
-                  SelectionUnit="CellOrRowHeader"
+        <ListView x:Name="ListOfDirectory" 
                   SelectionChanged="DataGridOfDirectories_SelectionChanged"
                   HorizontalAlignment="Center"
                   >
-            <DataGrid.FrozenColumnCount>1</DataGrid.FrozenColumnCount>
-        </DataGrid>
+        </ListView>
     </UniformGrid>
 </UserControl>

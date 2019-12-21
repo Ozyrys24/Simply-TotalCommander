@@ -27,5 +27,10 @@ namespace SimplyTotalCommander
         {
             InitializeComponent();
         }
+
+        private void WindowControl_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

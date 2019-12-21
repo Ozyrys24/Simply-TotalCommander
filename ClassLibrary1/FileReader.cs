@@ -2,11 +2,6 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
-using System.Windows;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Diagnostics;
 
 namespace ClassLibrary1
 {
@@ -42,7 +37,6 @@ namespace ClassLibrary1
                 }
             }
         }
-
         // Process the list of files found in the directory (FileDataObject) otherwise do nothing
         public void ProcessCurrentDirectory(string directoryPath, ObservableCollection<FileDataObject> filesList,
             List<string> listOfDirectories, object sender, PropertyChangedEventArgs e)
@@ -52,10 +46,12 @@ namespace ClassLibrary1
                 filesList.Clear();
                 DtoListSetter(directoryPath, new DirectoryInfo(directoryPath).GetFiles(), filesList, listOfDirectories);
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("filesList"));
+             //   PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("listOfDirectories"));
+
             }
         }
 
-        //  Clearing then updating list of string with file names, otherwise do nothing.
+        //  Clearing then updating list of string with file names and file list, otherwise do nothing.
         public void GetFilesNamesList(string directoryPath, ObservableCollection<FileDataObject> filesList,
             List<string> inListOfFilesName,
             List<string> inListOfDirectories,
@@ -71,8 +67,6 @@ namespace ClassLibrary1
                 {
                     inListOfFilesName.Add(dto.fileName);
                 }
-
-                PropertyChanged?.Invoke(sender, new PropertyChangedEventArgs("listOfFilesName"));
                 PropertyChanged?.Invoke(sender, new PropertyChangedEventArgs("listOfFilesName"));
             }
         }
@@ -93,13 +87,11 @@ namespace ClassLibrary1
             inDtoList.Clear();
             inSubdirectoriesNameList.Clear();
             // setting directories       
-    DirectoryInfo dirInfo = new DirectoryInfo(directoryPath);
-    foreach (var d in dirInfo.GetDirectories("*", SearchOption.AllDirectories))
-    {
-        inSubdirectoriesNameList.Add(d.Name);
-        Debug.WriteLine(d.Name);
-    }
-
+            DirectoryInfo dirInfo = new DirectoryInfo(directoryPath);
+            foreach (var d in dirInfo.GetDirectories("*", SearchOption.TopDirectoryOnly))
+            {
+                inSubdirectoriesNameList.Add(d.Name);
+            }
             // create and put in inList <FileDataObject>
             foreach (FileInfo file in inList)
             {
