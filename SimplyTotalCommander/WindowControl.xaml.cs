@@ -47,6 +47,7 @@ namespace SimplyTotalCommander
             DataGridOfFiles.ItemsSource = _fileList;
             SeachBox.ItemsSource = _fileList;
             ListOfDirectory.ItemsSource = listOfDirectoryNames;
+            DirectoriesTree.ItemsSource = listOfDirectoryNames;
         }
         private void DataGridOfFiles_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -64,6 +65,10 @@ namespace SimplyTotalCommander
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
 
+        }
+        private void DirectoryButton(object sender, RoutedEventArgs e)
+        {
+           // hiddenButton.Visiblity = Visibility.Collapsed; 
         }
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
@@ -85,5 +90,31 @@ namespace SimplyTotalCommander
         {
 
         }
+        //Dodane przez hutnika
+        private void ListViewItem_PreviewMouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            var list = _fileList;
+            var item = sender as ListViewItem;
+            var dataobject = new FileDataObject();
+            
+            if (item != null && item.IsSelected)
+            {
+                string value = item.DataContext.ToString();
+
+                foreach (var element in list)
+                {
+                    
+                    if (element.fileName == value)
+                    {
+                        dataobject = element;
+                        break;
+                    }
+
+                }
+                    MessageBox.Show(_fileList.Count.ToString());
+
+            }
+        }
+        //Dodane przez hutnika
     }
 }
