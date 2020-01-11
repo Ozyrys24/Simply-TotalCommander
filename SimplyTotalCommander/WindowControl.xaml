@@ -15,14 +15,14 @@
                   AutoGenerateColumns="True" 
                   SelectionUnit="CellOrRowHeader"
                   SelectionChanged="DataGridOfFiles_SelectionChanged"
-                  HorizontalAlignment="Center"
+                  HorizontalAlignment="Center" Margin="0,0,0.4,-0.4" Width="266"
                   >
             <DataGrid.FrozenColumnCount>1</DataGrid.FrozenColumnCount>
         </DataGrid>
         <!-- *** Buttons *** -->
-      <StackPanel>
-        
-      </StackPanel>
+        <StackPanel>
+
+        </StackPanel>
         <StackPanel >
             <Button Height="33" Width="50" Click="Button_Click_1" >Check all</Button>
             <Button Height="33" Width="50" Click="Button_Click_2" >Paste</Button>
