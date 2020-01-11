@@ -44,8 +44,10 @@ namespace SimplyTotalCommander
         // ?  FileReader requiers : new PropertyChangedEventArg(string String)
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+
             fileReader.GetFilesNamesList(NewPath.Text, _fileList, listOfFilesName,listOfDirectoryNames,listOfDirectories,sender);
             fileReader.ProcessCurrentDirectory(NewPath.Text,_fileList,listOfDirectoryNames,sender,new PropertyChangedEventArgs("listOfFiles"), listOfDirectories);
+
             DataGridOfFiles.ItemsSource = _fileList;
             SeachBox.ItemsSource = _fileList;
             ListOfDirectory.ItemsSource = listOfDirectoryNames;

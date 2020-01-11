@@ -12,12 +12,6 @@ namespace ClassLibrary1
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public event PropertyChangedEventHandler PropertyHasChanged
-        {
-            add { PropertyChanged += value; }
-            remove { PropertyChanged -= value; }
-        }
-
         // Clear list & add a single FileDataObject to list oterwise do nothing
         public void GetOneFile(string path, ObservableCollection<FileDataObject> filesList,
             ObservableCollection<string> listOfDirectories, DirectoryInfo inOfDirectories)
@@ -35,6 +29,7 @@ namespace ClassLibrary1
                         break;
                     }
                 }
+                
             }
         }
         // Process the list of files found in the directory (FileDataObject) otherwise do nothing
@@ -44,9 +39,11 @@ namespace ClassLibrary1
             if (Directory.Exists(directoryPath))
             {
                 filesList.Clear();
+
                 DtoListSetter(directoryPath, new DirectoryInfo(directoryPath).GetFiles(), filesList, listOfDirectories, inOfDirectories);
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("filesList"));
              //   PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("listOfDirectories"));
+
             }
         }
 
@@ -67,7 +64,7 @@ namespace ClassLibrary1
                 {
                     inListOfFilesName.Add(dto.fileName);
                 }
-                PropertyChanged?.Invoke(sender, new PropertyChangedEventArgs("listOfFilesName"));
+             //   PropertyChanged?.Invoke(sender, new PropertyChangedEventArgs("listOfFilesName"));
             }
         }
 
@@ -92,6 +89,7 @@ namespace ClassLibrary1
             {
                 inSubdirectoriesNameList.Add(d.Name);
             }
+
             // create and put in inList <FileDataObject>
             foreach (FileInfo file in inList)
             {
