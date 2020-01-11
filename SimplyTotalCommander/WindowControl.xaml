@@ -1,0 +1,62 @@
+﻿<UserControl x:Class="SimplyTotalCommander.WindowControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SimplyTotalCommander"
+             mc:Ignorable="d" 
+             d:DesignHeight="450"
+             d:DesignWidth="800"
+             Loaded="Window_Loaded">
+    <UniformGrid>
+        <!-- *** Showing table with details of files from list. *** -->
+        <DataGrid x:Name="DataGridOfFiles" 
+                  IsReadOnly="True"
+                  AutoGenerateColumns="True" 
+                  SelectionUnit="CellOrRowHeader"
+                  SelectionChanged="DataGridOfFiles_SelectionChanged"
+                  HorizontalAlignment="Center"
+                  >
+            <DataGrid.FrozenColumnCount>1</DataGrid.FrozenColumnCount>
+        </DataGrid>
+        <!-- *** Buttons *** -->
+      <StackPanel>
+        
+      </StackPanel>
+        <StackPanel >
+            <Button Height="33" Width="50" Click="Button_Click_1" >Check all</Button>
+            <Button Height="33" Width="50" Click="Button_Click_2" >Paste</Button>
+            <Button Height="33" Width="50" Click="Button_Click_3" >Cut</Button>
+            <Button Height="33" Width="50" Click="Button_Click_4" >Delete</Button>
+            <Button Height="33" Width="50" Click="Button_Click_5" >Unzip</Button>
+            <Button Height="33" Width="50" Click="Button_Click_6" >To Zip</Button>
+            <TextBlock Text="Search in directory :" />
+            <TextBox x:Name="NewPath"/>
+            <Button Height="40"
+                Width="100"
+                Click="Button_Click">Refresh</Button>
+        </StackPanel>
+        <!-- *** Select or search for a file in currnet directory. *** -->
+        <ComboBox SelectionChanged="Button_Click" 
+                              x:Name="SeachBox" 
+                              IsEditable="True" 
+                              IsTextSearchEnabled="True" 
+                              Height="20" 
+                              >
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel >
+                        <TextBlock Text="{Binding Path=fileName}" Background="#00185E8D"/>
+                        <Rectangle Fill="{Binding Path=fileName}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <!-- *** Showing table with details of directory navigation *** -->
+        <ListView x:Name="ListOfDirectory" 
+                  SelectionChanged="DataGridOfDirectories_SelectionChanged"
+                  HorizontalAlignment="Center"
+                  >
+        </ListView>
+    </UniformGrid>
+</UserControl>

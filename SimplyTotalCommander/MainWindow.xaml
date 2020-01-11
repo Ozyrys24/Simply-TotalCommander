@@ -5,8 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SimplyTotalCommander"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow"
+        Height="450"
+        Width="800"
+        >
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+            <local:WindowControl
+            Grid.Column="0"
+            Margin="0,0,-125.2,0" Loaded="WindowControl_Loaded"/>
+        <GridSplitter
+            Grid.Column="1"
+            Background="Blue" 
+                      Width="5"
+                      HorizontalAlignment="Center" ></GridSplitter>
+        <local:WindowControl
+            Grid.Column="2"
+            Margin="-124.6,0,0.4,0"/>
     </Grid>
 </Window>
