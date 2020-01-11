@@ -47,7 +47,6 @@ namespace ClassLibrary1
                 DtoListSetter(directoryPath, new DirectoryInfo(directoryPath).GetFiles(), filesList, listOfDirectories);
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("filesList"));
              //   PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("listOfDirectories"));
-
             }
         }
 

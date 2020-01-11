@@ -58,5 +58,15 @@
                   HorizontalAlignment="Center"
                   >
         </ListView>
+        <ItemsControl x:Name="DirectoriesTree">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <WrapPanel>
+                        <Button Content="{Binding}" Click="DirectoryButton"></Button>
+                        <Button x:Name="hiddenButton" Visibility="Hidden"></Button>
+                    </WrapPanel>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
     </UniformGrid>
 </UserControl>
