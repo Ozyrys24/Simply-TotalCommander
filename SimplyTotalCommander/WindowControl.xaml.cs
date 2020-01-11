@@ -47,6 +47,7 @@ namespace SimplyTotalCommander
             DataGridOfFiles.ItemsSource = _fileList;
             SeachBox.ItemsSource = _fileList;
             ListOfDirectory.ItemsSource = listOfDirectoryNames;
+            DirectoriesTree.ItemsSource = listOfDirectoryNames;
         }
         private void DataGridOfFiles_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -64,6 +65,10 @@ namespace SimplyTotalCommander
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
 
+        }
+        private void DirectoryButton(object sender, RoutedEventArgs e)
+        {
+           // hiddenButton.Visiblity = Visibility.Collapsed; 
         }
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
