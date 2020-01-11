@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -18,7 +19,8 @@ namespace SimplyTotalCommander
         // Collections
         ObservableCollection<FileDataObject> _fileList = new ObservableCollection<FileDataObject>();
         private List<string> listOfFilesName = new List<string>();
-        private List<string> listOfDirectoryNames = new List<string>();
+        private ObservableCollection<String> listOfDirectoryNames = new ObservableCollection<String>();
+        private DirectoryInfo listOfDirectories;
         // Instances
         FileReader fileReader = new FileReader();
         public WindowControl()
@@ -42,8 +44,10 @@ namespace SimplyTotalCommander
         // ?  FileReader requiers : new PropertyChangedEventArg(string String)
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            fileReader.GetFilesNamesList(NewPath.Text, _fileList, listOfFilesName,listOfDirectoryNames,sender);
-            fileReader.ProcessCurrentDirectory(NewPath.Text,_fileList,listOfDirectoryNames,sender,new PropertyChangedEventArgs(""));
+
+            fileReader.GetFilesNamesList(NewPath.Text, _fileList, listOfFilesName,listOfDirectoryNames,listOfDirectories,sender);
+            fileReader.ProcessCurrentDirectory(NewPath.Text,_fileList,listOfDirectoryNames,sender,new PropertyChangedEventArgs("listOfFiles"), listOfDirectories);
+
             DataGridOfFiles.ItemsSource = _fileList;
             SeachBox.ItemsSource = _fileList;
             ListOfDirectory.ItemsSource = listOfDirectoryNames;
@@ -93,27 +97,36 @@ namespace SimplyTotalCommander
         //Dodane przez hutnika
         private void ListViewItem_PreviewMouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            var list = _fileList;
+            
+            DirectoryInfo dir = new DirectoryInfo(NewPath.Text != ""?NewPath.Text:Environment.GetFolderPath(Environment.SpecialFolder.Desktop));
+            //var list = listOfDirectories;
             var item = sender as ListViewItem;
-            var dataobject = new FileDataObject();
             
             if (item != null && item.IsSelected)
             {
-                string value = item.DataContext.ToString();
-
-                foreach (var element in list)
+                string value = item.Content.ToString();
+                
+                foreach (var element in dir.GetDirectories(value,SearchOption.TopDirectoryOnly))
                 {
-                    
-                    if (element.fileName == value)
+
+                    if (element.Name == value)
                     {
-                        dataobject = element;
+
+                        NewPath.Text = element.FullName;
+                        Button_Click(sender,e);
+                        //ICollectionView view = CollectionVie
+                        //ListViewItem.
                         break;
                     }
 
                 }
-                    MessageBox.Show(_fileList.Count.ToString());
 
             }
+        }
+
+        private ICollectionView CollectionViewSource()
+        {
+            throw new NotImplementedException();
         }
         //Dodane przez hutnika
     }

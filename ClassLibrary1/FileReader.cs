@@ -14,12 +14,12 @@ namespace ClassLibrary1
 
         // Clear list & add a single FileDataObject to list oterwise do nothing
         public void GetOneFile(string path, ObservableCollection<FileDataObject> filesList,
-            List<string> listOfDirectories)
+            ObservableCollection<string> listOfDirectories, DirectoryInfo inOfDirectories)
         {
             if (File.Exists(path))
             {
                 filesList.Clear();
-                DtoListSetter(path, new DirectoryInfo(path).GetFiles(), filesList, listOfDirectories);
+                DtoListSetter(path, new DirectoryInfo(path).GetFiles(), filesList, listOfDirectories, inOfDirectories);
                 foreach (FileDataObject dto in filesList)
                 {
                     if (path == dto.path)
@@ -34,20 +34,24 @@ namespace ClassLibrary1
         }
         // Process the list of files found in the directory (FileDataObject) otherwise do nothing
         public void ProcessCurrentDirectory(string directoryPath, ObservableCollection<FileDataObject> filesList,
-            List<string> listOfDirectories, object sender, PropertyChangedEventArgs e)
+            ObservableCollection<string> listOfDirectories, object sender, PropertyChangedEventArgs e, DirectoryInfo inOfDirectories)
         {
             if (Directory.Exists(directoryPath))
             {
                 filesList.Clear();
-                DtoListSetter(directoryPath, new DirectoryInfo(directoryPath).GetFiles(), filesList, listOfDirectories);
-              //  PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("filesList"));
+
+                DtoListSetter(directoryPath, new DirectoryInfo(directoryPath).GetFiles(), filesList, listOfDirectories, inOfDirectories);
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("filesList"));
+             //   PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("listOfDirectories"));
+
             }
         }
 
         //  Clearing then updating list of string with file names and file list, otherwise do nothing.
         public void GetFilesNamesList(string directoryPath, ObservableCollection<FileDataObject> filesList,
             List<string> inListOfFilesName,
-            List<string> inListOfDirectories,
+            ObservableCollection<string> inListOfDirectories,
+            DirectoryInfo inDirectoryList,
             object sender)
         {
             if (Directory.Exists(directoryPath))
@@ -55,7 +59,7 @@ namespace ClassLibrary1
                 filesList.Clear();
                 inListOfFilesName.Clear();
                 DtoListSetter(directoryPath, new DirectoryInfo(directoryPath).GetFiles(), filesList,
-                    inListOfDirectories);
+                    inListOfDirectories,inDirectoryList);
                 foreach (FileDataObject dto in filesList)
                 {
                     inListOfFilesName.Add(dto.fileName);
@@ -74,13 +78,13 @@ namespace ClassLibrary1
         // Change data into FileDataObject, clear and put in list taken as argument.
         // * Always clear when used
         private void DtoListSetter(string directoryPath, FileInfo[] inList,
-            ObservableCollection<FileDataObject> inDtoList, List<string> inSubdirectoriesNameList)
+            ObservableCollection<FileDataObject> inDtoList, ObservableCollection<string> inSubdirectoriesNameList, DirectoryInfo dirInfo)
         {
             // cleaning lists.
             inDtoList.Clear();
             inSubdirectoriesNameList.Clear();
             // setting directories       
-            DirectoryInfo dirInfo = new DirectoryInfo(directoryPath);
+            dirInfo = new DirectoryInfo(directoryPath);
             foreach (var d in dirInfo.GetDirectories("*", SearchOption.TopDirectoryOnly))
             {
                 inSubdirectoriesNameList.Add(d.Name);
