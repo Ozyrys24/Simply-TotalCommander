@@ -90,5 +90,31 @@ namespace SimplyTotalCommander
         {
 
         }
+        //Dodane przez hutnika
+        private void ListViewItem_PreviewMouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            var list = _fileList;
+            var item = sender as ListViewItem;
+            var dataobject = new FileDataObject();
+            
+            if (item != null && item.IsSelected)
+            {
+                string value = item.DataContext.ToString();
+
+                foreach (var element in list)
+                {
+                    
+                    if (element.fileName == value)
+                    {
+                        dataobject = element;
+                        break;
+                    }
+
+                }
+                    MessageBox.Show(_fileList.Count.ToString());
+
+            }
+        }
+        //Dodane przez hutnika
     }
 }
