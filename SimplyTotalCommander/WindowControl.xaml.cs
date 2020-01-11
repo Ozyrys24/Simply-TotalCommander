@@ -43,7 +43,7 @@ namespace SimplyTotalCommander
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             fileReader.GetFilesNamesList(NewPath.Text, _fileList, listOfFilesName,listOfDirectoryNames,sender);
-            fileReader.ProcessCurrentDirectory(NewPath.Text,_fileList,listOfDirectoryNames,sender,new PropertyChangedEventArgs("listOfFiles"));
+            fileReader.ProcessCurrentDirectory(NewPath.Text,_fileList,listOfDirectoryNames,sender,new PropertyChangedEventArgs(""));
             DataGridOfFiles.ItemsSource = _fileList;
             SeachBox.ItemsSource = _fileList;
             ListOfDirectory.ItemsSource = listOfDirectoryNames;
