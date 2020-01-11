@@ -116,19 +116,19 @@ namespace ClassLibrary1
             }
             else if (fileLenght > 0 & fileLenght < 1024)
             {
-                return fileLenght + " byte (B)";
+                return $"{fileLenght} B";
             }
             else if (fileLenght < 1048576)
             {
-                return fileLenght / 1024 + " kilobye (kB)";
+                return $"{(fileLenght / 1024):.00} KB";
             }
             else if (fileLenght < 1073741824)
             {
-                return fileLenght / 1048576 + " megabyte (MB)";
+                return $"{(fileLenght / 1048576):.00} MB";
             }
             else
             {
-                return fileLenght / 1073741824 + " gigabyte (GB)";
+                return $"{(fileLenght / 10737418240):.00} GB";
             }
         }
     }

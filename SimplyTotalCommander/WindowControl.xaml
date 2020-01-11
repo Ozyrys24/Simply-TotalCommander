@@ -57,6 +57,13 @@
                   SelectionChanged="DataGridOfDirectories_SelectionChanged"
                   HorizontalAlignment="Center"
                   >
+            <!-- Dodane przez Hutnika -->
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <EventSetter Event="PreviewMouseLeftButtonDown" Handler="ListViewItem_PreviewMouseLeftButtonDown" />
+                </Style>
+            </ListView.ItemContainerStyle>
+            <!-- Dodane przez Hutnika -->
         </ListView>
         <ItemsControl x:Name="DirectoriesTree">
             <ItemsControl.ItemTemplate>
