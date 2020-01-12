@@ -28,8 +28,25 @@
             <Button Height="33" Width="50" Click="Button_Click_6" >To Zip</Button>
         </StackPanel>
         <local:WindowControl
-            Grid.Column="0" Loaded="WindowControl_Loaded"/>
+            Grid.Column="0" Loaded="WindowControl_Loaded" MouseRightButtonUp="WindowControl_MouseRightButtonUp"/>
         <local:WindowControl
             Grid.Column="2"/>
+        <Grid.ContextMenu>
+            <ContextMenu>
+                <MenuItem Header="_Open" FontWeight="Bold" Command="ApplicationCommands.Open"/>
+                <Separator />
+                <MenuItem Header="_Copy" Command="ApplicationCommands.Copy" />
+                <MenuItem Header="_Paste" Command="ApplicationCommands.Paste" />
+                <MenuItem Header="_Cut" Command="ApplicationCommands.Cut" />
+                <Separator />
+                <MenuItem Header="_Delete" Command="ApplicationCommands.Delete" />
+                <MenuItem Header="_New File" Command="ApplicationCommands.New" />
+                <Separator />
+                <MenuItem Header="_Zip to..." />
+                <MenuItem Header="UnZip" />
+                <Separator />
+                <MenuItem Header="Properties" Command="ApplicationCommands.Properties" />
+            </ContextMenu>
+        </Grid.ContextMenu>
     </Grid>
 </Window>
