@@ -107,5 +107,11 @@
       <Name>FileReader</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Properties\searchButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="searchButton.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

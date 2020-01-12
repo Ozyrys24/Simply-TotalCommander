@@ -24,7 +24,6 @@ namespace ClassLibrary1
                 {
                     if (path == dto.path)
                     {
-                        filesList.Clear();
                         filesList.Add(dto);
                         break;
                     }
@@ -85,6 +84,7 @@ namespace ClassLibrary1
             inSubdirectoriesNameList.Clear();
             // setting directories       
             dirInfo = new DirectoryInfo(directoryPath);
+            
             foreach (var d in dirInfo.GetDirectories("*", SearchOption.TopDirectoryOnly))
             {
                 inSubdirectoriesNameList.Add(d.Name);
