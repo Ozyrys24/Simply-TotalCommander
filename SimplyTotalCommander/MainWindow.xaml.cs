@@ -46,5 +46,10 @@ namespace SimplyTotalCommander
         {
 
         }
+
+        private void WindowControl_MouseRightButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            
+        }
     }
 }
