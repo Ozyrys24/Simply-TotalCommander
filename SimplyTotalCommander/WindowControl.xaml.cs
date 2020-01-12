@@ -24,6 +24,8 @@ namespace SimplyTotalCommander
         private DirectoryInfo listOfDirectories;
         // Instances
         FileReader fileReader = new FileReader();
+
+
         public WindowControl()
         {
             InitializeComponent();
@@ -45,14 +47,17 @@ namespace SimplyTotalCommander
         // ?  FileReader requiers : new PropertyChangedEventArg(string String)
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
-            listOfDirectories = new DirectoryInfo(NewPath.Text);
+            try
+            {
+                listOfDirectories = new DirectoryInfo(NewPath.Text);
+            }
+            catch { }
             fileReader.Refresh(NewPath.Text);
 
+            DataGridOfFiles.ItemsSource = fileReader.ListOfFiles;
+            SeachBox.ItemsSource = fileReader.ListOfFiles;
+            ListOfDirectory.ItemsSource = fileReader.ListOfDirectoriesName;
 
-            DataGridOfFiles.ItemsSource = _fileList;
-            SeachBox.ItemsSource = _fileList;
-            ListOfDirectory.ItemsSource = listOfDirectoryNames;
         }
         private void DataGridOfFiles_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -71,23 +76,32 @@ namespace SimplyTotalCommander
         private void ListViewItem_PreviewMouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             
-            DirectoryInfo dir = new DirectoryInfo(NewPath.Text != ""?NewPath.Text:Environment.GetFolderPath(Environment.SpecialFolder.Desktop));
+            DirectoryInfo dir = fileReader.ListOfDirectories; //new DirectoryInfo(NewPath.Text != ""?NewPath.Text:Environment.GetFolderPath(Environment.SpecialFolder.Desktop));
             //var list = listOfDirectories;
             var item = sender as ListViewItem;
             
             if (item != null && item.IsSelected)
             {
                 string value = item.Content.ToString();
-
-                foreach (var element in dir.GetDirectories(value,SearchOption.TopDirectoryOnly))
+                if (value == "..")
                 {
-                    string name = dir.Parent.ToString();
-                    if (element.Name == value)
 
+                    if (dir.Parent.FullName.Length > 3)
                     {
-                        NewPath.Text = element.FullName;
+                        NewPath.Text = dir.Parent.FullName;
                         Button_Click(sender, e);
-                        break;
+                    }
+                }
+                else
+                {
+                    foreach (var element in dir.GetDirectories(value, SearchOption.TopDirectoryOnly))
+                    {
+                        if (element.Name == value)
+                        {
+                            NewPath.Text = element.FullName;
+                            Button_Click(sender, e);
+                            break;
+                        }
                     }
                 }
             }

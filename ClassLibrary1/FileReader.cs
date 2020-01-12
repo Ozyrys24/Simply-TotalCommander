@@ -14,8 +14,6 @@ namespace ClassLibrary1
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-
-
         public event PropertyChangedEventHandler PropertyHasChanged
         {
             add { PropertyChanged += value; }
@@ -38,8 +36,6 @@ namespace ClassLibrary1
         // * Always clear when used
         public void Refresh(string path)
         {
-
-
             ListOfDirectories = new DirectoryInfo(path);
             ListOfFiles  = GetFilesList(ListOfDirectories);
             ListOfDirectoriesName = GetDirectoriesNameList(ListOfDirectories); 
