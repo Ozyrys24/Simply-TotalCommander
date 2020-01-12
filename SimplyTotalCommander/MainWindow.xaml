@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:SimplyTotalCommander"
         mc:Ignorable="d"
         Title="MainWindow"
+        Background="GhostWhite"
         Height="850"
         Width="800"
         >
