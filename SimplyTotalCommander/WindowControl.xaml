@@ -3,77 +3,68 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:SimplyTotalCommander"
              mc:Ignorable="d" 
              d:DesignHeight="450"
              d:DesignWidth="800"
-             Loaded="Window_Loaded">
-    <UniformGrid>
-        <!-- *** Showing table with details of files from list. *** -->
-        <DataGrid x:Name="DataGridOfFiles" 
+             Loaded="Window_Loaded"
+             >
+
+
+    <Viewbox HorizontalAlignment="Left" StretchDirection="UpOnly">
+        <DockPanel>
+            <!-- *** Showing direcroies tree *** -->
+            <ListView x:Name="ListOfDirectory"
+                      Foreground="Coral"
+                      FontFamily="Fonts/Rex/Rex-Bold.ttf"
+                      Width="150"
+                      Height="700"
+                  SelectionChanged="DataGridOfDirectories_SelectionChanged">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <EventSetter Event="PreviewMouseLeftButtonDown" Handler="ListViewItem_PreviewMouseLeftButtonDown" />
+                    </Style>
+                </ListView.ItemContainerStyle>
+            </ListView>
+            <!-- *** Showing table with details of files from list *** -->
+            <DataGrid x:Name="DataGridOfFiles"
+                      AlternatingRowBackground="LemonChiffon"
                   IsReadOnly="True"
+                  DockPanel.Dock="Top"
+                  HorizontalAlignment="Stretch"
                   AutoGenerateColumns="True" 
                   SelectionUnit="CellOrRowHeader"
                   SelectionChanged="DataGridOfFiles_SelectionChanged"
-                  HorizontalAlignment="Center" Margin="0,0,0.4,-0.4" Width="266"
-                  >
-            <DataGrid.FrozenColumnCount>1</DataGrid.FrozenColumnCount>
-        </DataGrid>
-        <!-- *** Buttons *** -->
-        <StackPanel>
-
-        </StackPanel>
-        <StackPanel >
-            <Button Height="33" Width="50" Click="Button_Click_1" >Check all</Button>
-            <Button Height="33" Width="50" Click="Button_Click_2" >Paste</Button>
-            <Button Height="33" Width="50" Click="Button_Click_3" >Cut</Button>
-            <Button Height="33" Width="50" Click="Button_Click_4" >Delete</Button>
-            <Button Height="33" Width="50" Click="Button_Click_5" >Unzip</Button>
-            <Button Height="33" Width="50" Click="Button_Click_6" >To Zip</Button>
-            <TextBlock Text="Search in directory :" />
-            <TextBox x:Name="NewPath"/>
-            <Button Height="40"
-                Width="100"
-                Click="Button_Click">Refresh</Button>
-        </StackPanel>
-        <!-- *** Select or search for a file in currnet directory. *** -->
-        <ComboBox SelectionChanged="Button_Click" 
-                              x:Name="SeachBox" 
-                              IsEditable="True" 
-                              IsTextSearchEnabled="True" 
-                              Height="20" 
-                              >
-            <ComboBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel >
-                        <TextBlock Text="{Binding Path=fileName}" Background="#00185E8D"/>
-                        <Rectangle Fill="{Binding Path=fileName}"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ComboBox.ItemTemplate>
-        </ComboBox>
-        <!-- *** Showing table with details of directory navigation *** -->
-        <ListView x:Name="ListOfDirectory" 
-                  SelectionChanged="DataGridOfDirectories_SelectionChanged"
-                  HorizontalAlignment="Center"
-                  >
-            <!-- Dodane przez Hutnika -->
-            <ListView.ItemContainerStyle>
-                <Style TargetType="ListViewItem">
-                    <EventSetter Event="PreviewMouseLeftButtonDown" Handler="ListViewItem_PreviewMouseLeftButtonDown" />
-                </Style>
-            </ListView.ItemContainerStyle>
-            <!-- Dodane przez Hutnika -->
-        </ListView>
-        <ItemsControl x:Name="DirectoriesTree">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <WrapPanel>
-                        <Button Content="{Binding}" Click="DirectoryButton"></Button>
-                        <Button x:Name="hiddenButton" Visibility="Hidden"></Button>
-                    </WrapPanel>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
-    </UniformGrid>
+                  Width="415"
+                  Height="550">
+                <DataGrid.FrozenColumnCount>1</DataGrid.FrozenColumnCount>
+            </DataGrid>
+            <!-- *** Select or search for a file in currnet directory. *** -->
+            <StackPanel VerticalAlignment="top" Width="415" Margin="10">
+                <TextBlock HorizontalAlignment="left" Text="Choose file :"/>
+                <ComboBox SelectionChanged="Button_Click"
+                          Height="25"
+                      VerticalAlignment="top"
+                      HorizontalAlignment="Stretch"
+                      x:Name="SeachBox" 
+                      IsEditable="True" 
+                      IsTextSearchEnabled="True">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel >
+                                <TextBlock Text="{Binding Path=fileName}" Background="#00185E8D"/>
+                                <Rectangle Fill="{Binding Path=fileName}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <!-- *** Search new directory path by string ***-->
+                <TextBlock HorizontalAlignment="left" Text="Search in directory :" />
+                <TextBox  Height="25" x:Name="NewPath"/>
+                <Button
+                Click="Button_Click">
+                    <Image Width="25" Height="37" HorizontalAlignment="Right"  Source="searchButton.png"/>
+                </Button>
+            </StackPanel>
+        </DockPanel>
+    </Viewbox>
 </UserControl>

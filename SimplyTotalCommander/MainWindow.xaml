@@ -6,25 +6,30 @@
         xmlns:local="clr-namespace:SimplyTotalCommander"
         mc:Ignorable="d"
         Title="MainWindow"
-        Height="450"
+        Background="GhostWhite"
+        Height="850"
         Width="800"
         >
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition
+                Width="50*"/>
+            <ColumnDefinition
+                Width="10*"/>
+            <ColumnDefinition
+                Width="50*"/>
         </Grid.ColumnDefinitions>
-            <local:WindowControl
-            Grid.Column="0"
-            Margin="0,0,-125.2,0" Loaded="WindowControl_Loaded"/>
-        <GridSplitter
-            Grid.Column="1"
-            Background="Blue" 
-                      Width="5"
-                      HorizontalAlignment="Center" ></GridSplitter>
+        <StackPanel  HorizontalAlignment="Center" Grid.Column="1" Orientation="Vertical" Margin="0,100,30,20">
+            <Button Height="33" Width="50" Click="Button_Click_1" >Check all</Button>
+            <Button Height="33" Width="50" Click="Button_Click_2" >Paste</Button>
+            <Button Height="33" Width="50" Click="Button_Click_3" >Cut</Button>
+            <Button Height="33" Width="50" Click="Button_Click_4" >Delete</Button>
+            <Button Height="33" Width="50" Click="Button_Click_5" >Unzip</Button>
+            <Button Height="33" Width="50" Click="Button_Click_6" >To Zip</Button>
+        </StackPanel>
         <local:WindowControl
-            Grid.Column="2"
-            Margin="-124.6,0,0.4,0"/>
+            Grid.Column="0" Loaded="WindowControl_Loaded"/>
+        <local:WindowControl
+            Grid.Column="2"/>
     </Grid>
 </Window>
