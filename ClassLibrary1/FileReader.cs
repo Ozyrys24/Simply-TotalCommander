@@ -14,6 +14,7 @@ namespace ClassLibrary1
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+
         public event PropertyChangedEventHandler PropertyHasChanged
         {
             add { PropertyChanged += value; }
@@ -24,7 +25,6 @@ namespace ClassLibrary1
         public ObservableCollection<string> ListOfDirectoriesName { get; private set; }
         public ObservableCollection<string> ListOfFilesName { get; private set; }
         public DirectoryInfo ListOfDirectories { get; private set; }
-
        
         // Secure in case of file name with extension in path.
         public string[] SecurePath(string inPath)
@@ -37,6 +37,7 @@ namespace ClassLibrary1
         // * Always clear when used
         public void Refresh(string path)
         {
+
             ListOfDirectories = new DirectoryInfo(path);
             ListOfFiles  = GetFilesList(ListOfDirectories);
             ListOfDirectoriesName = GetDirectoriesNameList(ListOfDirectories); 

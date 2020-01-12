@@ -45,6 +45,7 @@ namespace SimplyTotalCommander
         // ?  FileReader requiers : new PropertyChangedEventArg(string String)
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+
             listOfDirectories = new DirectoryInfo(NewPath.Text);
             fileReader.Refresh(NewPath.Text);
 
