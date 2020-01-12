@@ -58,12 +58,8 @@
                     </ComboBox.ItemTemplate>
                 </ComboBox>
                 <!-- *** Search new directory path by string ***-->
-                <TextBlock HorizontalAlignment="left" Text="Search in directory :" />
-                <TextBox  Height="25" x:Name="NewPath"/>
-                <Button
-                Click="Button_Click">
-                    <Image Width="25" Height="37" HorizontalAlignment="Right"  Source="searchButton.png"/>
-                </Button>
+                <TextBlock HorizontalAlignment="left" Text="Directory Path" />
+                <TextBox  Height="25" x:Name="NewPath" IsReadOnly="True"/>
             </StackPanel>
         </DockPanel>
     </Viewbox>
