@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
@@ -18,8 +19,8 @@ namespace SimplyTotalCommander
         // Main argument into FileReaders methods.
         // Collections
         ObservableCollection<FileDataObject> _fileList = new ObservableCollection<FileDataObject>();
-        private List<string> listOfFilesName = new List<string>();
-        private ObservableCollection<String> listOfDirectoryNames = new ObservableCollection<String>();
+        private ObservableCollection<string> listOfFilesName = new ObservableCollection<string>();
+        private ObservableCollection<string> listOfDirectoryNames = new ObservableCollection<string>();
         private DirectoryInfo listOfDirectories;
         // Instances
         FileReader fileReader = new FileReader();
@@ -45,8 +46,9 @@ namespace SimplyTotalCommander
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
-            fileReader.GetFilesNamesList(NewPath.Text, _fileList, listOfFilesName,listOfDirectoryNames,listOfDirectories,sender);
-            fileReader.ProcessCurrentDirectory(NewPath.Text,_fileList,listOfDirectoryNames,sender,new PropertyChangedEventArgs("listOfFiles"), listOfDirectories);
+            listOfDirectories = new DirectoryInfo(NewPath.Text);
+            fileReader.Refresh(NewPath.Text);
+
 
             DataGridOfFiles.ItemsSource = _fileList;
             SeachBox.ItemsSource = _fileList;
@@ -76,20 +78,18 @@ namespace SimplyTotalCommander
             if (item != null && item.IsSelected)
             {
                 string value = item.Content.ToString();
+
                 foreach (var element in dir.GetDirectories(value,SearchOption.TopDirectoryOnly))
                 {
                     string name = dir.Parent.ToString();
                     if (element.Name == value)
+
                     {
                         NewPath.Text = element.FullName;
-                        Button_Click(sender,e);
-                        //ICollectionView view = CollectionVie
-                        //ListViewItem.
+                        Button_Click(sender, e);
                         break;
                     }
-
                 }
-
             }
         }
 
@@ -97,6 +97,7 @@ namespace SimplyTotalCommander
         {
             throw new NotImplementedException();
         }
+
         //Dodane przez hutnika
     }
 }
