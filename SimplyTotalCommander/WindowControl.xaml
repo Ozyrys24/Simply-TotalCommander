@@ -15,7 +15,7 @@
             <!-- *** Showing direcroies tree *** -->
             <ListView x:Name="ListOfDirectory"
                       Foreground="Coral"
-                      FontFamily="Fonts/Rex/Rex-Bold.ttf"
+                      FontFamily="{StaticResource RexBoldInline}"
                       Width="150"
                       Height="700"
                   SelectionChanged="DataGridOfDirectories_SelectionChanged">
