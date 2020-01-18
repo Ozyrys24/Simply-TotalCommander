@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 
 
+
 namespace SimplyTotalCommander
 {
     /// <summary>
@@ -18,6 +19,7 @@ namespace SimplyTotalCommander
         // Collections
         // Instances
         FileReader fileReader = new FileReader();
+        static FileDataObject CopyFile { get; set; } 
 
 
         public WindowControl()
@@ -26,7 +28,7 @@ namespace SimplyTotalCommander
         }
         public void UpdateSourceEvent()
         {
-
+            
         }
         // Update datagrid with desktop path at window load
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -72,11 +74,11 @@ namespace SimplyTotalCommander
                 if (value == "..")
                 {
 
-                    if (dir.Parent.FullName.Length > 3)
+                    if (dir.Parent?.FullName != null)
                     {
                         NewPath.Text = dir.Parent.FullName;
-                        Button_Click(sender, e);
                     }
+                        Button_Click(sender, e);
                 }
                 else
                 {
@@ -96,6 +98,28 @@ namespace SimplyTotalCommander
         private ICollectionView CollectionViewSource()
         {
             throw new NotImplementedException();
+        }
+
+        private void MenuItem_Copy_Click(object sender, RoutedEventArgs e)
+        {
+            FileDataObject file = (FileDataObject)DataGridOfFiles.SelectedItem;
+            CopyFile = file;
+        }
+
+        private void MenuItem_Paste_Click(object sender, RoutedEventArgs e)
+        {
+            if (CopyFile.path != null)
+            {   if(!File.Exists(string.Format($"{fileReader.ListOfDirectories.FullName}\\{CopyFile.fileName}{CopyFile.extension}")))
+                File.Copy(CopyFile.path, string.Format($"{fileReader.ListOfDirectories.FullName}\\{CopyFile.fileName}{CopyFile.extension}"));
+                Button_Click(sender,e);
+            }
+        }
+
+        private void MenuItem_Delete_Click(object sender, RoutedEventArgs e)
+        {
+            FileDataObject file = (FileDataObject)DataGridOfFiles.SelectedItem;
+            File.Delete(file.path);
+            Button_Click(sender, e);
         }
 
         //Dodane przez hutnika

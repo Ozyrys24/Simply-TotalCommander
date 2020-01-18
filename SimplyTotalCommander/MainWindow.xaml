@@ -31,57 +31,14 @@
             <Button Height="33" Width="50" Click="Button_Click_6" >To Zip</Button>
         </StackPanel>
         <local:WindowControl
-            Grid.Column="0" Loaded="WindowControl_Loaded" MouseRightButtonUp="WindowControl_MouseRightButtonUp"/>
+            x:Name="LeftWindow"
+            Grid.Column="0" 
+            Loaded="WindowControl_Loaded" 
+            MouseRightButtonUp="WindowControl_MouseRightButtonUp"
+            />
         <local:WindowControl
+            x:Name="RightWindow"
             Grid.Column="2"/>
-        <Grid.ContextMenu>
-            <ContextMenu>
-                <MenuItem Header="_Open" FontWeight="Bold" Command="ApplicationCommands.Open">
-                    <MenuItem.Icon>
-                        <Image Source="Images/open.png"/>
-                    </MenuItem.Icon>
-                </MenuItem>
-                <Separator />
-                <MenuItem Header="_Copy" Command="ApplicationCommands.Copy" >
-                    <MenuItem.Icon>
-                        <Image Source="Images/copy.png"/>
-                    </MenuItem.Icon>
-                </MenuItem>
-                <MenuItem Header="_Paste" Command="ApplicationCommands.Paste" >
-                    <MenuItem.Icon>
-                        <Image Source="Images/paste.png"/>
-                    </MenuItem.Icon>
-                </MenuItem>
-                <MenuItem Header="_Cut" Command="ApplicationCommands.Cut" >
-                    <MenuItem.Icon>
-                        <Image Source="Images/cut.png"/>
-                    </MenuItem.Icon>
-                </MenuItem>
-                <Separator />
-                <MenuItem Header="_Delete" Command="ApplicationCommands.Delete" >
-                    <MenuItem.Icon>
-                        <Image Source="Images/delete.png"/>
-                    </MenuItem.Icon>
-                </MenuItem>
-                <MenuItem Header="_New File" Command="ApplicationCommands.New" >
-                    <MenuItem.Icon>
-                        <Image Source="Images/new.png"/>
-                    </MenuItem.Icon>
-                </MenuItem>
-                <Separator />
-                <MenuItem Header="_Zip to..." >
-                    <MenuItem.Icon>
-                        <Image Source="Images/zip.png"/>
-                    </MenuItem.Icon>
-                </MenuItem>
-                <MenuItem Header="UnZip" >
-                    <MenuItem.Icon>
-                        <Image Source="Images/unzip.png"/>
-                    </MenuItem.Icon>
-                </MenuItem>
-                <Separator />
-                <MenuItem Header="Properties" Command="ApplicationCommands.Properties" />
-            </ContextMenu>
-        </Grid.ContextMenu>
+        
     </Grid>
 </Window>
