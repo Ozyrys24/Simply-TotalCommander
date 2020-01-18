@@ -17,7 +17,7 @@ namespace SimplyTotalCommander
 
         private void WindowControl_Loaded(object sender, RoutedEventArgs e)
         {
-
+            
         }
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
