@@ -11,7 +11,7 @@
     <UserControl.Background>
         <ImageBrush ImageSource="mainBackground.png"/>
     </UserControl.Background>
-    <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left">
+    <Viewbox Margin="15" VerticalAlignment="Top" HorizontalAlignment="Left">
         <DockPanel LastChildFill="False">
 
             <!-- *** Showing direcroies tree *** -->
@@ -38,9 +38,17 @@
                         <EventSetter Event="PreviewMouseLeftButtonDown" Handler="ListViewItem_PreviewMouseLeftButtonDown" />
                     </Style>
                 </ListView.ItemContainerStyle>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <WrapPanel>
+                            <Image Source="searchButton.png" Width="10" Height="10"></Image>
+                            <TextBlock Text="{Binding}"/>
+                        </WrapPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
             </ListView>
             <!-- *** Showing table with details of files from list *** -->
-            <DataGrid x:Name="DataGridOfFiles"
+                <DataGrid x:Name="DataGridOfFiles"
                   AlternatingRowBackground="Gainsboro"
                   IsReadOnly="True"
                   DockPanel.Dock="Top"
@@ -48,8 +56,8 @@
                   AutoGenerateColumns="True" 
                   SelectionUnit="FullRow"
                   SelectionChanged="DataGridOfFiles_SelectionChanged"
-                  GridLinesVisibility="None"
-                  Width="415"
+                  GridLinesVisibility="Vertical"
+                  Width="460"
                   Height="550">
                 <DataGrid.FrozenColumnCount>1</DataGrid.FrozenColumnCount>
                 <DataGrid.ContextMenu>
