@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace SimplyTotalCommander
 {
     /// <summary>
-    /// Logika interakcji dla klasy Window1.xaml
+    /// Logika interakcji dla klasy Properties.xaml
     /// </summary>
-    public partial class Window1 : Window
+    public partial class Properties : Window
     {
-        public Window1()
+        public Properties()
         {
             InitializeComponent();
         }
