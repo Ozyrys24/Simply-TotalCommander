@@ -27,13 +27,14 @@
             </ListView>
             <!-- *** Showing table with details of files from list *** -->
             <DataGrid x:Name="DataGridOfFiles"
-                      AlternatingRowBackground="LemonChiffon"
+                  AlternatingRowBackground="Gainsboro"
                   IsReadOnly="True"
                   DockPanel.Dock="Top"
                   HorizontalAlignment="Stretch"
                   AutoGenerateColumns="True" 
-                  SelectionUnit="CellOrRowHeader"
+                  SelectionUnit="FullRow"
                   SelectionChanged="DataGridOfFiles_SelectionChanged"
+                  GridLinesVisibility="None"
                   Width="415"
                   Height="550">
                 <DataGrid.FrozenColumnCount>1</DataGrid.FrozenColumnCount>
