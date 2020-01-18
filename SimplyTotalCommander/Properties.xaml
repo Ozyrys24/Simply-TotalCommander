@@ -1,0 +1,33 @@
+﻿<Window x:Class="SimplyTotalCommander.Properties"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SimplyTotalCommander"
+        mc:Ignorable="d"
+        Title="Properties" Height="290" Width="350">
+    <Grid Margin="15">
+        <StackPanel>
+         <TextBlock Margin="0,5" Text="File name "></TextBlock>
+         <TextBlock Margin="0,5" Text="Extension "></TextBlock>
+         <TextBlock Margin="0,5" Text="File Size "></TextBlock>
+         <TextBlock Margin="0,5"  Text="Path "></TextBlock>
+         <TextBlock Margin="0,5"  Text="Directory name "></TextBlock>
+         <TextBlock Margin="0,5" Text="Is read only "></TextBlock>
+         <TextBlock Margin="0,5" Text="Creation time "></TextBlock>
+         <TextBlock Margin="0,5" Text="Last acess time "></TextBlock>
+         <TextBlock Margin="0,5" Text="Last write time "></TextBlock>
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Right">
+            <TextBlock x:Name="fileName" Margin="0,5"></TextBlock>
+            <TextBlock x:Name="extension" Margin="0,5"></TextBlock>
+            <TextBlock x:Name="fileSize" Margin="0,5"></TextBlock>
+            <TextBlock x:Name="path" Margin="0,5"></TextBlock>
+            <TextBlock x:Name="directoryName" Margin="0,5"></TextBlock>
+            <TextBlock x:Name="isReadOnly" Margin="0,5"></TextBlock>
+            <TextBlock x:Name="creationTime" Margin="0,5"></TextBlock>
+            <TextBlock x:Name="lastAcessTime" Margin="0,5"></TextBlock>
+            <TextBlock x:Name="lastWriteTime" Margin="0,5"></TextBlock>
+        </StackPanel>
+    </Grid>
+</Window>
