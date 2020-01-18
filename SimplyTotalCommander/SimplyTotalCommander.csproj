@@ -89,6 +89,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Resource Include="Images\bar.png" />
+    <Resource Include="mainBackground.png" />
+    <Resource Include="Images\mainBackground.png" />
+    <Resource Include="Images\background.png" />
     <Resource Include="Images\copy.png" />
     <Resource Include="Images\cut.png" />
     <Resource Include="Images\delete.png" />
@@ -101,9 +105,11 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Resource Include="background.png" />
     <Content Include="Fonts\Rex\Rex-Bold.ttf" />
     <Content Include="Fonts\Rex\Rex-BoldInline.ttf" />
     <Content Include="Fonts\Rex\Rex-Light.ttf" />
+    <None Include="background.png.webp" />
     <None Include="Fonts\Rex\Rex-Bold.eot" />
     <Resource Include="Fonts\Rex\Rex-Bold.otf" />
     <None Include="Fonts\Rex\Rex-Bold.woff" />

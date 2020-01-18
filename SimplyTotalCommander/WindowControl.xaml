@@ -8,19 +8,23 @@
              d:DesignWidth="800"
              Loaded="Window_Loaded"
              >
-
-
+    <UserControl.Background>
+        <ImageBrush ImageSource="mainBackground.png"/>
+    </UserControl.Background>
     <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left">
-        <DockPanel>
+        <DockPanel LastChildFill="False">
+
             <!-- *** Showing direcroies tree *** -->
             <ListView x:Name="ListOfDirectory"
                       DockPanel.Dock="Left"
-                      Foreground="Coral"
-                      FontFamily="{StaticResource RexBoldInline}"
+                      Foreground="White"
+                      FontFamily="{StaticResource RexBold}"
                       Width="150"
                       Height="550"
-                      
                       SelectionChanged="DataGridOfDirectories_SelectionChanged" RenderTransformOrigin="0.5,0.5">
+                <ListView.Background>
+                    <ImageBrush ImageSource="background.png"/>
+                </ListView.Background>
                 <ListView.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -99,7 +103,15 @@
                 </DataGrid.ContextMenu>
             </DataGrid>
             <!-- *** Select or search for a file in currnet directory. *** -->
-            <StackPanel Width="415" Margin="10">
+            <StackPanel Width="415" Margin="10" RenderTransformOrigin="0.5,0.5">
+                <StackPanel.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform X="-155"/>
+                    </TransformGroup>
+                </StackPanel.RenderTransform>
                 <TextBlock HorizontalAlignment="left" Text="Choose file :"/>
                 <ComboBox SelectionChanged="Button_Click"
                           Height="25"
