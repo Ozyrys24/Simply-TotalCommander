@@ -10,15 +10,25 @@
              >
 
 
-    <Viewbox HorizontalAlignment="Left" StretchDirection="UpOnly">
+    <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left">
         <DockPanel>
             <!-- *** Showing direcroies tree *** -->
             <ListView x:Name="ListOfDirectory"
+                      DockPanel.Dock="Left"
                       Foreground="Coral"
                       FontFamily="{StaticResource RexBoldInline}"
                       Width="150"
-                      Height="700"
-                  SelectionChanged="DataGridOfDirectories_SelectionChanged">
+                      Height="550"
+                      
+                      SelectionChanged="DataGridOfDirectories_SelectionChanged" RenderTransformOrigin="0.5,0.5">
+                <ListView.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform Y="-51"/>
+                    </TransformGroup>
+                </ListView.RenderTransform>
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
                         <EventSetter Event="PreviewMouseLeftButtonDown" Handler="ListViewItem_PreviewMouseLeftButtonDown" />
@@ -40,7 +50,7 @@
                 <DataGrid.FrozenColumnCount>1</DataGrid.FrozenColumnCount>
             </DataGrid>
             <!-- *** Select or search for a file in currnet directory. *** -->
-            <StackPanel VerticalAlignment="top" Width="415" Margin="10">
+            <StackPanel Width="415" Margin="10">
                 <TextBlock HorizontalAlignment="left" Text="Choose file :"/>
                 <ComboBox SelectionChanged="Button_Click"
                           Height="25"
@@ -48,7 +58,7 @@
                       HorizontalAlignment="Stretch"
                       x:Name="SeachBox" 
                       IsEditable="True" 
-                      IsTextSearchEnabled="True">
+                      IsTextSearchEnabled="True" RenderTransformOrigin="0.5,0.5">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel >
