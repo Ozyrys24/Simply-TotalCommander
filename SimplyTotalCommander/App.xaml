@@ -4,8 +4,11 @@
              xmlns:local="clr-namespace:SimplyTotalCommander"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
+        <!-- Fonts -->
         <FontFamily x:Key="RexBold">pack://aplication:,,,Fonts/Rex/#Rex Bold</FontFamily> 
         <FontFamily x:Key="RexBoldInline">pack://aplication:,,,Fonts/Rex/#Rex BoldInline</FontFamily> 
         <FontFamily x:Key="RexLight">pack://aplication:,,,Fonts/Rex/#Rex Light</FontFamily> 
+        <!-- DataGrid Style -->
+        
     </Application.Resources>
 </Application>
