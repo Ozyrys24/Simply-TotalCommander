@@ -67,17 +67,19 @@ namespace ClassLibrary1
             ObservableCollection<FileDataObject> fileDataObjectList = new ObservableCollection<FileDataObject>();
             foreach (FileInfo file in directoryInfo.GetFiles())
             {
-                FileDataObject fileTransferObject = new FileDataObject(
-                    file.FullName,
-                    Path.GetFileNameWithoutExtension(file.FullName),
-                    file.Extension,
-                    SetLenght(file.Length),
-                    file.DirectoryName,
-                    file.IsReadOnly,
-                    file.CreationTime,
-                    file.LastAccessTime,
-                    file.LastWriteTime);
-                fileDataObjectList.Add(fileTransferObject);
+                    FileDataObject fileTransferObject = new FileDataObject(
+                      file.FullName,
+                      Path.GetFileNameWithoutExtension(file.FullName),
+                      file.Extension,
+                      SetLenght(file.Length),
+                      file.DirectoryName,
+                      file.IsReadOnly,
+                      file.CreationTime,
+                      file.LastAccessTime,
+                      file.LastWriteTime);
+                    if (!(fileTransferObject.fileName == ""))
+                        fileDataObjectList.Add(fileTransferObject);
+                
             }
             return fileDataObjectList;
         }

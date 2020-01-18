@@ -48,6 +48,55 @@
                   Width="415"
                   Height="550">
                 <DataGrid.FrozenColumnCount>1</DataGrid.FrozenColumnCount>
+                <DataGrid.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="_Open" FontWeight="Bold" Command="ApplicationCommands.Open">
+                            <MenuItem.Icon>
+                                <Image Source="Images/open.png"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <Separator />
+                        <MenuItem Header="_Copy" Click="MenuItem_Copy_Click" >
+                            <MenuItem.Icon>
+                                <Image Source="Images/copy.png"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="_Paste" Click="MenuItem_Paste_Click" >
+                            <MenuItem.Icon>
+                                <Image Source="Images/paste.png"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="_Cut" Command="ApplicationCommands.Cut" >
+                            <MenuItem.Icon>
+                                <Image Source="Images/cut.png"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <Separator />
+                        <MenuItem Header="_Delete" Click="MenuItem_Delete_Click"  >
+                            <MenuItem.Icon>
+                                <Image Source="Images/delete.png"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="_New File" Command="ApplicationCommands.New" >
+                            <MenuItem.Icon>
+                                <Image Source="Images/new.png"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <Separator />
+                        <MenuItem Header="_Zip to..." >
+                            <MenuItem.Icon>
+                                <Image Source="Images/zip.png"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="UnZip" >
+                            <MenuItem.Icon>
+                                <Image Source="Images/unzip.png"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <Separator />
+                        <MenuItem Header="Properties" Command="ApplicationCommands.Properties" />
+                    </ContextMenu>
+                </DataGrid.ContextMenu>
             </DataGrid>
             <!-- *** Select or search for a file in currnet directory. *** -->
             <StackPanel Width="415" Margin="10">
