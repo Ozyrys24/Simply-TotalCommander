@@ -89,6 +89,14 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Resource Include="Images\copy.png" />
+    <Resource Include="Images\cut.png" />
+    <Resource Include="Images\delete.png" />
+    <Resource Include="Images\new.png" />
+    <Resource Include="Images\open.png" />
+    <Resource Include="Images\paste.png" />
+    <Resource Include="Images\unzip.png" />
+    <Resource Include="Images\zip.png" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
