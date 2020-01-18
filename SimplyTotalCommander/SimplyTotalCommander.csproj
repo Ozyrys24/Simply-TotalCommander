@@ -96,6 +96,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Resource Include="Images\folder.png" />
     <Resource Include="Images\bar.png" />
     <Resource Include="mainBackground.png" />
     <Resource Include="Images\mainBackground.png" />
