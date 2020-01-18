@@ -62,13 +62,21 @@
                 <DataGrid.FrozenColumnCount>1</DataGrid.FrozenColumnCount>
                 <DataGrid.ContextMenu>
                     <ContextMenu>
+                        <ContextMenu.CommandBindings>
+                            <CommandBinding Command="ApplicationCommands.Copy" CanExecute="Copy_CanExecute" Executed="Copy_Executed" />
+                        </ContextMenu.CommandBindings>
+                        <ContextMenu.InputBindings>
+                            <KeyBinding Key="C" 
+                                Modifiers="Control" 
+                                Command="ApplicationCommands.Copy" />
+                        </ContextMenu.InputBindings>
                         <MenuItem Header="_Open" FontWeight="Bold" Command="ApplicationCommands.Open">
                             <MenuItem.Icon>
                                 <Image Source="Images/open.png"/>
                             </MenuItem.Icon>
                         </MenuItem>
                         <Separator />
-                        <MenuItem Header="_Copy" Click="MenuItem_Copy_Click" >
+                        <MenuItem Header="_Copy" Command="ApplicationCommands.Copy" InputGestureText="Ctrl + C" >
                             <MenuItem.Icon>
                                 <Image Source="Images/copy.png"/>
                             </MenuItem.Icon>

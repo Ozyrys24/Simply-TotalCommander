@@ -5,8 +5,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-
-
+using System.Windows.Input;
 
 namespace SimplyTotalCommander
 {
@@ -19,7 +18,7 @@ namespace SimplyTotalCommander
         // Collections
         // Instances
         FileReader fileReader = new FileReader();
-        static FileDataObject CopyFile { get; set; } 
+        static List<FileDataObject> CopyFiles = new List<FileDataObject>();
 
 
         public WindowControl()
@@ -100,25 +99,42 @@ namespace SimplyTotalCommander
             throw new NotImplementedException();
         }
 
-        private void MenuItem_Copy_Click(object sender, RoutedEventArgs e)
+        private void Copy_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            FileDataObject file = (FileDataObject)DataGridOfFiles.SelectedItem;
-            CopyFile = file;
+            e.CanExecute = true;
+        }
+
+        private void Copy_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            CopyFiles.Clear();
+            var selectedList = DataGridOfFiles.SelectedItems;
+            foreach (var item in selectedList)
+            {
+                FileDataObject file = (FileDataObject)item;
+                CopyFiles.Add(file);
+            }
         }
 
         private void MenuItem_Paste_Click(object sender, RoutedEventArgs e)
         {
-            if (CopyFile.path != null)
-            {   if(!File.Exists(string.Format($"{fileReader.ListOfDirectories.FullName}\\{CopyFile.fileName}{CopyFile.extension}")))
-                File.Copy(CopyFile.path, string.Format($"{fileReader.ListOfDirectories.FullName}\\{CopyFile.fileName}{CopyFile.extension}"));
-                Button_Click(sender,e);
+            foreach (var file in CopyFiles)
+            {
+                if (file.path != null)
+                {
+                    if (!File.Exists(string.Format($"{fileReader.ListOfDirectories.FullName}\\{file.fileName}{file.extension}")))
+                        File.Copy(file.path, string.Format($"{fileReader.ListOfDirectories.FullName}\\{file.fileName}{file.extension}"));
+                }
             }
+                Button_Click(sender,e);
         }
 
         private void MenuItem_Delete_Click(object sender, RoutedEventArgs e)
         {
-            FileDataObject file = (FileDataObject)DataGridOfFiles.SelectedItem;
-            File.Delete(file.path);
+            var selectedList = DataGridOfFiles.SelectedItems;
+
+            foreach(var file in selectedList)
+                File.Delete(((FileDataObject)file).path);
+            
             Button_Click(sender, e);
         }
 
