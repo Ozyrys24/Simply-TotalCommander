@@ -77,9 +77,8 @@ namespace ClassLibrary1
                       file.CreationTime,
                       file.LastAccessTime,
                       file.LastWriteTime);
-                    if (!(fileTransferObject.fileName == ""))
+                    if (fileTransferObject.fileName != "")
                         fileDataObjectList.Add(fileTransferObject);
-                
             }
             return fileDataObjectList;
         }
