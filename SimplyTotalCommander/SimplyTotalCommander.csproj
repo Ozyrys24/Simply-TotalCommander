@@ -104,6 +104,22 @@
     <Content Include="Fonts\Rex\Rex-Bold.ttf" />
     <Content Include="Fonts\Rex\Rex-BoldInline.ttf" />
     <Content Include="Fonts\Rex\Rex-Light.ttf" />
+    <None Include="Fonts\Rex\Rex-Bold.eot" />
+    <Resource Include="Fonts\Rex\Rex-Bold.otf" />
+    <None Include="Fonts\Rex\Rex-Bold.woff" />
+    <None Include="Fonts\Rex\Rex-Bold.woff2" />
+    <None Include="Fonts\Rex\Rex-BoldInline.eot" />
+    <Resource Include="Fonts\Rex\Rex-BoldInline.otf" />
+    <None Include="Fonts\Rex\Rex-BoldInline.woff" />
+    <None Include="Fonts\Rex\Rex-BoldInline.woff2" />
+    <None Include="Fonts\Rex\Rex-Light.eot" />
+    <Resource Include="Fonts\Rex\Rex-Light.otf" />
+    <None Include="Fonts\Rex\Rex-Light.woff" />
+    <None Include="Fonts\Rex\Rex-Light.woff2" />
+    <None Include="Fonts\Rex\__MACOSX\._FFF EULA License ver2.1.pdf" />
+    <Resource Include="Fonts\Rex\__MACOSX\._Rex-Bold.otf" />
+    <Resource Include="Fonts\Rex\__MACOSX\._Rex-BoldInline.otf" />
+    <Resource Include="Fonts\Rex\__MACOSX\._Rex-Light.otf" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -124,5 +140,6 @@
   <ItemGroup>
     <Resource Include="searchButton.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
