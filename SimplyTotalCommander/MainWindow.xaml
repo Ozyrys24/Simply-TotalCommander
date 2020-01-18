@@ -5,12 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SimplyTotalCommander"
         mc:Ignorable="d"
-        Title="MainWindow"
+        Title="Hutnik Commander"
         Background="GhostWhite"
         Height="850"
         Width="800"
         BorderBrush="Peru"
         BorderThickness="10,10,10,10"
+        
         >
     <Grid>
         <Grid.ColumnDefinitions>
