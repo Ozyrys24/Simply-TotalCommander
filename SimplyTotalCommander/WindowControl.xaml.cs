@@ -18,22 +18,27 @@ namespace SimplyTotalCommander
         // Main argument into FileReaders methods.
         // Collections
         // Instances
-        FileReader fileReader = new FileReader();
-        static List<FileDataObject> CopyFiles = new List<FileDataObject>();
+        private FileReader fileReader = new FileReader();
+        private static List<FileDataObject> CopyFiles = new List<FileDataObject>();
+        private static bool ToDelete = false;
+        private static List<WindowControl> WindowsList = new List<WindowControl>();
+        
 
 
         public WindowControl()
         {
             InitializeComponent();
+
         }
         public void UpdateSourceEvent()
         {
-            
+
         }
         // Update datagrid with desktop path at window load
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            NewPath.Text = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            fileReader.mainPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            WindowsList.Add(this);
             Button_Click(sender, e);
         }
         // Refresh button on click is updating dataGrid of current directory and comboBox of files to choose
@@ -42,10 +47,13 @@ namespace SimplyTotalCommander
         // ?  FileReader requiers : new PropertyChangedEventArg(string String)
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            fileReader.Refresh(NewPath.Text);
-            DataGridOfFiles.ItemsSource = fileReader.ListOfFiles;
-            SeachBox.ItemsSource = fileReader.ListOfFiles;
-            ListOfDirectory.ItemsSource = fileReader.ListOfDirectoriesName;
+            foreach (var window in WindowsList)
+            {
+            window.fileReader.Refresh(window.fileReader.mainPath);
+            window.DataGridOfFiles.ItemsSource = window.fileReader.ListOfFiles;
+            window.SeachBox.ItemsSource = window.fileReader.ListOfFiles;
+            window.ListOfDirectory.ItemsSource = window.fileReader.ListOfDirectoriesName;
+            }
         }
         private void DataGridOfFiles_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -76,7 +84,7 @@ namespace SimplyTotalCommander
 
                     if (dir.Parent?.FullName != null)
                     {
-                        NewPath.Text = dir.Parent.FullName;
+                        fileReader.mainPath = dir.Parent.FullName;
                     }
                         Button_Click(sender, e);
                 }
@@ -86,7 +94,7 @@ namespace SimplyTotalCommander
                     {
                         if (element.Name == value)
                         {
-                            NewPath.Text = element.FullName;
+                            fileReader.mainPath = element.FullName;
                             Button_Click(sender, e);
                             break;
                         }
@@ -102,13 +110,14 @@ namespace SimplyTotalCommander
 
         private void Copy_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            CopyFiles.Clear();
+
             var selectedList = DataGridOfFiles.SelectedItems;
             foreach (var item in selectedList)
             {
                 FileDataObject file = (FileDataObject)item;
                 CopyFiles.Add(file);
             }
+            ToDelete = false;
         }
 
         private void Paste_CanExecuted(object sender, CanExecuteRoutedEventArgs e)
@@ -125,18 +134,24 @@ namespace SimplyTotalCommander
                 }
         private void Paste_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-           // MessageBox.Show("12");
-           
+
+
             foreach (var file in CopyFiles)
             {
                 if (file.path != null)
                 {
                     //MessageBox.Show(string.Format($"{fileReader.ListOfDirectories.FullName}\\{file.fileName}{file.extension}"));
                     if (!File.Exists(string.Format($"{fileReader.ListOfDirectories.FullName}\\{file.fileName}{file.extension}")))
+                    {
                         File.Copy(file.path, string.Format($"{fileReader.ListOfDirectories.FullName}\\{file.fileName}{file.extension}"));
+                        if (ToDelete) File.Delete(file.path);
+                    }
                 }
             }
-                Button_Click(sender,e);
+
+            ToDelete = false;
+
+            Button_Click(sender,e);
         }
 
         private void Delete_Executed(object sender, ExecutedRoutedEventArgs e)
@@ -145,7 +160,8 @@ namespace SimplyTotalCommander
 
             foreach(var file in selectedList)
                 File.Delete(((FileDataObject)file).path);
-            
+
+            ToDelete = false;
             Button_Click(sender, e);
         }
         
@@ -157,17 +173,35 @@ namespace SimplyTotalCommander
             openFile.StartInfo.FileName = "explorer";
             openFile.StartInfo.Arguments = "\"" + file.path + "\"";
             openFile.Start();
+        }
 
+        private void Cut_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            CopyFiles.Clear();
+            var selectedElement = sender as DataGrid;
+            var selectedList = selectedElement.SelectedItems;
+            var selected = sender as DataGridRow;
+           // selectedElement..Opacity = .5;
+
+            foreach (var item in selectedList)
+            {
+                FileDataObject file = (FileDataObject)item;
+                CopyFiles.Add(file);
+            }
+
+            ToDelete = true;
         }
 
         private void DataGridOfFiles_MouseDown(object sender, MouseButtonEventArgs e)
         {
             var datagrid = sender as DataGrid;
             datagrid.Focus();
+
         }
 
         private void DataGridOfFiles_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            CopyFiles.Clear(); 
             var selectedElement = sender as DataGrid;
             var file = (FileDataObject)selectedElement.SelectedItem;
             Process openFile = new Process();

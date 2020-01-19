@@ -65,12 +65,14 @@
                     <CommandBinding Command="Open" Executed="Open_Executed" />
                     <CommandBinding Command="Copy" Executed="Copy_Executed" />
                     <CommandBinding Command="Paste" CanExecute="Paste_CanExecuted" Executed="Paste_Executed" />
+                    <CommandBinding Command="Cut" Executed="Cut_Executed" />
                     <CommandBinding Command="Delete" Executed="Delete_Executed" />
                     <CommandBinding Command="Properties" Executed="openProperties_Executed" />
                 </DataGrid.CommandBindings>
                 <DataGrid.InputBindings>
                     <KeyBinding Key="C" Modifiers="Control" Command="Copy" />
                     <KeyBinding Key="V" Modifiers="Control" Command="Paste" />
+                    <KeyBinding Key="X" Modifiers="Control" Command="Cut" />
                     <KeyBinding Key="Delete" Command="Delete" />
                 </DataGrid.InputBindings>
                 <DataGrid.ContextMenu>
@@ -91,7 +93,7 @@
                                 <Image Source="Images/paste.png"/>
                             </MenuItem.Icon>
                         </MenuItem>
-                        <MenuItem Header="_Cut" Command="ApplicationCommands.Cut" >
+                        <MenuItem Header="_Cut" Command="Cut" InputGestureText="Ctrl + X" >
                             <MenuItem.Icon>
                                 <Image Source="Images/cut.png"/>
                             </MenuItem.Icon>
