@@ -51,7 +51,6 @@
             <DataGrid x:Name="DataGridOfFiles"                  
                   IsReadOnly="true"
                   DockPanel.Dock="Top"
-                  HorizontalAlignment="Stretch"
                   AutoGenerateColumns="False" 
                   SelectionUnit="FullRow"
                   CanUserResizeColumns="False"
@@ -62,9 +61,15 @@
                   Height="550"
                   MouseDown="DataGridOfFiles_MouseDown" MouseDoubleClick="DataGridOfFiles_MouseDoubleClick">
                 <DataGrid.Columns>
+                    <DataGridTemplateColumn Width="40">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Image Source="{Binding imageIcon}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                     <DataGridTextColumn Header="File name" Binding="{Binding fileName}" Width="220"></DataGridTextColumn>
                     <DataGridTextColumn Header="Extension" Binding="{Binding extension}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Is read only" Binding="{Binding isReadOnly}"></DataGridTextColumn>
                     <DataGridTextColumn Header="File size" Binding="{Binding length}"></DataGridTextColumn>
                 </DataGrid.Columns>
                 <DataGrid.Style>
@@ -74,6 +79,7 @@
                                 <Setter Property="AlternatingRowBackground" Value="DarkGray" />
                                 <Setter Property="BorderThickness" Value="3" />
                             </Trigger>
+                            <Trigger Property="TextBlock.TextAlignment" Value="Center" />
                             <Trigger Property="IsKeyboardFocusWithin" Value="false">
                                 <Setter Property="AlternatingRowBackground" Value="Gainsboro"/>
                             </Trigger>
