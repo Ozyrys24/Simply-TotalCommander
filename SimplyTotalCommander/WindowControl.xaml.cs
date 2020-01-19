@@ -115,6 +115,13 @@ namespace SimplyTotalCommander
             }
         }
 
+        private void openProperties_Executed(object sender, EventArgs e) {
+            PropertiesWindow window = new PropertiesWindow();
+            window.DataContext = (FileDataObject)DataGridOfFiles.SelectedItem;
+            window.ShowDialog();
+                }
+        
+
         private void MenuItem_Paste_Click(object sender, RoutedEventArgs e)
         {
             foreach (var file in CopyFiles)
