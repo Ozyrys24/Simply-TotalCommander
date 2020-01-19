@@ -100,7 +100,6 @@
     </Compile>
     <Resource Include="Images\folder.png" />
     <Resource Include="Images\bar.png" />
-    <Resource Include="mainBackground.png" />
     <Resource Include="Images\mainBackground.png" />
     <Resource Include="Images\background.png" />
     <Resource Include="Images\copy.png" />
@@ -115,7 +114,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Resource Include="background.png" />
     <Content Include="Fonts\Rex\Rex-Bold.ttf" />
     <Content Include="Fonts\Rex\Rex-BoldInline.ttf" />
     <Content Include="Fonts\Rex\Rex-Light.ttf" />
@@ -151,9 +149,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Properties\searchButton.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="searchButton.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

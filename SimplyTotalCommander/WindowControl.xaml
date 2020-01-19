@@ -9,7 +9,7 @@
              Loaded="Window_Loaded"
              >
     <UserControl.Background>
-        <ImageBrush ImageSource="mainBackground.png"/>
+        <ImageBrush ImageSource="Images/mainBackground.png"/>
     </UserControl.Background>
     <Viewbox Margin="15" VerticalAlignment="Top" HorizontalAlignment="Left">
         <DockPanel LastChildFill="False">
@@ -23,7 +23,7 @@
                       Height="550"
                       SelectionChanged="DataGridOfDirectories_SelectionChanged" RenderTransformOrigin="0.5,0.5">
                 <ListView.Background>
-                    <ImageBrush ImageSource="background.png"/>
+                    <ImageBrush ImageSource="Images/background.png"/>
                 </ListView.Background>
                 <ListView.RenderTransform>
                     <TransformGroup>
