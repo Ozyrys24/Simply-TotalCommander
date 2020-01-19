@@ -80,6 +80,7 @@ namespace ClassLibrary1
                     if (fileTransferObject.fileName != "")
                         fileDataObjectList.Add(fileTransferObject);
             }
+
             return fileDataObjectList;
         }
         // return string with data size.
