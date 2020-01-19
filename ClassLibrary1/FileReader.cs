@@ -14,10 +14,9 @@ namespace ClassLibrary1
 
         public event PropertyChangedEventHandler PropertyChanged
         {
-            add { PropertyHasChanged += value; }
-            remove { PropertyHasChanged -= value; }
+            add { PropertyChanged += value; }
+            remove { PropertyChanged -= value; }
         }
-        public event PropertyChangedEventHandler PropertyHasChanged;
 
 
         public ObservableCollection<FileDataObject> ListOfFiles { get; private set; }

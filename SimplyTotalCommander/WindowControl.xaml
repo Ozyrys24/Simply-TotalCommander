@@ -48,19 +48,36 @@
                 </ListView.ItemTemplate>
             </ListView>
             <!-- *** Showing table with details of files from list *** -->
-            <DataGrid x:Name="DataGridOfFiles"
-                  AlternatingRowBackground="Gainsboro"
+            <DataGrid x:Name="DataGridOfFiles"                  
                   IsReadOnly="true"
                   DockPanel.Dock="Top"
                   HorizontalAlignment="Stretch"
-                  AutoGenerateColumns="True" 
+                  AutoGenerateColumns="False" 
                   SelectionUnit="FullRow"
                   SelectionChanged="DataGridOfFiles_SelectionChanged"
-                  GridLinesVisibility="Vertical"
+                  GridLinesVisibility="None"
                   Width="460"
                   Height="550"
                   MouseDown="DataGridOfFiles_MouseDown" MouseDoubleClick="DataGridOfFiles_MouseDoubleClick">
-                <DataGrid.FrozenColumnCount>1</DataGrid.FrozenColumnCount>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="File name" Binding="{Binding fileName}" Width="220"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Extension" Binding="{Binding extension}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Is read only" Binding="{Binding isReadOnly}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="File size" Binding="{Binding length}"></DataGridTextColumn>
+                </DataGrid.Columns>
+                <DataGrid.Style>
+                    <Style TargetType="DataGrid">
+                        <Style.Triggers>
+                            <Trigger Property="IsKeyboardFocusWithin" Value="true">
+                                <Setter Property="AlternatingRowBackground" Value="DarkGray" />
+                                <Setter Property="BorderThickness" Value="3" />
+                            </Trigger>
+                            <Trigger Property="IsKeyboardFocusWithin" Value="false">
+                                <Setter Property="AlternatingRowBackground" Value="Gainsboro"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.Style>
                 <DataGrid.CommandBindings>
                     <CommandBinding Command="Open" Executed="Open_Executed" />
                     <CommandBinding Command="Copy" Executed="Copy_Executed" />
