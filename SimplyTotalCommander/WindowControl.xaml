@@ -61,7 +61,7 @@
                   Height="550"
                   MouseDown="DataGridOfFiles_MouseDown" MouseDoubleClick="DataGridOfFiles_MouseDoubleClick">
                 <DataGrid.Columns>
-                    <DataGridTemplateColumn Width="40">
+                    <DataGridTemplateColumn Width="25">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Image Source="{Binding imageIcon}" />
