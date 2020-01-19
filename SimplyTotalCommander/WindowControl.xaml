@@ -64,6 +64,7 @@
                     <ContextMenu>
                         <ContextMenu.CommandBindings>
                             <CommandBinding Command="ApplicationCommands.Copy" CanExecute="Copy_CanExecute" Executed="Copy_Executed" />
+                            <CommandBinding Command="Properties" Executed="openProperties_Executed" />
                         </ContextMenu.CommandBindings>
                         <ContextMenu.InputBindings>
                             <KeyBinding Key="C" 
@@ -114,7 +115,7 @@
                             </MenuItem.Icon>
                         </MenuItem>
                         <Separator />
-                        <MenuItem Header="Properties" Command="ApplicationCommands.Properties" />
+                        <MenuItem Header="Properties" Command="Properties" />
                     </ContextMenu>
                 </DataGrid.ContextMenu>
             </DataGrid>
