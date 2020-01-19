@@ -10,6 +10,7 @@
         Width="800"
         Foreground="GhostWhite"
         WindowStyle="ToolWindow"
+        WindowState="Maximized"
         >
     <Grid>
         <Grid.ColumnDefinitions>
