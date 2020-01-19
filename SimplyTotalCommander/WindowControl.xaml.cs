@@ -117,6 +117,12 @@ namespace SimplyTotalCommander
             e.CanExecute = true;
         }
 
+
+        private void openProperties_Executed(object sender, EventArgs e) {
+            PropertiesWindow window = new PropertiesWindow();
+            window.DataContext = (FileDataObject)DataGridOfFiles.SelectedItem;
+            window.ShowDialog();
+                }
         private void Paste_Executed(object sender, ExecutedRoutedEventArgs e)
         {
            // MessageBox.Show("12");
@@ -142,6 +148,7 @@ namespace SimplyTotalCommander
             
             Button_Click(sender, e);
         }
+        
         private void Open_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             var selectedElement = sender as DataGrid;

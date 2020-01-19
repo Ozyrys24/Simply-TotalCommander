@@ -41,7 +41,7 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <WrapPanel>
-                            <Image Source="searchButton.png" Width="10" Height="10"></Image>
+                            <Image Source="Images/folder.png" Width="15" Height="15" Margin="0,0,5,0"></Image>
                             <TextBlock Text="{Binding}"/>
                         </WrapPanel>
                     </DataTemplate>
@@ -118,7 +118,7 @@
                             </MenuItem.Icon>
                         </MenuItem>
                         <Separator />
-                        <MenuItem Header="Properties" Command="ApplicationCommands.Properties" />
+                        <MenuItem Header="Properties" Command="Properties" />
                     </ContextMenu>
                 </DataGrid.ContextMenu>
             </DataGrid>
