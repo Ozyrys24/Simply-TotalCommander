@@ -50,7 +50,7 @@
             <!-- *** Showing table with details of files from list *** -->
                 <DataGrid x:Name="DataGridOfFiles"
                   AlternatingRowBackground="Gainsboro"
-                  IsReadOnly="True"
+                  IsReadOnly="true"
                   DockPanel.Dock="Top"
                   HorizontalAlignment="Stretch"
                   AutoGenerateColumns="True" 
@@ -58,30 +58,34 @@
                   SelectionChanged="DataGridOfFiles_SelectionChanged"
                   GridLinesVisibility="Vertical"
                   Width="460"
-                  Height="550">
+                  Height="550" MouseDown="DataGridOfFiles_MouseDown" MouseDoubleClick="DataGridOfFiles_MouseDoubleClick"
+                          >
                 <DataGrid.FrozenColumnCount>1</DataGrid.FrozenColumnCount>
+                <DataGrid.CommandBindings>
+                    <CommandBinding Command="Open" Executed="Open_Executed" />
+                    <CommandBinding Command="Copy" Executed="Copy_Executed" />
+                    <CommandBinding Command="Paste" CanExecute="Paste_CanExecuted" Executed="Paste_Executed" />
+                    <CommandBinding Command="Delete" Executed="Delete_Executed" />
+                </DataGrid.CommandBindings>
+                <DataGrid.InputBindings>
+                    <KeyBinding Key="C" Modifiers="Control" Command="Copy" />
+                    <KeyBinding Key="V" Modifiers="Control" Command="Paste" />
+                    <KeyBinding Key="Delete" Command="Delete" />
+                </DataGrid.InputBindings>
                 <DataGrid.ContextMenu>
                     <ContextMenu>
-                        <ContextMenu.CommandBindings>
-                            <CommandBinding Command="ApplicationCommands.Copy" CanExecute="Copy_CanExecute" Executed="Copy_Executed" />
-                        </ContextMenu.CommandBindings>
-                        <ContextMenu.InputBindings>
-                            <KeyBinding Key="C" 
-                                Modifiers="Control" 
-                                Command="ApplicationCommands.Copy" />
-                        </ContextMenu.InputBindings>
-                        <MenuItem Header="_Open" FontWeight="Bold" Command="ApplicationCommands.Open">
+                        <MenuItem Header="_Open" FontWeight="Bold" Command="Open">
                             <MenuItem.Icon>
                                 <Image Source="Images/open.png"/>
                             </MenuItem.Icon>
                         </MenuItem>
                         <Separator />
-                        <MenuItem Header="_Copy" Command="ApplicationCommands.Copy" InputGestureText="Ctrl + C" >
+                        <MenuItem Header="_Copy" Command="Copy"  InputGestureText="Ctrl + C" >
                             <MenuItem.Icon>
                                 <Image Source="Images/copy.png"/>
                             </MenuItem.Icon>
                         </MenuItem>
-                        <MenuItem Header="_Paste" Click="MenuItem_Paste_Click" >
+                        <MenuItem Header="_Paste" Command="Paste" InputGestureText="Ctrl + V" >
                             <MenuItem.Icon>
                                 <Image Source="Images/paste.png"/>
                             </MenuItem.Icon>
@@ -92,7 +96,7 @@
                             </MenuItem.Icon>
                         </MenuItem>
                         <Separator />
-                        <MenuItem Header="_Delete" Click="MenuItem_Delete_Click"  >
+                        <MenuItem Header="_Delete" Command="Delete" InputGestureText="Del"  >
                             <MenuItem.Icon>
                                 <Image Source="Images/delete.png"/>
                             </MenuItem.Icon>

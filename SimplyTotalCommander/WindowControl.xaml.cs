@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
@@ -99,11 +100,6 @@ namespace SimplyTotalCommander
             throw new NotImplementedException();
         }
 
-        private void Copy_CanExecute(object sender, CanExecuteRoutedEventArgs e)
-        {
-            e.CanExecute = true;
-        }
-
         private void Copy_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             CopyFiles.Clear();
@@ -115,12 +111,21 @@ namespace SimplyTotalCommander
             }
         }
 
-        private void MenuItem_Paste_Click(object sender, RoutedEventArgs e)
+        private void Paste_CanExecuted(object sender, CanExecuteRoutedEventArgs e)
         {
+
+            e.CanExecute = true;
+        }
+
+        private void Paste_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+           // MessageBox.Show("12");
+           
             foreach (var file in CopyFiles)
             {
                 if (file.path != null)
                 {
+                    //MessageBox.Show(string.Format($"{fileReader.ListOfDirectories.FullName}\\{file.fileName}{file.extension}"));
                     if (!File.Exists(string.Format($"{fileReader.ListOfDirectories.FullName}\\{file.fileName}{file.extension}")))
                         File.Copy(file.path, string.Format($"{fileReader.ListOfDirectories.FullName}\\{file.fileName}{file.extension}"));
                 }
@@ -128,7 +133,7 @@ namespace SimplyTotalCommander
                 Button_Click(sender,e);
         }
 
-        private void MenuItem_Delete_Click(object sender, RoutedEventArgs e)
+        private void Delete_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             var selectedList = DataGridOfFiles.SelectedItems;
 
@@ -137,6 +142,33 @@ namespace SimplyTotalCommander
             
             Button_Click(sender, e);
         }
+        private void Open_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            var selectedElement = sender as DataGrid;
+            var file = (FileDataObject) selectedElement.SelectedItem;
+            Process openFile = new Process();
+            openFile.StartInfo.FileName = "explorer";
+            openFile.StartInfo.Arguments = "\"" + file.path + "\"";
+            openFile.Start();
+
+        }
+
+        private void DataGridOfFiles_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            var datagrid = sender as DataGrid;
+            datagrid.Focus();
+        }
+
+        private void DataGridOfFiles_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var selectedElement = sender as DataGrid;
+            var file = (FileDataObject)selectedElement.SelectedItem;
+            Process openFile = new Process();
+            openFile.StartInfo.FileName = "explorer";
+            openFile.StartInfo.Arguments = "\"" + file.path + "\"";
+            openFile.Start();
+        }
+
 
         //Dodane przez hutnika
     }
