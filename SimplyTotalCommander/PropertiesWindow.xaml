@@ -6,43 +6,49 @@
         xmlns:local="clr-namespace:SimplyTotalCommander"
         mc:Ignorable="d"
         WindowStyle="ToolWindow"
-        Title="PropertiesWindow" Height="330" Width="600">
+        Foreground="GhostWhite"
+        FontFamily="{StaticResource RexBold}"
+        FontSize="20"
+        Title="PropertiesWindow" Height="380" Width="600">
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="mainBackground.png"/>
+        </Grid.Background>
         <StackPanel Margin="15">
             <WrapPanel>
-                <TextBlock Margin="0,5" Text="File name "></TextBlock>
+                <TextBlock Margin="0,5,50,0" Text="File name :"></TextBlock>
                 <TextBlock Text="{Binding fileName}" Margin="10,5"></TextBlock>
             </WrapPanel>
             <WrapPanel>
-                <TextBlock Margin="0,5" Text="Extension "></TextBlock>
+                <TextBlock Margin="0,5,10,0" Text="Extension :"></TextBlock>
                 <TextBlock Text="{Binding extension}" Margin="0,5"></TextBlock>
             </WrapPanel>
             <WrapPanel>
-                <TextBlock Margin="0,5" Text="File Size "></TextBlock>
+                <TextBlock Margin="0,5,10,0" Text="File Size :"></TextBlock>
                 <TextBlock Text="{Binding length}" Margin="0,5"></TextBlock>
             </WrapPanel>
             <WrapPanel>
-                <TextBlock Margin="0,5"  Text="Path "></TextBlock>
+                <TextBlock Margin="0,5,10,0"  Text="Path :"></TextBlock>
                 <TextBlock Text="{Binding path}" Margin="0,5"></TextBlock>
             </WrapPanel>
             <WrapPanel>
-                <TextBlock Margin="0,5"  Text="Directory name "></TextBlock>
+                <TextBlock Margin="0,5,10,0"  Text="Directory name :"></TextBlock>
                 <TextBlock Text="{Binding directoryName}" Margin="0,5"></TextBlock>
             </WrapPanel>
             <WrapPanel>
-                <TextBlock Margin="0,5" Text="Is read only "></TextBlock>
+                <TextBlock Margin="0,5,10,0" Text="Is read only :"></TextBlock>
                 <TextBlock Text="{Binding isReadOnly}" Margin="0,5"></TextBlock>
             </WrapPanel>
             <WrapPanel>
-                <TextBlock Margin="0,5" Text="Creation time "></TextBlock>
+                <TextBlock Margin="0,5,10,0" Text="Creation time :"></TextBlock>
                 <TextBlock Text="{Binding creationTime}" Margin="0,5"></TextBlock>
             </WrapPanel>
             <WrapPanel>
-                <TextBlock Margin="0,5" Text="Last acess time "></TextBlock>
+                <TextBlock Margin="0,5,10,0" Text="Last acess time :"></TextBlock>
                 <TextBlock Text="{Binding lastAcess}" Margin="0,5"></TextBlock>
             </WrapPanel>
             <WrapPanel>
-                <TextBlock Margin="0,5" Text="Last write time "></TextBlock>
+                <TextBlock Margin="0,5,10,0" Text="Last write time :"></TextBlock>
                 <TextBlock Text="{Binding lastWriteTime}" Margin="0,5"></TextBlock>
             </WrapPanel>
         </StackPanel>
