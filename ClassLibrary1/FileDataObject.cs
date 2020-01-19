@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,6 +19,7 @@ namespace ClassLibrary1
         public DateTime creationTime{get;set;}
         public DateTime lastAcess{get;set;}
         public DateTime lastWriteTime{get;set;}
+        public Icon icon { get; set; }
 
         public FileDataObject(string inPath, string inFileName, string inExtension, string inLength, string inDirectoryName, bool inIsReadOnly,
             DateTime inCreationTime, DateTime inLastAcess, DateTime inLastWriteTime)
@@ -31,6 +33,7 @@ namespace ClassLibrary1
             creationTime = inCreationTime;
             lastAcess = inLastAcess;
             lastWriteTime = inLastWriteTime;
+            icon = Icon.ExtractAssociatedIcon(path);
         }
         // Override ToString method to easly display in SearchButton
         public override string ToString()

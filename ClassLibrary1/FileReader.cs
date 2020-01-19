@@ -94,13 +94,13 @@ namespace ClassLibrary1
                 return $"{fileLenght} B";
 
             else if (fileLenght < 1048576)
-                return $"{fileLenght / 1024:.00} KB";
+                return $"{fileLenght / 1024:0.00} KB";
 
             else if (fileLenght < 1073741824)
-                return $"{fileLenght / 1048576:.00} MB";
+                return $"{fileLenght / 1048576:0.00} MB";
 
             else
-                return $"{fileLenght / 10737418240:.00} GB";
+                return $"{fileLenght / 10737418240:0.00} GB";
         }
     }
 }
