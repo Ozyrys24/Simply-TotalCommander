@@ -52,5 +52,6 @@
                 <TextBlock Text="{Binding lastWriteTime}" Margin="0,5"></TextBlock>
             </WrapPanel>
         </StackPanel>
+        <Image Source="{Binding icon}" Stretch="Fill"/>
     </Grid>
 </Window>

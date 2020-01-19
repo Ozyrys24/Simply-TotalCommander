@@ -73,7 +73,6 @@
                             <Trigger Property="IsKeyboardFocusWithin" Value="true">
                                 <Setter Property="AlternatingRowBackground" Value="DarkGray" />
                                 <Setter Property="BorderThickness" Value="3" />
-                                <Setter Property="BorderBrush" Value="AntiqueWhite" />
                             </Trigger>
                             <Trigger Property="IsKeyboardFocusWithin" Value="false">
                                 <Setter Property="AlternatingRowBackground" Value="Gainsboro"/>
