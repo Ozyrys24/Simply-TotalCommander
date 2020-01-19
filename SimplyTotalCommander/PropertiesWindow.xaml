@@ -9,7 +9,7 @@
         WindowStartupLocation="CenterScreen"
         Foreground="GhostWhite"
         FontFamily="{StaticResource RexBold}" FontSize="20"
-        Title="Properties of File" Height="580" Width="800">
+        Title="Properties of File" Height="450" Width="800">
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="mainBackground.png"/>
@@ -51,8 +51,8 @@
                 <TextBlock Margin="0,5,10,0" Text="Last write time :"></TextBlock>
                 <TextBlock Text="{Binding lastWriteTime}" Margin="0,5"></TextBlock>
             </WrapPanel>
-            <Image Source="{Binding imageIcon}" Stretch="Fill" Height="20" Width="20"></Image>
         </StackPanel>
+            <Image HorizontalAlignment="Right" VerticalAlignment="Top" Source="{Binding imageIcon}" Stretch="Fill" Height="30" Width="30" Margin="0,15,650,0"></Image>
         <Image Source="{Binding icon}" Stretch="Fill"/>
     </Grid>
 </Window>
