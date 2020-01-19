@@ -66,6 +66,7 @@
                     <CommandBinding Command="Copy" Executed="Copy_Executed" />
                     <CommandBinding Command="Paste" CanExecute="Paste_CanExecuted" Executed="Paste_Executed" />
                     <CommandBinding Command="Delete" Executed="Delete_Executed" />
+                    <CommandBinding Command="Properties" Executed="openProperties_Executed" />
                 </DataGrid.CommandBindings>
                 <DataGrid.InputBindings>
                     <KeyBinding Key="C" Modifiers="Control" Command="Copy" />
