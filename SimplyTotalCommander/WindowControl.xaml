@@ -48,7 +48,7 @@
                 </ListView.ItemTemplate>
             </ListView>
             <!-- *** Showing table with details of files from list *** -->
-                <DataGrid x:Name="DataGridOfFiles"
+            <DataGrid x:Name="DataGridOfFiles"
                   AlternatingRowBackground="Gainsboro"
                   IsReadOnly="true"
                   DockPanel.Dock="Top"
@@ -58,8 +58,8 @@
                   SelectionChanged="DataGridOfFiles_SelectionChanged"
                   GridLinesVisibility="Vertical"
                   Width="460"
-                  Height="550" MouseDown="DataGridOfFiles_MouseDown" MouseDoubleClick="DataGridOfFiles_MouseDoubleClick"
-                          >
+                  Height="550"
+                  MouseDown="DataGridOfFiles_MouseDown" MouseDoubleClick="DataGridOfFiles_MouseDoubleClick">
                 <DataGrid.FrozenColumnCount>1</DataGrid.FrozenColumnCount>
                 <DataGrid.CommandBindings>
                     <CommandBinding Command="Open" Executed="Open_Executed" />

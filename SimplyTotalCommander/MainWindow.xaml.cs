@@ -12,7 +12,6 @@ namespace SimplyTotalCommander
         public MainWindow()
         {
             InitializeComponent();
-            Application.Current.MainWindow.WindowState = WindowState.Maximized;
         }
 
         private void WindowControl_Loaded(object sender, RoutedEventArgs e)

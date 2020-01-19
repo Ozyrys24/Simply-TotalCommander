@@ -14,9 +14,11 @@ namespace ClassLibrary1
 
         public event PropertyChangedEventHandler PropertyChanged
         {
-            add { PropertyChanged += value; }
-            remove { PropertyChanged -= value; }
+            add { PropertyHasChanged += value; }
+            remove { PropertyHasChanged -= value; }
         }
+        public event PropertyChangedEventHandler PropertyHasChanged;
+
 
         public ObservableCollection<FileDataObject> ListOfFiles { get; private set; }
         public ObservableCollection<string> ListOfDirectoriesName { get; private set; }
@@ -40,7 +42,6 @@ namespace ClassLibrary1
             ListOfFiles  = GetFilesList(ListOfDirectories);
             ListOfDirectoriesName = GetDirectoriesNameList(ListOfDirectories); 
             ListOfFilesName = GetFilesNameList(ListOfDirectories);
-
         }
         // setting directories 
         ObservableCollection<string> GetDirectoriesNameList(DirectoryInfo directoryInfo)
