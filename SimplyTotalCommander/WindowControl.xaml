@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SimplyTotalCommander"
              mc:Ignorable="d" 
              d:DesignHeight="450"
              d:DesignWidth="800"
@@ -67,11 +68,13 @@
                                 <Image Source="{Binding imageIcon}" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
+                        <!-- Displayed Columns -->
                     </DataGridTemplateColumn>
                     <DataGridTextColumn Header="File name" Binding="{Binding fileName}" Width="220"></DataGridTextColumn>
                     <DataGridTextColumn Header="Extension" Binding="{Binding extension}"></DataGridTextColumn>
                     <DataGridTextColumn Header="File size" Binding="{Binding length}"></DataGridTextColumn>
                 </DataGrid.Columns>
+                <!-- Change style while focused -->
                 <DataGrid.Style>
                     <Style TargetType="DataGrid">
                         <Style.Triggers>
@@ -86,14 +89,17 @@
                         </Style.Triggers>
                     </Style>
                 </DataGrid.Style>
+                <!-- Commands to execute on right click menu -->
                 <DataGrid.CommandBindings>
                     <CommandBinding Command="Open" Executed="Open_Executed" />
                     <CommandBinding Command="Copy" Executed="Copy_Executed" />
                     <CommandBinding Command="Paste" CanExecute="Paste_CanExecuted" Executed="Paste_Executed" />
                     <CommandBinding Command="Cut" Executed="Cut_Executed" />
                     <CommandBinding Command="Delete" Executed="Delete_Executed" />
+                    <CommandBinding Command="{x:Static local:CustomCommands.ZipIt}" Executed="zipFile_Executed" />
                     <CommandBinding Command="Properties" Executed="openProperties_Executed" />
                 </DataGrid.CommandBindings>
+                <!-- Short cuts in right click menu -->
                 <DataGrid.InputBindings>
                     <KeyBinding Key="C" Modifiers="Control" Command="Copy" />
                     <KeyBinding Key="V" Modifiers="Control" Command="Paste" />
@@ -101,6 +107,7 @@
                     <KeyBinding Key="Delete" Command="Delete" />
                 </DataGrid.InputBindings>
                 <DataGrid.ContextMenu>
+                    <!-- Commands to show in right click menu -->
                     <ContextMenu>
                         <MenuItem Header="_Open" FontWeight="Bold" Command="Open">
                             <MenuItem.Icon>
@@ -135,7 +142,7 @@
                             </MenuItem.Icon>
                         </MenuItem>
                         <Separator />
-                        <MenuItem Header="_Zip to..." >
+                        <MenuItem Header="_Zip to..." Command="{x:Static local:CustomCommands.ZipIt}" >
                             <MenuItem.Icon>
                                 <Image Source="Images/zip.png"/>
                             </MenuItem.Icon>
