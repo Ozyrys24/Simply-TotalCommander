@@ -42,32 +42,40 @@ namespace SimplyTotalCommander
                 destinyPath.Text = folderPathDialog.SelectedPath;
             }
         }
-
-        private void AcceptZipFile(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        // Add the file to the archive.
         private void AcceptZipFile(object sender, EventArgs e)
         {
                 try
                 {
-                    using (ZipFile zip = new ZipFile())
+                    using (ZipFile zip = new ZipFile(destinyPath.Text+"\\" + fileName.Text + ".Zip"))
                     {
+                    zip.SaveProgress += SaveProgress;
                         // Add the file to the Zip archive's root folder.
-                        zip.AddFile(destinyPath.Text);
-                        zip.Encryption = EncryptionAlgorithm.WinZipAes256;
+                        zip.AddFile(destinyPath.Text + "\\" + fileName.Text + fileExtension.Text);
                         // Save the Zip file.
-                        zip.Save(fileName.Text+".zip");
+                        zip.Save();
                     }
-                        System.Windows.MessageBox.Show("Done");
+                        System.Windows.MessageBox.Show(fileName.Text + " has been zipped.");
+                        acceptButton.Visibility = Visibility.Hidden;
+                        chooseFolder.Visibility = Visibility.Hidden;
                 }
                 catch (Exception ex)
                 {
                         System.Windows.MessageBox.Show("Error adding file to archive.\n" +
                         ex.Message);
                 }            
+        }
+        private void SaveProgress(object sender, SaveProgressEventArgs e)
+        {
+            if( e.EventType == ZipProgressEventType.Saving_BeforeWriteEntry)
+            {
+                progressBar.Visibility = Visibility.Visible;
+                progressBar.Dispatcher.Invoke(new MethodInvoker(delegate
+                {
+                    progressBar.Maximum = e.EntriesTotal;
+                    progressBar.Value = e.EntriesSaved + 1;
+                }
+                ));
+            }
         }
     }
 }

@@ -5,24 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SimplyTotalCommander"
         mc:Ignorable="d"
+        WindowStyle="ToolWindow"
+        Background="Gray"    
+        WindowStartupLocation="CenterOwner"
         Title="Zip file" Height="300" Width="800">
     <Grid>
         <StackPanel>
         <DockPanel Width="550" Height="50">
         <TextBlock Text="File to zip : " />
                 <TextBlock x:Name="fileName" Text="{Binding fileName}" />
+                <TextBlock x:Name="filePath" Visibility="Hidden" Text="{Binding path}" />
+                <TextBlock x:Name="fileExtension" Visibility="Hidden" Text="{Binding extension}" />
             </DockPanel>
             <DockPanel Width="550" Height="50">
                 <TextBlock  Width="150" Height="20" Text="Choose destiny folder : " />
-                <TextBlock x:Name="destinyPath" Text="{Binding path}"  Width="250" Height="20"/>
-                <Button Width="20" Height="20" Click="ChooseDestinyZipPath">...</Button>
+                <TextBlock x:Name="destinyPath" Text="{Binding directoryPath}"  Width="250" Height="20"/>
+                <Button x:Name="chooseFolder" Width="20" Height="20" Click="ChooseDestinyZipPath">...</Button>
             </DockPanel>
-        <DockPanel Width="150">
-                <Button Width="50" Height="30" Click="AcceptZipFile">Accept</Button>
-            <Button Width="50" Height="30" Margin="10" Click="CancleZip">Cancel</Button>
+        <DockPanel Width="300">
+                <Button  x:Name="acceptButton" Width="90" Height="30" Click="AcceptZipFile">Zip single File</Button>
+            <Button Width="50" Height="30" Margin="10" Click="CancleZip">Close</Button>
         </DockPanel>
                 <TextBlock x:Name="choosePathError" Width="150" Foreground="Red"></TextBlock>
-        <ProgressBar Width="450" Height="30" Margin="50" Visibility="Hidden"></ProgressBar>
+        <ProgressBar x:Name="progressBar" Width="450" Height="30" Margin="50" Visibility="Hidden"></ProgressBar>
         </StackPanel>
     </Grid>
 </Window>
