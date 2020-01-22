@@ -54,7 +54,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Actions.cs" />
-    <Compile Include="CompressionFileClass.cs" />
     <Compile Include="FileDataObject.cs" />
     <Compile Include="FileReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

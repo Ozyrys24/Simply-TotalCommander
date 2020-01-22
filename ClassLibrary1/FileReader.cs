@@ -74,6 +74,7 @@ namespace ClassLibrary1
                       file.Extension,
                       SetLenght(file.Length),
                       file.DirectoryName,
+                      file.Directory.FullName,
                       file.IsReadOnly,
                       file.CreationTime,
                       file.LastAccessTime,

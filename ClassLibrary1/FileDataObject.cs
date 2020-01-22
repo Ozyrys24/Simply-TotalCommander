@@ -16,6 +16,7 @@ namespace ClassLibrary1
         public string length{get;set;}
         public string path{get;set;}
         public string directoryName{get;set;}
+        public string directoryPath{get;set;}
         public bool isReadOnly{get;set;}
         public DateTime creationTime{get;set;}
         public DateTime lastAcess{get;set;}
@@ -23,14 +24,15 @@ namespace ClassLibrary1
         public Icon icon { get; set; }
         public ImageSource imageIcon{ get; set; }
 
-        public FileDataObject(string inPath, string inFileName, string inExtension, string inLength, string inDirectoryName, bool inIsReadOnly,
-            DateTime inCreationTime, DateTime inLastAcess, DateTime inLastWriteTime)
+        public FileDataObject(string inPath, string inFileName, string inExtension, string inLength, string inDirectoryName, string inDirectoryPath,
+            bool inIsReadOnly, DateTime inCreationTime, DateTime inLastAcess, DateTime inLastWriteTime)
         {
             path = inPath;
             fileName = inFileName;
             extension = inExtension;
             length = inLength;
             directoryName = inDirectoryName;
+            directoryPath = inDirectoryPath;
             isReadOnly = inIsReadOnly;
             creationTime = inCreationTime;
             lastAcess = inLastAcess;
