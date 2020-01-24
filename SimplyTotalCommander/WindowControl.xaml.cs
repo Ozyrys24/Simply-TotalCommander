@@ -131,7 +131,14 @@ namespace SimplyTotalCommander
             PropertiesWindow window = new PropertiesWindow();
             window.DataContext = (FileDataObject)DataGridOfFiles.SelectedItem;
             window.ShowDialog();
-                }
+         }
+
+        private void zipFile_Executed(object sender, EventArgs e)
+        {
+            ZipFileWindow window = new ZipFileWindow();
+            window.DataContext = (FileDataObject)DataGridOfFiles.SelectedItem;
+            window.ShowDialog();
+        }
         private void Paste_Executed(object sender, ExecutedRoutedEventArgs e)
         {
 
@@ -210,7 +217,5 @@ namespace SimplyTotalCommander
             openFile.Start();
         }
 
-
-        //Dodane przez hutnika
     }
 }
