@@ -18,6 +18,7 @@ namespace SimplyTotalCommander
         // Main argument into FileReaders methods.
         // Collections
         // Instances
+        
         private FileReader fileReader = new FileReader();
         private static List<FileDataObject> CopyFiles = new List<FileDataObject>();
         private static bool ToDelete = false;
@@ -138,6 +139,14 @@ namespace SimplyTotalCommander
             ZipFileWindow window = new ZipFileWindow();
             window.DataContext = (FileDataObject)DataGridOfFiles.SelectedItem;
             window.ShowDialog();
+            Button_Click(sender, (RoutedEventArgs)e);
+        }
+        private void unZipFile_Executed(object sender, EventArgs e)
+        {
+            UnZipFileWindow window = new UnZipFileWindow();
+            window.DataContext = (FileDataObject)DataGridOfFiles.SelectedItem;
+            window.ShowDialog();
+            Button_Click(sender, (RoutedEventArgs)e);
         }
         private void Paste_Executed(object sender, ExecutedRoutedEventArgs e)
         {

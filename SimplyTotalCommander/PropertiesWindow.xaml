@@ -12,7 +12,7 @@
         Title="Properties of File" Height="450" Width="800">
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="mainBackground.png"/>
+            <ImageBrush ImageSource="Images/mainBackground.png"/>
         </Grid.Background>
         <StackPanel Margin="15">
             <WrapPanel>
