@@ -67,6 +67,9 @@
     <Compile Include="WindowControl.xaml.cs">
       <DependentUpon>WindowControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UnZipFileWindow.xaml.cs">
+      <DependentUpon>UnZipFileWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ZipFileWindow.xaml.cs">
       <DependentUpon>ZipFileWindow.xaml</DependentUpon>
     </Compile>
@@ -89,6 +92,10 @@
     <Page Include="WindowControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UnZipFileWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="ZipFileWindow.xaml">
       <SubType>Designer</SubType>

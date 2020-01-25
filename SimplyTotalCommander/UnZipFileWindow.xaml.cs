@@ -20,19 +20,19 @@ namespace SimplyTotalCommander
     /// <summary>
     /// Logika interakcji dla klasy ZipFileWindow.xaml
     /// </summary>
-    public partial class ZipFileWindow : Window
+    public partial class UnZipFileWindow : Window
     {
-        public ZipFileWindow()
+        public UnZipFileWindow()
         {
             InitializeComponent();
         }
 
-        private void CancelZip(object sender, RoutedEventArgs e)
+        private void CancelUnZip(object sender, RoutedEventArgs e)
         {
             App.Current.Windows[1].Close();
         }
 
-        private void ChooseDestinyZipPath(object sender, RoutedEventArgs e)
+        private void ChooseDestinyUnZipPath(object sender, RoutedEventArgs e)
         {
             FolderBrowserDialog folderPathDialog = new FolderBrowserDialog();
             folderPathDialog.Description = "Choose path : ";
@@ -42,26 +42,27 @@ namespace SimplyTotalCommander
                 destinyPath.Text = folderPathDialog.SelectedPath;
             }
         }
-        private void AcceptZipFile(object sender, EventArgs e)
+        private void AcceptUnZipFile(object sender, EventArgs e)
         {
                 try
                 {
-                    using (ZipFile zip = new ZipFile(destinyPath.Text+"\\" + fileName.Text + ".Zip"))
+                
+                    using (ZipFile zip = ZipFile.Read(destinyPath.Text+"\\" + fileName.Text + ".Zip"))
                     {
-                    zip.SaveProgress += SaveProgress;
+                        zip.SaveProgress += SaveProgress;
                         // Add the file to the Zip archive's root folder.
-                        zip.AddFile(destinyPath.Text + "\\" + fileName.Text + fileExtension.Text);
+                        zip.ExtractAll("\\",ExtractExistingFileAction.DoNotOverwrite);
                         // Save the Zip file.
                         zip.Save();
                     }
-                        System.Windows.MessageBox.Show(fileName.Text + " has been zipped.");
+                        System.Windows.MessageBox.Show(fileName.Text + " has been unzipped.");
                         acceptButton.Visibility = Visibility.Hidden;
                         chooseFolder.Visibility = Visibility.Hidden;
-                        CancelZip(sender, (RoutedEventArgs)e);
-            }
+                        CancelUnZip(sender,(RoutedEventArgs)e);
+                }
                 catch (Exception ex)
                 {
-                        System.Windows.MessageBox.Show("Error adding file to archive.\n" +
+                        System.Windows.MessageBox.Show("Error extract file from archive .\n" +
                         ex.Message);
                 }            
         }

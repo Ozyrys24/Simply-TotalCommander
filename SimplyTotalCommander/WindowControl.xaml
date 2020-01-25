@@ -97,6 +97,7 @@
                     <CommandBinding Command="Cut" Executed="Cut_Executed" />
                     <CommandBinding Command="Delete" Executed="Delete_Executed" />
                     <CommandBinding Command="{x:Static local:CustomCommands.ZipIt}" Executed="zipFile_Executed" />
+                    <CommandBinding Command="{x:Static local:CustomCommands.UnZipIt}" Executed="unZipFile_Executed" />
                     <CommandBinding Command="Properties" Executed="openProperties_Executed" />
                 </DataGrid.CommandBindings>
                 <!-- Short cuts in right click menu -->
@@ -147,7 +148,7 @@
                                 <Image Source="Images/zip.png"/>
                             </MenuItem.Icon>
                         </MenuItem>
-                        <MenuItem Header="UnZip" >
+                        <MenuItem Header="UnZip" Command="{x:Static local:CustomCommands.unZipIt}">
                             <MenuItem.Icon>
                                 <Image Source="Images/unzip.png"/>
                             </MenuItem.Icon>
