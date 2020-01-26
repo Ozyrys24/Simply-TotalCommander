@@ -9,5 +9,8 @@ namespace SimplyTotalCommander
 
         public static RoutedUICommand unZipIt = new RoutedUICommand("UnZip to...", "UnZipIt", typeof(CustomCommands));
         public static RoutedUICommand UnZipIt => unZipIt;
+        
+        public static RoutedUICommand newFile = new RoutedUICommand("New File Txt", "newFileTxt", typeof(CustomCommands));
+        public static RoutedUICommand NewFile => newFile;
     }
 }

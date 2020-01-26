@@ -60,6 +60,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CreateNewTextFileWindow.xaml.cs">
+      <DependentUpon>CreateNewTextFileWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CustomCommands.cs" />
     <Compile Include="PropertiesWindow.xaml.cs">
       <DependentUpon>PropertiesWindow.xaml</DependentUpon>
@@ -73,6 +76,10 @@
     <Compile Include="ZipFileWindow.xaml.cs">
       <DependentUpon>ZipFileWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="CreateNewTextFileWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
