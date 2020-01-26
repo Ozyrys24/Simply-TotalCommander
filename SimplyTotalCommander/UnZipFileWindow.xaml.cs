@@ -55,6 +55,8 @@ namespace SimplyTotalCommander
             string path = destinyPath.Text + "\\" + fileName.Text + fileExtension.Text;
             string destPath = destinyPath.Text;
             string filename = fileName.Text;
+
+            
             try
             {
                 var thread = new Thread(t =>

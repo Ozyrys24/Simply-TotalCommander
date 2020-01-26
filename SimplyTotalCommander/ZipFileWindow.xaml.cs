@@ -47,9 +47,10 @@ namespace SimplyTotalCommander
         {
             acceptButton.Visibility = Visibility.Hidden;
             cancelButton.Visibility = Visibility.Hidden;
-            string path = destinyPath.Text + "\\" + fileName.Text + fileExtension.Text;
-            string destPath = destinyPath.Text;
-            string filename = fileName.Text + fileExtension.Text;
+            string fullname = destinyPath.Text + "\\" + fileName.Text + fileExtension.Text;
+            string path = destinyPath.Text;
+            string extension = fileExtension.Text;
+            string name = fileName.Text;
 
             try
             {
@@ -59,11 +60,11 @@ namespace SimplyTotalCommander
                     {
                         zip.SaveProgress += new EventHandler<SaveProgressEventArgs>(SaveProgress);
                         // Add the file to the Zip archive's root folder.
-                        zip.AddFile(path);
+                        zip.AddFile(fullname,"\\");
                         // Save the Zip file.
-                        zip.Save($"{destinyPath}\\{filename}.Zip");
+                        zip.Save($"{path}\\{name}.Zip");
                     }
-                    System.Windows.MessageBox.Show($"{filename} has been zipped.");
+                    System.Windows.MessageBox.Show($"{extension} has been zipped.");
                     this.Dispatcher.Invoke(() => { CancelZip(sender, e); });
                 })
                 { IsBackground = true };
@@ -71,8 +72,7 @@ namespace SimplyTotalCommander
             }
             catch (Exception ex)
             {
-                System.Windows.MessageBox.Show("Error extract file from archive .\n" +
-                ex.Message);
+                System.Windows.MessageBox.Show("Error extract file from archive .\n" + ex.Message);
             }
         }
 
