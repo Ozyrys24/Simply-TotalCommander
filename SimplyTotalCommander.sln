@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.779
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29519.181
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimplyTotalCommander", "SimplyTotalCommander\SimplyTotalCommander.csproj", "{C963413E-7BB2-48BC-A7A0-D71D4B2902AB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileReader", "ClassLibrary1\FileReader.csproj", "{999F11E1-CC01-46D7-A806-25F7672F261B}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj", "{6FF9A028-658E-460B-BEAA-6B7ACA63394D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,8 @@ Global
 		{999F11E1-CC01-46D7-A806-25F7672F261B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{999F11E1-CC01-46D7-A806-25F7672F261B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{999F11E1-CC01-46D7-A806-25F7672F261B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6FF9A028-658E-460B-BEAA-6B7ACA63394D}.Debug|Any CPU.ActiveCfg = Debug
+		{6FF9A028-658E-460B-BEAA-6B7ACA63394D}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
