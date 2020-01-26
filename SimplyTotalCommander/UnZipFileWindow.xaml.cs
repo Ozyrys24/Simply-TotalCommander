@@ -1,9 +1,11 @@
 ﻿using Ionic.Zip;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -42,43 +44,58 @@ namespace SimplyTotalCommander
                 destinyPath.Text = folderPathDialog.SelectedPath;
             }
         }
-        private void AcceptUnZipFile(object sender, EventArgs e)
+        private void OnUnzip(object sender, RoutedEventArgs e)
         {
-                try
-                {
-                
-                    using (ZipFile zip = ZipFile.Read(destinyPath.Text+"\\" + fileName.Text + ".Zip"))
-                    {
-                        zip.SaveProgress += SaveProgress;
-                        // Add the file to the Zip archive's root folder.
-                        zip.ExtractAll("\\",ExtractExistingFileAction.DoNotOverwrite);
-                        // Save the Zip file.
-                        zip.Save();
-                    }
-                        System.Windows.MessageBox.Show(fileName.Text + " has been unzipped.");
-                        acceptButton.Visibility = Visibility.Hidden;
-                        chooseFolder.Visibility = Visibility.Hidden;
-                        CancelUnZip(sender,(RoutedEventArgs)e);
-                }
-                catch (Exception ex)
-                {
-                        System.Windows.MessageBox.Show("Error extract file from archive .\n" +
-                        ex.Message);
-                }            
+            AcceptUnZipFile(sender, e);
         }
-        private void SaveProgress(object sender, SaveProgressEventArgs e)
+        private void AcceptUnZipFile(object sender, RoutedEventArgs e)
         {
-            if( e.EventType == ZipProgressEventType.Saving_BeforeWriteEntry)
-            {
-                progressBar.Visibility = Visibility.Visible;
-                progressBar.Dispatcher.Invoke(new MethodInvoker(delegate
-                {
-                    progressBar.Maximum = e.EntriesTotal;
-                    progressBar.Value = e.EntriesSaved + 1;
-                }
-                ));
-            }
 
+            //try
+            //{
+
+            string path = destinyPath.Text + "\\" + fileName.Text + fileExtension.Text;
+            string destPath = destinyPath.Text;
+            string filename = fileName.Text;
+            var close = App.Current.Windows[1];
+            var thread = new Thread(t =>
+           {
+               using (ZipFile zip = ZipFile.Read(path))
+               {
+                   zip.ExtractProgress += new EventHandler<ExtractProgressEventArgs>(ExtractProgress);
+
+                   zip.ExtractExistingFile = ExtractExistingFileAction.OverwriteSilently;
+                   zip.ExtractAll($"{destPath}\\{filename}");
+                   System.Windows.MessageBox.Show($"{filename} has been unzipped.");
+                   this.Dispatcher.Invoke(() => { CancelUnZip(sender,e); });
+               }
+           })
+            { IsBackground = true };
+            thread.Start(close);
+            
+            //CancelUnZip(sender, e);
+            //}
+            //catch (Exception ex)
+            //{
+            //    System.Windows.MessageBox.Show("Error extract file from archive .\n" +
+            //    ex.Message);
+            //}
+        }
+        private void ExtractProgress(object sender, ExtractProgressEventArgs e)
+        {
+            if (e.EntriesTotal > 0)
+            {
+                progressBar.Dispatcher.Invoke(() =>
+                {
+                    progressBar.Visibility = Visibility.Visible;
+                    progressBar.Maximum = e.EntriesTotal;
+                    progressBar.Value = e.EntriesExtracted;
+                });
+            }
+            
+            if (e.EventType == ZipProgressEventType.Extracting_AfterExtractAll)
+            {
+            }
         }
     }
 }
