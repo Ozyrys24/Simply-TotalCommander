@@ -31,7 +31,7 @@ namespace SimplyTotalCommander
 
         private void CancelUnZip(object sender, RoutedEventArgs e)
         {
-            App.Current.Windows[1].Close();
+            App.Current.Windows[2].Close();
         }
 
         private void ChooseDestinyUnZipPath(object sender, RoutedEventArgs e)
@@ -56,7 +56,6 @@ namespace SimplyTotalCommander
             string destPath = destinyPath.Text;
             string filename = fileName.Text;
 
-            
             try
             {
                 var thread = new Thread(t =>
@@ -66,6 +65,8 @@ namespace SimplyTotalCommander
                        zip.ExtractProgress += new EventHandler<ExtractProgressEventArgs>(ExtractProgress);
 
                        zip.ExtractExistingFile = ExtractExistingFileAction.OverwriteSilently;
+
+                       NameChanger();
                        zip.ExtractAll($"{destPath}\\{filename}");
                        System.Windows.MessageBox.Show($"{filename} has been unzipped.");
                        this.Dispatcher.Invoke(() => { CancelUnZip(sender, e); });
@@ -78,6 +79,22 @@ namespace SimplyTotalCommander
             {
                 System.Windows.MessageBox.Show("Error extract file from archive .\n" +
                 ex.Message);
+            }
+
+            void NameChanger(int i = 0)
+            {
+                if (File.Exists($"{destPath}\\" + (i==0?$"{filename}":$"{filename}({i})")) || Directory.Exists($"{destPath}\\" + (i == 0 ? $"{filename}" : $"{filename}({i})")))
+                {
+                    i++;
+                    NameChanger(i);
+                    return;
+                }
+                else
+                {
+                    if(i != 0) filename += $"({i})";
+                    return;
+                }
+
             }
         }
         private void ExtractProgress(object sender, ExtractProgressEventArgs e)

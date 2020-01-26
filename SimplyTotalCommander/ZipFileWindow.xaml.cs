@@ -30,7 +30,7 @@ namespace SimplyTotalCommander
 
         private void CancelZip(object sender, RoutedEventArgs e)
         {
-            App.Current.Windows[1].Close();
+            App.Current.Windows[2].Close();
         }
 
         private void ChooseDestinyZipPath(object sender, RoutedEventArgs e)
@@ -64,7 +64,7 @@ namespace SimplyTotalCommander
                         // Save the Zip file.
                         zip.Save($"{path}\\{name}.Zip");
                     }
-                    System.Windows.MessageBox.Show($"{extension} has been zipped.");
+                    System.Windows.MessageBox.Show($"{name} has been zipped.");
                     this.Dispatcher.Invoke(() => { CancelZip(sender, e); });
                 })
                 { IsBackground = true };
