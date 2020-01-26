@@ -8,19 +8,19 @@
         WindowStyle="ToolWindow"   
         WindowStartupLocation="CenterOwner"
         FontFamily="{StaticResource RexBold}" FontSize="20" Foreground="GhostWhite"
-        Title="Zip file" Height="300" Width="800">
+        Title="Zip file" Height="400" Width="800">
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="Images/mainBackground.png"/>
         </Grid.Background>
         <StackPanel Margin="0,10">
-        <DockPanel Width="700" Height="50">
+        <DockPanel Width="700" Height="40">
         <TextBlock Text="File to unzip : " />
                 <TextBlock x:Name="fileName" Text="{Binding fileName}" />
-                <TextBlock x:Name="filePath" Visibility="Hidden" Text="{Binding path}" />
                 <TextBlock x:Name="fileExtension" Visibility="Hidden" Text="{Binding extension}" />
+                <TextBlock x:Name="filePath" Visibility="Hidden" Text="{Binding path}" />
             </DockPanel>
-            <DockPanel Width="700" Height="30">
+            <DockPanel Width="700" Height="40">
                 <TextBlock  Width="220" Height="20" Text="Choose destiny folder : " />
                 <TextBlock x:Name="destinyPath" Text="{Binding directoryPath}"  Width="400" Height="20"/>
                 <Button x:Name="chooseFolder" Width="30" Height="30" Click="ChooseDestinyUnZipPath">...</Button>
