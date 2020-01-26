@@ -69,7 +69,11 @@ namespace ClassLibrary1
 
             return directoriesNamesList;
         }
-        
+        /// <summary>
+        /// dynamic data collection, which is provided when items are added, available or after refreshing the entire list.
+        /// </summary>
+        /// <param name="directoryInfo"></param>
+        /// <returns></returns>
         ObservableCollection<string> GetFilesNameList(DirectoryInfo directoryInfo)
         {
             ObservableCollection<string> listOfFileName = new ObservableCollection<string>();
