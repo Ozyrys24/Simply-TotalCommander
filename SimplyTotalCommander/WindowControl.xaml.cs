@@ -23,7 +23,8 @@ namespace SimplyTotalCommander
         private static List<FileDataObject> CopyFiles = new List<FileDataObject>();
         private static bool ToDelete = false;
         private static List<WindowControl> WindowsList = new List<WindowControl>();
-        
+
+
 
 
         public WindowControl()
@@ -125,6 +126,13 @@ namespace SimplyTotalCommander
         {
 
             e.CanExecute = true;
+        }
+        private void NewFile_Executed(object sender, EventArgs e)
+        {
+            CreateNewTextFileWindow window = new CreateNewTextFileWindow();
+            window.DataContext = fileReader.mainPath;
+            window.ShowDialog();
+            Button_Click(sender, (RoutedEventArgs)e);
         }
 
 

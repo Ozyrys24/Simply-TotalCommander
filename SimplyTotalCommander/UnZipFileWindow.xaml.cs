@@ -39,7 +39,7 @@ namespace SimplyTotalCommander
             FolderBrowserDialog folderPathDialog = new FolderBrowserDialog();
             folderPathDialog.Description = "Choose path : ";
             folderPathDialog.ShowDialog();
-            if (folderPathDialog.SelectedPath != null)
+            if (folderPathDialog.SelectedPath != "")
             {
                 destinyPath.Text = folderPathDialog.SelectedPath;
             }

@@ -6,25 +6,28 @@
         xmlns:local="clr-namespace:SimplyTotalCommander"
         mc:Ignorable="d"
         WindowStyle="ToolWindow"
-        Background="Gray"    
+        FontFamily="{StaticResource RexBold}" FontSize="20" Foreground="GhostWhite"
         WindowStartupLocation="CenterOwner"
-        Title="Zip file" Height="300" Width="800">
+        Title="Zip file" Height="400" Width="800">
     <Grid>
-        <StackPanel>
-        <DockPanel Width="550" Height="50">
-        <TextBlock Text="File to zip : " />
+        <Grid.Background>
+            <ImageBrush ImageSource="Images/mainBackground.png"/>
+        </Grid.Background>
+        <StackPanel Margin="0,10">
+        <DockPanel Width="700" Height="40">
+                <TextBlock Text="File to zip : " />
                 <TextBlock x:Name="fileName" Text="{Binding fileName}" />
                 <TextBlock x:Name="filePath" Visibility="Hidden" Text="{Binding path}" />
                 <TextBlock x:Name="fileExtension" Visibility="Hidden" Text="{Binding extension}" />
             </DockPanel>
-            <DockPanel Width="550" Height="50">
-                <TextBlock  Width="150" Height="20" Text="Choose destiny folder : " />
-                <TextBlock x:Name="destinyPath" Text="{Binding directoryPath}"  Width="250" Height="20"/>
-                <Button x:Name="chooseFolder" Width="20" Height="20" Click="ChooseDestinyZipPath">...</Button>
+            <DockPanel Width="700" Height="40">
+                <TextBlock  Width="220" Height="20" Text="Choose destiny folder : " />
+                <TextBlock x:Name="destinyPath" Text="{Binding directoryPath}"  Width="400" Height="20"/>
+                <Button x:Name="chooseFolder" Width="30" Height="30" Click="ChooseDestinyZipPath">...</Button>
             </DockPanel>
-        <DockPanel Width="300">
-                <Button  x:Name="acceptButton" Width="90" Height="30" Click="CancelZip">Zip single File</Button>
-            <Button Width="50" Height="30" Margin="10" Click="CancelZip">Close</Button>
+        <DockPanel Width="300" Margin="0,50">
+                <Button  x:Name="acceptButton" Width="90" Height="30" Click="AcceptZipFile">Zip File</Button>
+            <Button Width="60" Height="30" Margin="10" Click="CancelZip">Close</Button>
         </DockPanel>
                 <TextBlock x:Name="choosePathError" Width="150" Foreground="Red"></TextBlock>
         <ProgressBar x:Name="progressBar" Width="450" Height="30" Margin="50"></ProgressBar>
