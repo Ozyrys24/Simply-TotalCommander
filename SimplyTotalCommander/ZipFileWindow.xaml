@@ -23,11 +23,11 @@
                 <Button x:Name="chooseFolder" Width="20" Height="20" Click="ChooseDestinyZipPath">...</Button>
             </DockPanel>
         <DockPanel Width="300">
-                <Button  x:Name="acceptButton" Width="90" Height="30" Click="AcceptZipFile">Zip single File</Button>
+                <Button  x:Name="acceptButton" Width="90" Height="30" Click="CancelZip">Zip single File</Button>
             <Button Width="50" Height="30" Margin="10" Click="CancelZip">Close</Button>
         </DockPanel>
                 <TextBlock x:Name="choosePathError" Width="150" Foreground="Red"></TextBlock>
-        <ProgressBar x:Name="progressBar" Width="450" Height="30" Margin="50" Visibility="Hidden"></ProgressBar>
+        <ProgressBar x:Name="progressBar" Width="450" Height="30" Margin="50"></ProgressBar>
         </StackPanel>
     </Grid>
 </Window>
