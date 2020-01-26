@@ -17,8 +17,7 @@ namespace SimplyTotalCommander
     {
         // Main argument into FileReaders methods.
         // Collections
-        // Instances
-        
+        // Instances        
         private FileReader fileReader = new FileReader();
         private static List<FileDataObject> CopyFiles = new List<FileDataObject>();
         private static bool ToDelete = false;
@@ -30,12 +29,13 @@ namespace SimplyTotalCommander
         public WindowControl()
         {
             InitializeComponent();
-
         }
+
         public void UpdateSourceEvent()
         {
 
         }
+
         // Update datagrid with desktop path at window load
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -43,6 +43,7 @@ namespace SimplyTotalCommander
             WindowsList.Add(this);
             Button_Click(sender, e);
         }
+
         // Refresh button on click is updating dataGrid of current directory and comboBox of files to choose
         // >>> Update lists<string> and ObservableCollection<FileDataObject> and send date into Xaml  
         // >> Xaml x:name VariableName > ItemsSource
@@ -57,10 +58,12 @@ namespace SimplyTotalCommander
             window.ListOfDirectory.ItemsSource = window.fileReader.ListOfDirectoriesName;
             }
         }
+
         private void DataGridOfFiles_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }
+
         private void DataGridOfDirectories_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
@@ -70,11 +73,12 @@ namespace SimplyTotalCommander
         {
 
         }
-        //Dodane przez hutnika
+        
         private void ListViewItem_PreviewMouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
+            //new DirectoryInfo(NewPath.Text != ""?NewPath.Text:Environment.GetFolderPath(Environment.SpecialFolder.Desktop));
+            DirectoryInfo dir = fileReader.ListOfDirectories; 
             
-            DirectoryInfo dir = fileReader.ListOfDirectories; //new DirectoryInfo(NewPath.Text != ""?NewPath.Text:Environment.GetFolderPath(Environment.SpecialFolder.Desktop));
             //var list = listOfDirectories;
             var item = sender as ListViewItem;
             
@@ -83,7 +87,6 @@ namespace SimplyTotalCommander
                 string value = item.Content.ToString();
                 if (value == "..")
                 {
-
                     if (dir.Parent?.FullName != null)
                     {
                         fileReader.mainPath = dir.Parent.FullName;
@@ -112,7 +115,6 @@ namespace SimplyTotalCommander
 
         private void Copy_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-
             var selectedList = DataGridOfFiles.SelectedItems;
             foreach (var item in selectedList)
             {
@@ -124,9 +126,9 @@ namespace SimplyTotalCommander
 
         private void Paste_CanExecuted(object sender, CanExecuteRoutedEventArgs e)
         {
-
             e.CanExecute = true;
         }
+
         private void NewFile_Executed(object sender, EventArgs e)
         {
             CreateNewTextFileWindow window = new CreateNewTextFileWindow();
@@ -134,13 +136,13 @@ namespace SimplyTotalCommander
             window.ShowDialog();
             Button_Click(sender, (RoutedEventArgs)e);
         }
-
-
-        private void openProperties_Executed(object sender, EventArgs e) {
+        
+        private void openProperties_Executed(object sender, EventArgs e) 
+        {
             PropertiesWindow window = new PropertiesWindow();
             window.DataContext = (FileDataObject)DataGridOfFiles.SelectedItem;
             window.ShowDialog();
-         }
+        }
 
         private void zipFile_Executed(object sender, EventArgs e)
         {
@@ -149,6 +151,7 @@ namespace SimplyTotalCommander
             window.ShowDialog();
             Button_Click(sender, (RoutedEventArgs)e);
         }
+
         private void unZipFile_Executed(object sender, EventArgs e)
         {
             var dataGrid = sender as DataGrid;
@@ -161,10 +164,9 @@ namespace SimplyTotalCommander
             window.ShowDialog();
             Button_Click(sender, (RoutedEventArgs)e);
         }
+
         private void Paste_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-
-
             foreach (var file in CopyFiles)
             {
                 if (file.path != null)
@@ -225,7 +227,6 @@ namespace SimplyTotalCommander
         {
             var datagrid = sender as DataGrid;
             datagrid.Focus();
-
         }
 
         private void DataGridOfFiles_MouseDoubleClick(object sender, MouseButtonEventArgs e)

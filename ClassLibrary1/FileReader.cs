@@ -7,7 +7,10 @@ using System.Windows;
 
 namespace ClassLibrary1
 {
-    // Class handle with search for file / directories, main argument is DTO with file details. DTO properties collect from FileInfo and Path.
+    
+    /// <summary>
+    /// Class handle with search for file / directories, main argument is DTO with file details. DTO properties collect from FileInfo and Path.
+    /// </summary>
     public class FileReader : INotifyPropertyChanged
     {
         public delegate void ProgressChangedEventHandler();
@@ -25,15 +28,22 @@ namespace ClassLibrary1
         public DirectoryInfo ListOfDirectories { get; private set; }
         public string mainPath { get; set; }
 
-        // Secure in case of file name with extension in path.
+        /// <summary>
+        /// Secure in case of file name with extension in path.
+        /// </summary>
+        /// <param name="inPath"></param>
+        /// <returns></returns>       
         public string[] SecurePath(string inPath)
         {
             string[] securedPath = inPath.Split('\\');
             return securedPath;
         }
 
-        // Change data into FileDataObject, clear and put in list taken as argument.
-        // * Always clear when used
+        /// <summary>
+        /// Change data into FileDataObject, clear and put in list taken as argument.
+        /// </summary>
+        /// Always clear when used
+        /// <param name="path"></param>
         public void Refresh(string path)
         {
             
@@ -42,7 +52,12 @@ namespace ClassLibrary1
             ListOfDirectoriesName = GetDirectoriesNameList(ListOfDirectories); 
             ListOfFilesName = GetFilesNameList(ListOfDirectories);
         }
-        // setting directories 
+        
+        /// <summary>
+        /// setting directories 
+        /// </summary>
+        /// <param name="directoryInfo"></param>
+        /// <returns></returns>
         ObservableCollection<string> GetDirectoriesNameList(DirectoryInfo directoryInfo)
         {
             ObservableCollection<string> directoriesNamesList = new ObservableCollection<string>();
@@ -54,7 +69,7 @@ namespace ClassLibrary1
 
             return directoriesNamesList;
         }
-
+        
         ObservableCollection<string> GetFilesNameList(DirectoryInfo directoryInfo)
         {
             ObservableCollection<string> listOfFileName = new ObservableCollection<string>();
@@ -62,7 +77,12 @@ namespace ClassLibrary1
                 listOfFileName.Add(name.Name);
             return listOfFileName;
         }
-        // create and put in inList <FileDataObject>
+        
+        /// <summary>
+        /// create and put in inList <FileDataObject>
+        /// </summary>
+        /// <param name="directoryInfo"></param>
+        /// <returns></returns>
         ObservableCollection<FileDataObject> GetFilesList(DirectoryInfo directoryInfo)
         {
             ObservableCollection<FileDataObject> fileDataObjectList = new ObservableCollection<FileDataObject>();
@@ -85,7 +105,12 @@ namespace ClassLibrary1
 
             return fileDataObjectList;
         }
-        // return string with data size.
+        
+        /// <summary>
+        /// return formating string with data size converting lenght byte, kilobyte, megabyte, gigabyte.
+        /// </summary>
+        /// <param name="fileLenght"></param>
+        /// <returns></returns>
         public string SetLenght(double fileLenght)
         {
             if (fileLenght < 0)

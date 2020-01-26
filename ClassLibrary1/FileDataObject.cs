@@ -9,6 +9,8 @@ using System.Windows.Media;
 namespace ClassLibrary1
 {
     /// Data struct of fileDataObject />
+    
+    
     public struct FileDataObject
     {
         public string fileName{get;set;}
@@ -24,6 +26,19 @@ namespace ClassLibrary1
         public Icon icon { get; set; }
         public ImageSource imageIcon{ get; set; }
 
+        /// <summary>
+        /// constructor assigns data from the variable to the object 
+        /// </summary>
+        /// <param name="inPath"></param>
+        /// <param name="inFileName"></param>
+        /// <param name="inExtension"></param>
+        /// <param name="inLength"></param>
+        /// <param name="inDirectoryName"></param>
+        /// <param name="inDirectoryPath"></param>
+        /// <param name="inIsReadOnly"></param>
+        /// <param name="inCreationTime"></param>
+        /// <param name="inLastAcess"></param>
+        /// <param name="inLastWriteTime"></param>
         public FileDataObject(string inPath, string inFileName, string inExtension, string inLength, string inDirectoryName, string inDirectoryPath,
             bool inIsReadOnly, DateTime inCreationTime, DateTime inLastAcess, DateTime inLastWriteTime)
         {
@@ -44,7 +59,11 @@ namespace ClassLibrary1
                                   System.Windows.Media.Imaging.BitmapSizeOptions.FromEmptyOptions());
 
         }
-        // Override ToString method to easly display in SearchButton
+         
+        /// <summary>
+        /// Override ToString method to easly display in SearchButton
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return fileName;

@@ -2,6 +2,7 @@
 
 namespace SimplyTotalCommander
 {
+    //route through the element hierarchy
     public static class CustomCommands
     {
         public static RoutedUICommand zipIt = new RoutedUICommand("Zip to...", "ZipIt", typeof(CustomCommands));
