@@ -50,36 +50,33 @@ namespace SimplyTotalCommander
         }
         private void AcceptUnZipFile(object sender, RoutedEventArgs e)
         {
-
-            //try
-            //{
-
+            acceptButton.Visibility = Visibility.Hidden;
+            cancelButton.Visibility = Visibility.Hidden;
             string path = destinyPath.Text + "\\" + fileName.Text + fileExtension.Text;
             string destPath = destinyPath.Text;
             string filename = fileName.Text;
-            var close = App.Current.Windows[1];
-            var thread = new Thread(t =>
-           {
-               using (ZipFile zip = ZipFile.Read(path))
+            try
+            {
+                var thread = new Thread(t =>
                {
-                   zip.ExtractProgress += new EventHandler<ExtractProgressEventArgs>(ExtractProgress);
+                   using (ZipFile zip = ZipFile.Read(path))
+                   {
+                       zip.ExtractProgress += new EventHandler<ExtractProgressEventArgs>(ExtractProgress);
 
-                   zip.ExtractExistingFile = ExtractExistingFileAction.OverwriteSilently;
-                   zip.ExtractAll($"{destPath}\\{filename}");
-                   System.Windows.MessageBox.Show($"{filename} has been unzipped.");
-                   this.Dispatcher.Invoke(() => { CancelUnZip(sender,e); });
-               }
-           })
-            { IsBackground = true };
-            thread.Start(close);
-            
-            //CancelUnZip(sender, e);
-            //}
-            //catch (Exception ex)
-            //{
-            //    System.Windows.MessageBox.Show("Error extract file from archive .\n" +
-            //    ex.Message);
-            //}
+                       zip.ExtractExistingFile = ExtractExistingFileAction.OverwriteSilently;
+                       zip.ExtractAll($"{destPath}\\{filename}");
+                       System.Windows.MessageBox.Show($"{filename} has been unzipped.");
+                       this.Dispatcher.Invoke(() => { CancelUnZip(sender, e); });
+                   }
+               })
+                { IsBackground = true };
+                thread.Start();
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show("Error extract file from archive .\n" +
+                ex.Message);
+            }
         }
         private void ExtractProgress(object sender, ExtractProgressEventArgs e)
         {
@@ -91,10 +88,6 @@ namespace SimplyTotalCommander
                     progressBar.Maximum = e.EntriesTotal;
                     progressBar.Value = e.EntriesExtracted;
                 });
-            }
-            
-            if (e.EventType == ZipProgressEventType.Extracting_AfterExtractAll)
-            {
             }
         }
     }
