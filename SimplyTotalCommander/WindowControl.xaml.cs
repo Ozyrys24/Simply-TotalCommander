@@ -145,12 +145,17 @@ namespace SimplyTotalCommander
         private void zipFile_Executed(object sender, EventArgs e)
         {
             ZipFileWindow window = new ZipFileWindow();
-            window.DataContext = (FileDataObject)DataGridOfFiles.SelectedItem;
+            window.DataContext = (FileDataObject)DataGridOfFiles.SelectedItem ;
             window.ShowDialog();
             Button_Click(sender, (RoutedEventArgs)e);
         }
         private void unZipFile_Executed(object sender, EventArgs e)
         {
+            var dataGrid = sender as DataGrid;
+            var file = (FileDataObject)dataGrid.SelectedItem;
+            var extention = file.extension;
+            if (extention.ToLower() != ".zip") return;
+
             UnZipFileWindow window = new UnZipFileWindow();
             window.DataContext = (FileDataObject)DataGridOfFiles.SelectedItem;
             window.ShowDialog();
