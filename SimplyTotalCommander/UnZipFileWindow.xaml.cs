@@ -31,7 +31,7 @@ namespace SimplyTotalCommander
 
         private void CancelUnZip(object sender, RoutedEventArgs e)
         {
-            App.Current.Windows[2].Close();
+            this.Close();
         }
 
         private void ChooseDestinyUnZipPath(object sender, RoutedEventArgs e)
