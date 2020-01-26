@@ -16,6 +16,7 @@ namespace SimplyTotalCommander
             InitializeComponent();
             SourceInitialized += new EventHandler(MainWindow_NoResizeWindowOnDoubleClick);
         }
+
         void MainWindow_NoResizeWindowOnDoubleClick(object sender, EventArgs e)
         {
             System.Windows.Interop.HwndSource source = System.Windows.Interop.HwndSource.FromHwnd(new System.Windows.Interop.WindowInteropHelper(this).Handle);

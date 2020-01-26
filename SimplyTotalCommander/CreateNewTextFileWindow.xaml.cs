@@ -26,6 +26,7 @@ namespace SimplyTotalCommander
             InitializeComponent();
         }
 
+
         private void CreateFileButton(object sender, RoutedEventArgs e)
         {
             string filePathWithName = destinyPath.Text + "//" + newFileName.Text;

@@ -75,7 +75,11 @@ namespace SimplyTotalCommander
                 System.Windows.MessageBox.Show("Error extract file from archive .\n" + ex.Message);
             }
         }
-
+        /// <summary>
+        /// updates the zip progress bar
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SaveProgress(object sender, SaveProgressEventArgs e)
         {
             if (e.EntriesTotal > 0)

@@ -94,9 +94,14 @@ namespace SimplyTotalCommander
                     if(i != 0) filename += $"({i})";
                     return;
                 }
-
             }
         }
+
+        /// <summary>
+        /// updates the unzip progress bar
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ExtractProgress(object sender, ExtractProgressEventArgs e)
         {
             if (e.EntriesTotal > 0)
