@@ -17,7 +17,7 @@ using System.Windows.Forms;
 namespace SimplyTotalCommander
 {
     /// <summary>
-    /// Logika interakcji dla klasy CreateNewTextFileWindow.xaml
+    /// Interaction logic for the class CreateNewTextFileWindow.xaml
     /// </summary>
     public partial class CreateNewTextFileWindow : Window
     {

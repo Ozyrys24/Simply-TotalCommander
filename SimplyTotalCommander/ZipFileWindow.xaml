@@ -9,6 +9,7 @@
         FontFamily="{StaticResource RexBold}" FontSize="20" Foreground="GhostWhite"
         WindowStartupLocation="CenterOwner"
         Title="Zip file" Height="400" Width="800">
+    
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="Images/mainBackground.png"/>

@@ -9,6 +9,7 @@
              d:DesignWidth="800"
              Loaded="Window_Loaded"
              >
+    
     <UserControl.Background>
         <ImageBrush ImageSource="Images/mainBackground.png"/>
     </UserControl.Background>
@@ -172,12 +173,12 @@
                 </StackPanel.RenderTransform>
                 <TextBlock HorizontalAlignment="left" Text="Choose file :"/>
                 <ComboBox SelectionChanged="Button_Click"
-                          Height="25"
-                      VerticalAlignment="top"
-                      HorizontalAlignment="Stretch"
-                      x:Name="SeachBox" 
-                      IsEditable="True" 
-                      IsTextSearchEnabled="True" RenderTransformOrigin="0.5,0.5">
+                    Height="25"
+                    VerticalAlignment="top"
+                    HorizontalAlignment="Stretch"
+                    x:Name="SeachBox" 
+                    IsEditable="True" 
+                    IsTextSearchEnabled="True" RenderTransformOrigin="0.5,0.5">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel >

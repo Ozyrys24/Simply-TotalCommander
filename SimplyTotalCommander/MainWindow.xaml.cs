@@ -10,6 +10,7 @@ namespace SimplyTotalCommander
     /// </summary>
     public partial class MainWindow : Window
     {
+
         public MainWindow()
         {
             InitializeComponent();
@@ -37,34 +38,7 @@ namespace SimplyTotalCommander
         {
 
         }
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-
-        }
-        private void Button_Click_2(object sender, RoutedEventArgs e)
-        {
-
-        }
-        private void Button_Click_3(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Button_Click_4(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Button_Click_5(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Button_Click_6(object sender, RoutedEventArgs e)
-        {
-
-        }
-
+        
         private void WindowControl_MouseRightButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             

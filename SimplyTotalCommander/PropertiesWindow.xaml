@@ -10,6 +10,7 @@
         Foreground="GhostWhite"
         FontFamily="{StaticResource RexBold}" FontSize="20"
         Title="Properties of File" Height="450" Width="800">
+    
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="Images/mainBackground.png"/>

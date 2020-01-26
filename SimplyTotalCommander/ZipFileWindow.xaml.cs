@@ -19,7 +19,7 @@ using System.Windows.Shapes;
 namespace SimplyTotalCommander
 {
     /// <summary>
-    /// Logika interakcji dla klasy ZipFileWindow.xaml
+    /// Interaction logic for the class ZipFileWindow.xaml
     /// </summary>
     public partial class ZipFileWindow : Window
     {
