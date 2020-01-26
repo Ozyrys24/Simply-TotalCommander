@@ -20,7 +20,7 @@
                       DockPanel.Dock="Left"
                       Foreground="White"
                       FontFamily="{StaticResource RexBold}"
-                      Width="150"
+
                       Height="550"
                       SelectionChanged="DataGridOfDirectories_SelectionChanged" RenderTransformOrigin="0.5,0.5">
                 <ListView.Background>
@@ -28,15 +28,19 @@
                 </ListView.Background>
                 <ListView.RenderTransform>
                     <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform/>
                         <TranslateTransform Y="-51"/>
                     </TransformGroup>
                 </ListView.RenderTransform>
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
                         <EventSetter Event="PreviewMouseLeftButtonDown" Handler="ListViewItem_PreviewMouseLeftButtonDown" />
+                        <Setter Property="ToolTip">
+                            <Setter.Value>
+                                <UniformGrid Columns="1">
+                                    <TextBlock Text="{Binding ListViewItem}"/>
+                                </UniformGrid>
+                            </Setter.Value>
+                        </Setter>
                     </Style>
                 </ListView.ItemContainerStyle>
                 <ListView.ItemTemplate>
